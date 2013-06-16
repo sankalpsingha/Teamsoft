@@ -60,6 +60,7 @@
 	 					<p class="lead"><?php echo CHtml::encode($model['course']); ?></p>
 	 					<h2 style="margin-top: -25px;">About me :</h2>
 	 					<p><?php CHtml::encode($model['about']); ?></p>
+	 					<br>
 	 					<address style="margin-top: -15px;">
 	 						<abbr title="Phone">P:</abbr> (123) 456-7890 <br>
 	 						<abbr title="Email">@:</abbr> <em><?php echo CHtml::encode($model['email']); ?></em>
