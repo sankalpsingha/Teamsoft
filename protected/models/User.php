@@ -213,18 +213,13 @@ class User extends CActiveRecord
 			$this->power = self::USER_MEMBER; // This has to be changed in the DB
 			$this->active = self::USER_INACTIVE; // The user can activate the account via email
 			$this->ban = self::USER_ACTIVE; // The tagging and the banning of the user takes place in the logic of the application.
-		
-
 			
 		}
 	}
 
-
 	public function validatePassword($password){
 		return md5($password) === $this->password;
 	}
-
-	
 
 	public function getActiveState(){
 		return array(self::USER_ACTIVE=>'Active',self::USER_INACTIVE=>'Inactive');

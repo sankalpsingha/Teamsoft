@@ -22,6 +22,7 @@
 					'items' => array(
 										array('label'=>'Home', 'url'=>array('/user/index'),'icon'=>'icon-home icon-large'),
 										array('label'=>'Complaint', 'url'=>array('/complaint/create'),'icon'=>'icon-warning-sign'),
+										array('label'=>'Create Module', 'url'=>array('/module/create')),
 										array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 										array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 									)
