@@ -17,6 +17,7 @@
  */
 class Module extends CActiveRecord
 {
+	public $user_id; // This is so that it can process it accordingly.
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -43,7 +44,7 @@ class Module extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category, description', 'required'),
+			array('category, description, user_id', 'required'),
 			array('category', 'length', 'max'=>100),
 			array('description, created_on, updated_on', 'safe'),
 			// The following rule is used by search().
@@ -77,6 +78,7 @@ class Module extends CActiveRecord
 			'description' => 'Description',
 			'created_on' => 'Created On',
 			'updated_on' => 'Updated On',
+			'user_id' => 'Add users to the module',
 		);
 	}
 
@@ -110,12 +112,31 @@ class Module extends CActiveRecord
 		'setUpdateOnCreate' => true,
 		),
 
+		//------ You may remove this if this is not required. ------
 		// Adding the extension of Advanced AR. It would be used for the many to many relation.
+		// Possible use : 
+		// $module = new Module;
+		// $module->users = array(5,6,7,8); // You have to get the user id's from the view and pass it here.
+		// $module->save();
+		// 
+		// What the above code should do is : The user's with the respective id's given above be added to the module.
 
 		'CAdvancedArBehavior' => array(
             'class' => 'application.extensions.CAdvancedArBehavior')
 
 		);
+
+		//-----------------------------------------------------------
+	}
+
+	/**
+	 * This would return all the users in the form of an array of 'id' and the 'username'
+	 * @return array $userArray
+	 */
+	public function getAllUser(){
+		$user = User::model()->findAll(); // This would give all the users.
+		$usersArray = CHtml::listData($user,'id','username'); 
+		return $usersArray; // This would return the array of the users in the 'id' and the 'username'
 	}
 
 

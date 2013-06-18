@@ -6,7 +6,7 @@
 
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveform', array(
 	'id'=>'module-form',
 	'enableAjaxValidation'=>false,
 )); ?>
@@ -15,23 +15,34 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+	
 		<?php echo $form->labelEx($model,'category'); ?>
 		<?php echo $form->textField($model,'category',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'category'); ?>
-	</div>
+	
 
-	<div class="row">
+	
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'description'); ?>
-	</div>
-
 	
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	
+		<p>Select the users that you wnat to add in the module :</p>
+		<?php echo $form->labelEx($model,'user_id'); ?>
+		<?php echo $form->dropDownList($model,'user_id',$model->getAllUser()); ?>
+		<?php echo $form->error($model,'user_id'); ?>
+	
+
+	<div class="row-fluid">
+		
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+                        'buttonType'=>'submit',
+                        'type'=>'success',
+                        'label'=>'Send',
+                )); ?>
 	</div>
+
 
 <?php $this->endWidget(); ?>
 
