@@ -24,10 +24,14 @@ This is the property of the CampusPlugin Team.
 		'brand' => Yii::app()->name,
 		'fixed' => false,
 		'collapse' => true,
+		'type' => 'list',
 		'items' => array(
 			array(
 					'class' => 'bootstrap.widgets.TbMenu',
+
 					'items' => array(
+
+
 										array('label'=>'Home', 'url'=>array('/user/index'),'icon'=>'icon-home icon-large'),
 										array('label'=>'Complaint', 'url'=>array('/complaint/create'),'icon'=>'icon-warning-sign'),
 										array('label'=>'Create Module', 'url'=>array('/module/create')),
