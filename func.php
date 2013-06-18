@@ -6,7 +6,7 @@ class fah
 {
 	
 	function __construct() {
-		return $chuddu;
+		return $parry;
 	}
 
 	function test() {
