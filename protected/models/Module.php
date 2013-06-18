@@ -43,7 +43,7 @@ class Module extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category', 'required'),
+			array('category, description', 'required'),
 			array('category', 'length', 'max'=>100),
 			array('description, created_on, updated_on', 'safe'),
 			// The following rule is used by search().
@@ -101,4 +101,23 @@ class Module extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function behaviors(){
+		return array('CTimestampBehavior'=>array(
+		'class' => 'zii.behaviors.CTimestampBehavior',
+		'createAttribute' => 'created_on',
+		'updateAttribute' => 'updated_on',
+		'setUpdateOnCreate' => true,
+		),
+
+		// Adding the extension of Advanced AR. It would be used for the many to many relation.
+
+		'CAdvancedArBehavior' => array(
+            'class' => 'application.extensions.CAdvancedArBehavior')
+
+		);
+	}
+
+
+
 }
