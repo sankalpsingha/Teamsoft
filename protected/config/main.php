@@ -76,7 +76,7 @@ return array(
 		'db'=>array(
 			//'connectionString' => 'mysql:unix_socket=/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock;dbname=fahrenheit',
 			'connectionString' => 'mysql:host=localhost;dbname=test',
-			'lauda' => 'lelo',
+			
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
