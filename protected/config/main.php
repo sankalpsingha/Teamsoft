@@ -73,7 +73,8 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:unix_socket=/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock;dbname=fahrenheit',
+			//'connectionString' => 'mysql:unix_socket=/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock;dbname=fahrenheit',
+			'connectionString' => 'mysql:host=localhost;dbname=fahrenheit',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
