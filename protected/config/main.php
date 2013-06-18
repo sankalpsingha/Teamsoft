@@ -75,7 +75,7 @@ return array(
 		
 		'db'=>array(
 			//'connectionString' => 'mysql:unix_socket=/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock;dbname=fahrenheit',
-			'connectionString' => 'mysql:host=localhost;dbname=teamsoft',
+			'connectionString' => 'mysql:host=localhost;dbname=fahrenheit',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
