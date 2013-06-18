@@ -5,8 +5,7 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
-// This is a test to check conflict.
-// Checking the vimdiff
+
 
 
 return array(
@@ -76,7 +75,7 @@ return array(
 		
 		'db'=>array(
 			//'connectionString' => 'mysql:unix_socket=/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock;dbname=fahrenheit',
-			'connectionString' => 'mysql:host=localhost;dbname=test',
+			'connectionString' => 'mysql:host=localhost;dbname=fahrenheit',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
