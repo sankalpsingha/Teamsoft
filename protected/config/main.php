@@ -5,7 +5,7 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
-// Test.
+// This is a test to check conflict.
 
 
 return array(
