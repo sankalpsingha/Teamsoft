@@ -1,7 +1,7 @@
-Teamsoft team management software.
+<h1>Teamsoft team management software.</h1>
 
 
-Requirements for Fahrenheit :
+<h2>Requirements for Fahrenheit :</h2>
 
 These are the basic requirements of the Fahrenheit application that needs to be done. It is still under heavy development.
 
