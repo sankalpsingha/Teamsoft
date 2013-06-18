@@ -1,6 +1,14 @@
 <?php /* @var $this Controller */ ?>
 <!doctype html>
 
+<!-- 
+
+This is the property of the CampusPlugin Team.
+
+@authors : Sankalp Singha , Jagjot Singh, Neeraj Rana
+
+ -->
+
 <head>
 	
 	<meta name="language" content="en" />
