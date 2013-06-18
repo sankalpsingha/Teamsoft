@@ -6,6 +6,7 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 // This is a test to check conflict.
+// Checking the vimdiff
 
 
 return array(
