@@ -28,14 +28,15 @@
 	
 
 	
-		<p>Select the users that you wnat to add in the module :</p>
-		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->dropDownList($model,'user_id',$model->getAllUser()); ?>
+		<?php //echo $form->labelEx($model,'user_id'); ?>
+		<?php //echo $form->dropDownList($model,'user_id',$model->getAllUser()); ?>
+
+		 <?php echo $form->dropDownListRow($model, 'user_id',$model->getAllUser(), array('multiple'=>true)); ?>
 		<?php echo $form->error($model,'user_id'); ?>
 	
 
 	<div class="row-fluid">
-		
+
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
                         'buttonType'=>'submit',
                         'type'=>'success',

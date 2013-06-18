@@ -12,9 +12,6 @@
 	//'enableClientValidation'=>true,
 )); ?>
 
-	
-	
-		
 		<?php echo $form->textArea($model,'status',array('rows'=>3, 'placeholder'=>'Enter status here','style'=>'margin-top:15px;', 'class'=>'span12')); ?>
 
 
