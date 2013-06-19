@@ -193,7 +193,7 @@
 	 								</h4>
 
 	 								<?php if ($status->user->id === Yii::app()->user->id): ?>
-	 									<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
+	 									<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
 	 								<?php endif ?>
 
 	 								<p>
