@@ -122,7 +122,7 @@ class User extends CActiveRecord
 			'comments' => array(self::HAS_MANY, 'Comment', 'user_id'),
 			'complaints' => array(self::HAS_MANY, 'Complaint', 'user_id'),
 			'feedbacks' => array(self::HAS_MANY, 'Feedback', 'user_id'),
-			'moneys' => array(self::HAS_MANY, 'Money', 'user_id'),
+			'money' => array(self::HAS_MANY, 'Money', 'user_id'),
 			'posts' => array(self::HAS_MANY, 'Post', 'user_id'),
 			'reports' => array(self::HAS_MANY, 'Report', 'user_id'),
 			'resources' => array(self::HAS_MANY, 'Resource', 'user_id'),

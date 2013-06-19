@@ -128,6 +128,14 @@ class UserController extends Controller
 		$user = User::model()->findByPk($user_id); // This would only get the specific user
 		$status = $this->createStatus();
 		$money = $this->createMoney();
+
+		// This is the section that would get the amount of the user.
+		$amount = $user->money;
+		foreach ($amount as $key) {
+			$sum += $key->amount;
+		}
+		//-----
+
 		$statuses = Status::model()->findAll();
 		$modules = $user->modules;
 		//$dataProvider=new CActiveDataProvider('User');  // As this is not actuallly required.
@@ -138,7 +146,8 @@ class UserController extends Controller
 			'statuses' => array_reverse($statuses), // This is using Relational AR
 			'lastStatus' => $statusLast->getLastStatus(), // This would get the last status for the Last Status
 			'money' => $money,
-			'modules' => $modules
+			'modules' => $modules,
+			'amount' => $sum, // This would send the amount.
 		));
 	}
 
