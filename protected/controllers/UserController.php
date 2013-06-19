@@ -138,7 +138,7 @@ class UserController extends Controller
 			'statuses' => $user->status, // This is using Relational AR
 			'lastStatus' => $statusLast->getLastStatus(), // This would get the last status for the Last Status
 			'money' => $money,
-			'modules' => $modules,
+			'modules' => $modules
 		));
 	}
 
