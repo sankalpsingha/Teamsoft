@@ -1,6 +1,3 @@
--- This is the schema for the database of the TEAMSOFT ( Fahrenheit Application ) --
-
-
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -31,6 +28,7 @@ CREATE  TABLE IF NOT EXISTS `fahrenheit`.`user` (
   `thumbnail` VARCHAR(255) NULL ,
   `email` VARCHAR(100) NULL ,
   `mobile` BIGINT NULL ,
+  `slug` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) )

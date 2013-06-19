@@ -115,8 +115,10 @@ class UserController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($slug)
 	{
+		$something = User::model()->findByAttributes(array('slug'=>$slug));
+		$id = $something->id;
 		$this->pageTitle = ucfirst(User::model()->findByPk($id)->name).'\'s'.' Home';
 		$statusLast = new Status;
 		$user = User::model()->findByPk($id);
