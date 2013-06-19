@@ -1,7 +1,6 @@
 <?php
 /* @var $this UserController */
 /* @var $dataProvider CActiveDataProvider */
-
 ?>
 
 
@@ -77,14 +76,11 @@
 	 					<span class="label label-info">Member</span>
 	 					</div>
 	 					<p style="padding-top:10px;"><strong>Working For Modules :</strong></p>
-	 					<div class="alert alert-info"><span class="badge badge-success">Steering</span>
-	 					<span class="badge badge-success">Wheels</span>
-	 					<span class="badge badge-success">Hydralics</span>
-	 					<span class="badge badge-success">Brakes</span>
-	 					<span class="badge badge-success">Body</span>
-	 					<span class="badge badge-success">Design</span>
-	 					<span class="badge badge-success">Tyres</span>
-</div>
+	 					<div class="alert alert-info">
+	 						<?php foreach ($modules as $key) {
+	 							echo '<span class="badge badge-success">'.CHtml::link($key->category, array('module/view/'.$key->id)).'</span>';
+	 						} ?>
+						</div>
 	 					
 	 					<?php $this->renderPartial('/status/_form',array('model'=>$status)); ?>
 	 					<?php if (Yii::app()->user->hasFlash('statusCreated')): ?>
