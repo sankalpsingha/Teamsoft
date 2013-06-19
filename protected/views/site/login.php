@@ -44,7 +44,7 @@
 								<span class="add-on"><i class=" icon-user icon-large"></i></span>
 								
 								<?php echo $form->textField($model,'username',array('class'=>"input-large span10",'placeholder'=>'Your username')); ?>
-								<?php echo $form->error($model,'username'); ?>
+								<?php //echo $form->error($model,'username'); ?>
 								</div>
 
 								<div class="clearfix"></div>
@@ -52,7 +52,7 @@
 								<div class="input-prepend" title="Password">
 								<span class="add-on"><i class=" icon-lock icon-large"></i></span>
 								<?php echo $form->passwordField($model,'password',array('class'=>"input-large span10",'placeholder'=>'Your Password')); ?>
-								<?php echo $form->error($model,'password'); ?>
+								<?php //echo $form->error($model,'password'); ?>
 								</div>
 								
 								<?php echo $form->errorSummary($model); ?>

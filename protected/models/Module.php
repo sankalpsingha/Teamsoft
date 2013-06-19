@@ -135,7 +135,7 @@ class Module extends CActiveRecord
 	 */
 	public function getAllUser(){
 		$user = User::model()->findAll(); // This would give all the users.
-		$usersArray = CHtml::listData($user,'id','username'); 
+		$usersArray = CHtml::listData($user,'id','name'); 
 		return $usersArray; // This would return the array of the users in the 'id' and the 'username'
 	}
 
