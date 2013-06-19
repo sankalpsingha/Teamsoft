@@ -110,6 +110,13 @@ class StatusController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		$status = $this->loadModel($id); //Load current status
+		$comments = $status->statusComments; //Get all the comments from it
+		if($comments != null) {
+			foreach ($comments as $key) {
+				StatusComment::model()->findByPk($key->id)->delete(); //Deleting the comments
+			}
+		}
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
