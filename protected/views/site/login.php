@@ -54,7 +54,8 @@
 								<?php echo $form->passwordField($model,'password',array('class'=>"input-large span10",'placeholder'=>'Your Password')); ?>
 								<?php echo $form->error($model,'password'); ?>
 								</div>
-								<div class="clearfix"></div>
+								
+								<?php echo $form->errorSummary($model); ?>
 
 								<label class="checkbox remember">
 								<?php echo $form->checkBox($model,'rememberMe'); ?> Remember me
