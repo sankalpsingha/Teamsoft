@@ -233,4 +233,7 @@ class User extends CActiveRecord
 		return array(self::USER_CLEAN=>'Clean',self::USER_TAGGED=>'Tagged',self::USER_BANNED=>'Banned');
 	}
 
+	public function isAdmin() {
+		return Yii::app()->user->power == self::USER_ADMIN;
+	}
 }
