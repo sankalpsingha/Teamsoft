@@ -99,6 +99,9 @@ class ModuleController extends Controller
 		if(isset($_POST['Module']))
 		{
 			$model->attributes=$_POST['Module'];
+			//----
+			$model->users = $_POST['Module']['user_id'];
+			// ----
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

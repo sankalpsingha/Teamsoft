@@ -6,7 +6,7 @@
 
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'todo-form',
 	'enableAjaxValidation'=>false,
 )); ?>
@@ -22,47 +22,42 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'created_on'); ?>
-		<?php echo $form->textField($model,'created_on'); ?>
-		<?php echo $form->error($model,'created_on'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'updated_on'); ?>
-		<?php echo $form->textField($model,'updated_on'); ?>
-		<?php echo $form->error($model,'updated_on'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'deadline'); ?>
 		<?php echo $form->textField($model,'deadline'); ?>
 		<?php echo $form->error($model,'deadline'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'module_id'); ?>
-		<?php echo $form->textField($model,'module_id',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'module_id'); ?>
-	</div>
-
-	<div class="row">
+	<!-- <div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>
 		<?php echo $form->textField($model,'user_id',array('size'=>10,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'user_id'); ?>
-	</div>
+	</div> -->
+
+	<div class="row-fluid">
+			<?php $this->widget('ext.select2.ESelect2',array(
+  							'model'=>$model,
+							  'attribute'=>'user_id',
+							  'data'=>$model->getUsers($model->module_id),
+							  'options' => array(
+							  	'width'=>'20%',
+							  	'placeholder'=>'Type here to list the users.',
+    							'allowClear'=>true,
+							  	),
+							  'htmlOptions'=>array(
+							    'multiple'=>'multiple',
+							    
+							  ),
+							  )
+							); ?>
+
+		</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'completed'); ?>
-		<?php echo $form->textField($model,'completed'); ?>
-		<?php echo $form->error($model,'completed'); ?>
-	</div>
-
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

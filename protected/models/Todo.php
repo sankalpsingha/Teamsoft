@@ -115,4 +115,29 @@ class Todo extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function behaviors(){
+		return array('CTimestampBehavior'=>array(
+			'class' => 'zii.behaviors.CTimestampBehavior',
+			'createAttribute' => 'created_on',
+			'updateAttribute' => 'updated_on',
+			'setUpdateOnCreate' => true,
+			),
+			'CAdvancedArBehavior' => array(
+        	    'class' => 'application.extensions.CAdvancedArBehavior')
+		);
+	}
+
+	public function afterValidate() {
+		parent::afterValidate();
+		if(!$this->hasErrors()) {
+			$this->completed = 0;
+		}
+	}
+
+	public function getUsers($id){
+		$user =  Module::model()->findByPk($id)->users;// This would give all the users.
+		$usersArray = CHtml::listData($user,'id','name'); 
+		return $usersArray; // This would return the array of the users in the 'id' and the 'username'
+	}
 }
