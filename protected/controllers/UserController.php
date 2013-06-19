@@ -123,7 +123,7 @@ class UserController extends Controller
 	public function actionIndex()
 	{
 		$user_id = Yii::app()->user->id;
-		$this->pageTitle = 'Welcome '.ucfirst(Yii::app()->user->name);
+		$this->pageTitle = 'Welcome '.ucfirst(User::model()->findByPk(Yii::app()->user->id)->name);
 		$statusLast = new Status;
 		$user = User::model()->findByPk($user_id); // This would only get the specific user
 		$status = $this->createStatus();

@@ -38,7 +38,7 @@ This is the property of the CampusPlugin Team.
 										array('label'=>'Create Module', 'url'=>array('/module/create'),'icon'=>'icon-tag'),
 										array('label'=>'REGISTER', 'url'=>array('/user/create'), 'visible'=>Yii::app()->user->isGuest),
 										array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-										array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'icon'=>'icon-signout', 'visible'=>!Yii::app()->user->isGuest)
+										array('label'=>'Logout ('.User::model()->findByPk(Yii::app()->user->id)->name.')', 'url'=>array('/site/logout'), 'icon'=>'icon-signout', 'visible'=>!Yii::app()->user->isGuest)
 									)
 								)
 							)
