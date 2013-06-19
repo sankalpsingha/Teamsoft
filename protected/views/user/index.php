@@ -24,7 +24,7 @@
         	
 
          <div id="table-wrap">
-			<table class="table-bordered table-striped table-condensed table-hover">
+			<table class="table-bordered table-striped table-condensed table-hover" style="background-color: #fff;">
 				<thead style="background">
 					<th>Description</th>
 					<th>Deadline</th>
@@ -240,7 +240,7 @@
 	<div class="well ">
 
 			<p style=" text-align: center;"><strong>Amount Spent :</strong></p>
-			<p class="lead" style="text-align: center;">2789/-</p>
+			<p class="lead" style="text-align: center;"><?php echo CHtml::encode($amount); ?>/-</p>
 
 			<?php 
 
