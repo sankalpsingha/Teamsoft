@@ -1,0 +1,8 @@
+2013/06/19 18:40:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "create/user".' in /Applications/XAMPP/xamppfiles/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('create/user')
+#1 /Applications/XAMPP/xamppfiles/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Applications/XAMPP/xamppfiles/htdocs/teamsoft/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/teamsoft/create/user
+---
