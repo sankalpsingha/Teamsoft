@@ -202,7 +202,16 @@ class User extends CActiveRecord
 		'createAttribute' => 'created_on',
 		'updateAttribute' => 'updated_on',
 		'setUpdateOnCreate' => true,
-		));
+		),
+
+		'sluggable' => array(
+        'class'=>'ext.behaviors.SluggableBehavior',
+        'columns' => array('username'),
+        'unique' => true,
+        'update' => false,
+      ),
+
+		);
 	}
 
 	protected function afterValidate(){

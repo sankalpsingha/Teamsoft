@@ -19,6 +19,8 @@ class UserController extends Controller
 		);
 	}
 
+	public $defaultAction = 'dashboard';
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -32,7 +34,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','index'),
+				'actions'=>array('update','dashboard'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -146,7 +148,7 @@ class UserController extends Controller
 	/**
 	 * This is the main page where all the spice happens.
 	 */
-	public function actionIndex()
+	public function actionDashboard()
 	{
 		$user_id = Yii::app()->user->id;
 		$this->pageTitle = 'Welcome '.ucfirst(User::model()->findByPk(Yii::app()->user->id)->name);
