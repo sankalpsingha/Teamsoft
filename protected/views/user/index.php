@@ -71,14 +71,18 @@
 	 						<abbr title="Email">@:</abbr> <em><?php echo CHtml::encode($model['email']); ?></em>
 	 					</address>
 	 					<div id="roles">
-	 					<span class="label label-important">Admin</span>
-	 					<span class="label label-warning">Moderator</span>
-	 					<span class="label label-info">Member</span>
+	 						<?php if(User::model()->isAdmin()): ?>
+	 							<span class="label label-important">Admin</span>
+	 						<?php elseif(User::model()->isModerator()): ?>
+	 							<span class="label label-warning">Moderator</span>
+	 						<?php else: ?>
+	 							<span class="label label-info">Member</span>
+	 						<?php endif; ?>
 	 					</div>
 	 					<p style="padding-top:10px;"><strong>Working For Modules :</strong></p>
 	 					<div class="alert alert-info">
 	 						<?php foreach ($modules as $key) {
-	 							echo '<span class="badge badge-success">'.CHtml::link($key->category, array('module/view/'.$key->id)).'</span><br>';
+	 							echo '<span class="badge badge-success">'.CHtml::link($key->category, array('module/view/'.$key->id)).'</span> ';
 	 						} ?>
 						</div>
 	 					

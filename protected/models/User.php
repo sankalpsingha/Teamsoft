@@ -234,6 +234,10 @@ class User extends CActiveRecord
 	}
 
 	public function isAdmin() {
-		return Yii::app()->user->power == self::USER_ADMIN;
+		return User::model()->findByPk(Yii::app()->user->id)->power == self::USER_ADMIN ? true : false;
+	}
+
+	public function isModerator() {
+		return User::model()->findByPk(Yii::app()->user->id)->power == self::USER_MODERATOR ? true : false;
 	}
 }
