@@ -19,6 +19,8 @@ class UserController extends Controller
 		);
 	}
 
+	public $defaultAction = 'dashboard';
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -32,7 +34,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','index'),
+				'actions'=>array('update','dashboard'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -45,16 +47,7 @@ class UserController extends Controller
 		);
 	}
 
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
+	
 
 	/**
 	 * Creates a new model.
@@ -117,10 +110,45 @@ class UserController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
+
+	/**
+	 * Displays a particular model.
+	 * @param integer $id the ID of the model to be displayed
+	 */
+	public function actionView($id)
+	{
+		$this->pageTitle = ucfirst(User::model()->findByPk($id)->name).'\'s'.' Home';
+		$statusLast = new Status;
+		$user = User::model()->findByPk($id);
+
+		// This is the section that would get the amount of the user.
+		// I think we can make a function for this.. But Oh well... :O
+		$amount = $user->money;
+		$sum = 0;
+		if($amount != null) {
+			foreach ($amount as $key) {
+				$sum += $key->amount;
+			}
+		}
+		//-----
+
+		$statuses = Status::model()->findAll();
+		$modules = $user->modules;
+
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
+			'statuses' => array_reverse($statuses), // This is using Relational AR
+			'lastStatus' => $statusLast->getLastStatus(), // This would get the last status for the Last Status
+			'modules' => $modules,
+			'amount' => $sum, // This would send the amount.
+
+		));
+	}
+
 	/**
 	 * This is the main page where all the spice happens.
 	 */
-	public function actionIndex()
+	public function actionDashboard()
 	{
 		$user_id = Yii::app()->user->id;
 		$this->pageTitle = 'Welcome '.ucfirst(User::model()->findByPk(Yii::app()->user->id)->name);
