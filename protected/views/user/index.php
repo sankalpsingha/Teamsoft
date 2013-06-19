@@ -186,20 +186,16 @@
 	 						</blockquote>
 	 						<div class="row-fluid">
 	 							<div class="span11 offset1 well" style="margin-top:10px;"> <span class="label label-important">COMMENTS :</span> 
-
-	 								<!-- First Comment-->
-
-	 								<div class="comment-wrap">
-	 									<blockquote><!--<img src="https://graph.facebook.com/sankalpsingha/picture" class="pull-left">-->
-	 										<h4></h4>
-	 										<small></small>
-	 										<p></p>
-	 									</blockquote>
-
-	 									<!--Next Dummy comment -->
-
-
-	 								</div>
+	 								<?php $comments = $status->statusComments; ?>
+	 								<?php foreach ($comments as $key_2): ?>
+	 									<div class="comment-wrap">
+		 									<blockquote>
+		 										<h4><?php echo User::model()->findByPk($key_2->user_id)->name; ?></h4>
+		 										<small><?php echo $key_2->created_on; ?></small>
+		 										<p><?php echo $key_2->content; ?></p>
+		 									</blockquote>
+	 									</div>
+	 								<?php endforeach ?>
 	 							</div>
 	 						</div>
 	 						<?php $this->renderPartial('/statusComment/_form', array('model' => new StatusComment, 'id' => $status->id)); ?>

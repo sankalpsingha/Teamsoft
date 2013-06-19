@@ -76,7 +76,7 @@ class StatusCommentController extends Controller
 				$model->attributes=$_POST['StatusComment'];
 				$model->status_id = $id;
 				if($model->save())
-					$this->redirect(array('view','id'=>$model->id));
+					$this->redirect(array('/'));
 			}
 
 			$this->render('create',array(
