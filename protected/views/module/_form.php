@@ -6,7 +6,7 @@
 
 <div class="form">
 
-<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveform', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'module-form',
 	'enableAjaxValidation'=>false,
 )); ?>
