@@ -122,14 +122,14 @@ class UserController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$user_id = Yii::app()->user->id;
 		$this->pageTitle = 'Welcome '.ucfirst(Yii::app()->user->name);
-
 		$statusLast = new Status;
-
-
-		$user = User::model()->findByPk(Yii::app()->user->id); // This would only get the specific user
+		$user = User::model()->findByPk($user_id); // This would only get the specific user
 		$status = $this->createStatus();
 		$money = $this->createMoney();
+
+		$modules = $user->modules;
 		//$dataProvider=new CActiveDataProvider('User');  // As this is not actuallly required.
 		$this->render('index',array(
 			//'dataProvider'=>$dataProvider,
@@ -138,7 +138,7 @@ class UserController extends Controller
 			'statuses' => $user->status, // This is using Relational AR
 			'lastStatus' => $statusLast->getLastStatus(), // This would get the last status for the Last Status
 			'money' => $money,
-
+			'modules' => $modules,
 		));
 	}
 
