@@ -9,7 +9,7 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'status-comment-form',
 	'enableAjaxValidation'=>false,
-	'action' => '/teamsoft/statusComment/create/'.$id,
+	'action' => 'statusComment/create/'.$id,
 )); ?>
 
 	<?php echo $form->errorSummary($model); ?>
