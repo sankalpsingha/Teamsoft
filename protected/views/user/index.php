@@ -193,6 +193,16 @@
 	 								</h4>
 
 	 								<?php if ($status->user->id === Yii::app()->user->id): ?>
+<<<<<<< HEAD
+	 									<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
+	 								<?php endif ?>
+
+	 								<p>
+	 									<?php echo CHtml::encode($status->status); ?>
+	 								</p>
+	 								 <small><?php echo CHtml::encode($status->created_on); ?></small>
+	 							</blockquote>
+=======
 	 								<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
 	 							<?php endif ?>
 
@@ -218,6 +228,7 @@
 	 						<?php $this->renderPartial('/statusComment/_form', array('model' => new StatusComment, 'id' => $status->id)); ?>
 	 						<!-- <input  class="span12" placeholder="Enter your comment here..."></input>
 	 						<button class="btn btn-mini btn-success" type="button" style="margin-top: 10px;"><i class="icon-comment"></i> Post Comment</button> -->
+>>>>>>> 8d753e8410b0f9d95c0dfa6655768bcb985711d2
 	 							<?php endforeach ?>
 	 						</div>
 	 					</div>
