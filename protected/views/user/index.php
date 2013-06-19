@@ -96,12 +96,14 @@
 	 							<span class="label label-info">Member</span>
 	 						<?php endif; ?>
 	 					</div>
-	 					<p style="padding-top:10px;"><strong>Working For Modules :</strong></p>
-	 					<div class="alert alert-info">
-	 						<?php foreach ($modules as $key) {
-	 							echo '<span class="badge badge-success">'.CHtml::link($key->category, array('module/view/'.$key->id),array('style'=>'color:#fff;')).'</span> ';
-	 						} ?>
-						</div>
+	 					<?php if ($model->modulesCount): ?>
+	 						<p style="padding-top:10px;"><strong>Working For Modules :</strong></p>
+		 					<div class="alert alert-info">
+		 						<?php foreach ($modules as $key) {
+		 							echo '<span class="badge badge-success">'.CHtml::link($key->category, array('module/view/'.$key->id),array('style'=>'color:#fff;')).'</span> ';
+		 						} ?>
+							</div>
+	 					<?php endif ?>
 	 					
 	 					<?php $this->renderPartial('/status/_form',array('model'=>$status)); ?>
 	 					<?php if (Yii::app()->user->hasFlash('statusCreated')): ?>
