@@ -45,16 +45,7 @@ class UserController extends Controller
 		);
 	}
 
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
+	
 
 	/**
 	 * Creates a new model.
@@ -115,6 +106,41 @@ class UserController extends Controller
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+	}
+
+
+	/**
+	 * Displays a particular model.
+	 * @param integer $id the ID of the model to be displayed
+	 */
+	public function actionView($id)
+	{
+		$this->pageTitle = ucfirst(User::model()->findByPk($id)->name).'\'s'.' Home';
+		$statusLast = new Status;
+		$user = User::model()->findByPk($id);
+
+		// This is the section that would get the amount of the user.
+		// I think we can make a function for this.. But Oh well... :O
+		$amount = $user->money;
+		$sum = 0;
+		if($amount != null) {
+			foreach ($amount as $key) {
+				$sum += $key->amount;
+			}
+		}
+		//-----
+
+		$statuses = Status::model()->findAll();
+		$modules = $user->modules;
+
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
+			'statuses' => array_reverse($statuses), // This is using Relational AR
+			'lastStatus' => $statusLast->getLastStatus(), // This would get the last status for the Last Status
+			'modules' => $modules,
+			'amount' => $sum, // This would send the amount.
+
+		));
 	}
 
 	/**
