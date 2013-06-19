@@ -1,0 +1,23 @@
+/*
+This is the custom Fahrenheit CSS file. 
+Please do not copy or reproduce without the 
+permission of the authors.
+
+@authors : 
+
+Sankalp Singha (sankalpsingha@gmail.com)
+Jagjot Singh (firangistan@gmail.com)
+
+
+Want to join as a developer?  :  join@fahrenheit.com
+*/
+
+
+body{
+	background-image: url(../images/bg2.jpg); 
+	background-repeat: repeat;
+}
+
+.well {
+	background-color: #fff;
+}

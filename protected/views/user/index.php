@@ -6,6 +6,7 @@
 
 
 
+
 <div class="span10">
 	<div class="row-fluid">
 		<div class="span3">
@@ -56,10 +57,15 @@
 	 				<div class="well">
 	 					<div class="row-fluid">
 	 						<div class="span6">
+	 							
+
 	 							<h1 style="color: #99253b;"><?php echo CHtml::encode($model['name']." ".$model['lastname']); ?></h1>
 	 					<p class="lead"><?php echo CHtml::encode($model['course']); ?></p>
-	 					<h2 style="margin-top: -25px;">About me :</h2>
-	 					<p><?php CHtml::encode($model['about']); ?></p>
+
+	 					<h2 style="margin-top: -20px; margin-bottom : -3px;">About me :</h2>
+	 					<p style="font-size:18px;"><em><?php echo CHtml::encode($model['about']); ?></em></p>
+
+
 	 					<br>
 	 					<address style="margin-top: -15px;">
 	 						<abbr title="Phone">P:</abbr> (123) 456-7890 <br>
@@ -71,14 +77,14 @@
 	 					<span class="label label-info">Member</span>
 	 					</div>
 	 					<p style="padding-top:10px;"><strong>Working For Modules :</strong></p>
-	 					<span class="badge badge-success">Steering</span>
+	 					<div class="alert alert-info"><span class="badge badge-success">Steering</span>
 	 					<span class="badge badge-success">Wheels</span>
 	 					<span class="badge badge-success">Hydralics</span>
 	 					<span class="badge badge-success">Brakes</span>
 	 					<span class="badge badge-success">Body</span>
 	 					<span class="badge badge-success">Design</span>
 	 					<span class="badge badge-success">Tyres</span>
-
+</div>
 	 					
 	 					<?php $this->renderPartial('/status/_form',array('model'=>$status)); ?>
 	 					<?php if (Yii::app()->user->hasFlash('statusCreated')): ?>

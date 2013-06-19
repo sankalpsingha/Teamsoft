@@ -19,6 +19,7 @@ This is the property of the CampusPlugin Team.
 
 <div class="container" style="margin-top:20px;">
 
+<?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/fahrenheit.css'); ?>
 
 <?php $this->widget('bootstrap.widgets.TbNavbar', array(
 		'brand' => Yii::app()->name,
@@ -34,9 +35,9 @@ This is the property of the CampusPlugin Team.
 
 										array('label'=>'Home', 'url'=>array('/user/index'),'icon'=>'icon-home icon-large'),
 										array('label'=>'Complaint', 'url'=>array('/complaint/create'),'icon'=>'icon-warning-sign'),
-										array('label'=>'Create Module', 'url'=>array('/module/create')),
+										array('label'=>'Create Module', 'url'=>array('/module/create'),'icon'=>'icon-tag'),
 										array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-										array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+										array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'icon'=>'icon-signout', 'visible'=>!Yii::app()->user->isGuest)
 									)
 								)
 							)
