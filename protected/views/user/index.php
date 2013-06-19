@@ -169,43 +169,43 @@
 
 
 	 							<?php foreach ($statuses as $status): ?>
-	 								<blockquote>
+	 							<blockquote>
 	 								<h4>
 	 									<img src="http://placehold.it/64x64">
-	 									 <?php echo CHtml::encode($status->user->name); ?>
+	 									<?php echo CHtml::encode($status->user->name); ?>
 	 								</h4>
 
 	 								<?php if ($status->user->id === Yii::app()->user->id): ?>
-	 									<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
-	 								<?php endif ?>
+	 								<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
+	 							<?php endif ?>
 
-	 								<p>
-	 									<?php echo CHtml::encode($status->status); ?>
-	 								</p>
-	 								 <small><?php echo CHtml::encode($status->created_on); ?></small>
-	 							</blockquote>
+	 							<p>
+	 								<?php echo CHtml::encode($status->status); ?>
+	 							</p>
+	 							<small><?php echo CHtml::encode($status->created_on); ?></small>
+	 						</blockquote>
+	 						<div class="row-fluid">
+	 							<div class="span11 offset1 well" style="margin-top:10px;"> <span class="label label-important">COMMENTS :</span> 
+
+	 								<!-- First Comment-->
+
+	 								<div class="comment-wrap">
+	 									<blockquote><!--<img src="https://graph.facebook.com/sankalpsingha/picture" class="pull-left">-->
+	 										<h4></h4>
+	 										<small></small>
+	 										<p></p>
+	 									</blockquote>
+
+	 									<!--Next Dummy comment -->
+
+
+	 								</div>
+	 							</div>
+	 						</div>
+	 						<?php $this->renderPartial('/statusComment/_form', array('model' => new StatusComment, 'id' => $status->id)); ?>
+	 						<!-- <input  class="span12" placeholder="Enter your comment here..."></input>
+	 						<button class="btn btn-mini btn-success" type="button" style="margin-top: 10px;"><i class="icon-comment"></i> Post Comment</button> -->
 	 							<?php endforeach ?>
-
-	 							 <div class="row-fluid">
-                    <div class="span11 offset1 well" style="margin-top:10px;"> <span class="label label-important">COMMENTS :</span> 
-                    
-                    <!-- First Comment-->
-                    
-                    <div class="comment-wrap">
-                        <blockquote><!--<img src="https://graph.facebook.com/sankalpsingha/picture" class="pull-left">-->
-                        <h4>Sankalp Singha</h4>
-                        <small>31 Apr @ 2.55 PM </small>
-                        <p>This is a very good theory...</p>
-                      </blockquote>
-                       
-                        <!--Next Dummy comment -->
-                        
-                       
-                         </div>
-                  </div>
-                  </div>
-	 							<input  class="span12" placeholder="Enter your comment here..."></input>
-    						<button class="btn btn-mini btn-success" type="button" style="margin-top: 10px;"><i class="icon-comment"></i> Post Comment</button>
 	 						</div>
 	 					</div>
 	 				</div>
