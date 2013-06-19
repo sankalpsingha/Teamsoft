@@ -82,7 +82,7 @@
 	 					<p style="padding-top:10px;"><strong>Working For Modules :</strong></p>
 	 					<div class="alert alert-info">
 	 						<?php foreach ($modules as $key) {
-	 							echo '<span class="badge badge-success">'.CHtml::link($key->category, array('module/view/'.$key->id)).'</span> ';
+	 							echo '<span class="badge badge-success">'.CHtml::link($key->category, array('module/view/'.$key->id),array('style'=>'color:#fff;')).'</span> ';
 	 						} ?>
 						</div>
 	 					
