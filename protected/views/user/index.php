@@ -23,24 +23,41 @@
 	 				<p class="lead" style="text-align:center; margin-top: 10px;">MY TO-DO LIST</p>
         	
 
-          <?php 
-          $this->widget('bootstrap.widgets.TbTabs', array(
-				'type'=>'tabs',
-				'htmlOptions' => array('class'=>'bday-wrap'),
-				'stacked'=>true,
-				'tabs'=>array(
-								array('label'=>'Submit Brake Report'),
-								array('label'=>'Submit Tyres Pic'),
-								array('label'=>'Repair Body'),
-								array('label'=>'Paint Hood'),
-								array('label'=>'Test Driving'),
-								
-					),
-			)); ?>
+         <div id="table-wrap">
+			<table class="table-bordered table-striped table-condensed table-hover">
+				<thead style="background">
+					<th>Description</th>
+					<th>Deadline</th>
+					
+				</thead>
+				
+					<tbody>
+					<tr class="success">
+						<td>The description would be here.</td>
+						<td>29 Apr</td>
+					</tr>
+					<tr class="error">
+						<td>The description would be here.</td>
+						<td>29 Apr</td>
+					</tr>
+					<tr class="warning">
+						<td>The description would be here.</td>
+						<td>29 Apr</td>
+					</tr>
+					<tr class="success">
+						<td>The description would be here.</td>
+						<td>29 Apr</td>
+					</tr>
+				</tbody>
+			
+				
+
+			</table>
+		</div>
 
 			<?php 
 			$this->widget('bootstrap.widgets.TbButton',array(
-								'htmlOptions' => array('style'=>'margin-top: -25px;'),
+								//'htmlOptions' => array('style'=>'margin-top: -25px;'),
 								'label' => 'Show all',
 								'type' =>'info',
 								'size' => 'mini'
