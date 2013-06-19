@@ -131,14 +131,12 @@ class UserController extends Controller
 
 		// This is the section that would get the amount of the user.
 		$amount = $user->money;
+		$sum = 0;
 		if($amount != null) {
 			foreach ($amount as $key) {
 				$sum += $key->amount;
 			}
-		} else {
-			$sum = 0;
 		}
-		
 		//-----
 
 		$statuses = Status::model()->findAll();
