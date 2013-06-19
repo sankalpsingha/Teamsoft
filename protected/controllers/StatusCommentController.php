@@ -76,7 +76,7 @@ class StatusCommentController extends Controller
 				$model->attributes=$_POST['StatusComment'];
 				$model->status_id = $id;
 				if($model->save())
-					$this->redirect(array('/'));
+					$this->redirect(Yii::app()->request->urlReferrer);
 			}
 
 			$this->render('create',array(

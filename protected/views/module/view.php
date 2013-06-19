@@ -13,6 +13,7 @@ $this->menu=array(
 	array('label'=>'Update Module', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete Module', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Module', 'url'=>array('admin')),
+	array('label'=>'Create TODO', 'url'=>array('todo/create/', 'id' => $model->id)),
 );
 ?>
 

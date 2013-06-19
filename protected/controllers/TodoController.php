@@ -61,14 +61,19 @@ class TodoController extends Controller
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
 	public function actionCreate($id) {
+		$module = Module::model()->findByPk($id);
+		if($module === null) {
+			throw new CHttpException('404', 'Module not found');
+		}
 		$model=new Todo;
-
+		$model->module_id = $id;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Todo']))
 		{
 			$model->attributes=$_POST['Todo'];
+			$model->users = $_POST['Todo']['user_id'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
