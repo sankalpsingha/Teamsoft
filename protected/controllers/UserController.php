@@ -128,14 +128,14 @@ class UserController extends Controller
 		$user = User::model()->findByPk($user_id); // This would only get the specific user
 		$status = $this->createStatus();
 		$money = $this->createMoney();
-
+		$statuses = Status::model()->findAll();
 		$modules = $user->modules;
 		//$dataProvider=new CActiveDataProvider('User');  // As this is not actuallly required.
 		$this->render('index',array(
 			//'dataProvider'=>$dataProvider,
 			'status' => $status, // sending the variable to the view file.
 			'model' => $user,
-			'statuses' => $user->status, // This is using Relational AR
+			'statuses' => array_reverse($statuses), // This is using Relational AR
 			'lastStatus' => $statusLast->getLastStatus(), // This would get the last status for the Last Status
 			'money' => $money,
 			'modules' => $modules

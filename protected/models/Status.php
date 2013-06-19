@@ -63,6 +63,7 @@ class Status extends CActiveRecord
 		return array(
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 			'statusComments' => array(self::HAS_MANY, 'StatusComment', 'status_id'),
+			'statusCommentsCount' => array(self::STAT, 'StatusComment', 'status_id'),
 		);
 	}
 
