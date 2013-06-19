@@ -24,11 +24,13 @@
 			<div class="row-fluid">
 				<div class="login-box">
 					<div class="icons">
-						<a href="info.html"><i class=" icon-info-sign"></i></a>
+						
 						<a href="#" style="text-decoration:none; margin-top:-5px;">Forgot Password</a>
+						<i class="icon-group"></i>
+						<?php echo CHtml::link('Register',array('user/create')); ?>
 					</div>
 						<h2 class="offset2" style="color: #99253b;"><i class="icon-unlock icon-2x"></i>Fahrenheit</h2>
-
+						
 						<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 								//'htmlOptions' => array('class'=>'form-horizontal'),
 								'id'=>'login-form',

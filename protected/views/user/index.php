@@ -139,7 +139,8 @@
                         "value" => 15,
                         "color" => "rgba(20,120,120,1)",
                         "label" => "Hydraulics"
-                    )
+                    ),
+                    
                 ),
                 'options' => array()
             )
@@ -147,13 +148,15 @@
     ?>		
 					
 
-	 						</div>
-	 					</div>
-						<h3>Current Status :</h3>
+					<h3 style="margin-top:20px;">Current Status :</h3>
 						<blockquote>
-							<p><?php echo CHtml::encode($lastStatus['status']); ?></p>
+							<p><i class="icon-quote-left"></i> <?php echo CHtml::encode($lastStatus['status']); ?></p>
 							 <small><?php echo CHtml::encode($lastStatus['created_on']); ?></small>
 						</blockquote>
+
+	 						</div>
+	 					</div>
+						
 
 	 				</div>
 
