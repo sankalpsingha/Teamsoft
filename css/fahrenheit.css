@@ -25,3 +25,8 @@ body{
 a{
 	text-decoration: none !important;
 }
+
+#table-wrap{
+	max-height: 150px;
+	overflow: auto;
+}
