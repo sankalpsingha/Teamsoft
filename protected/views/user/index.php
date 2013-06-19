@@ -186,13 +186,14 @@
 
 
 	 							<?php foreach ($statuses as $status): ?>
-	 								<blockquote>
+	 							<blockquote>
 	 								<h4>
 	 									<img src="http://placehold.it/64x64">
-	 									 <?php echo CHtml::encode($status->user->name); ?>
+	 									<?php echo CHtml::encode($status->user->name); ?>
 	 								</h4>
 
 	 								<?php if ($status->user->id === Yii::app()->user->id): ?>
+<<<<<<< HEAD
 	 									<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
 	 								<?php endif ?>
 
@@ -201,28 +202,34 @@
 	 								</p>
 	 								 <small><?php echo CHtml::encode($status->created_on); ?></small>
 	 							</blockquote>
-	 							<?php endforeach ?>
+=======
+	 								<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
+	 							<?php endif ?>
 
-	 							 <div class="row-fluid">
-                    <div class="span11 offset1 well" style="margin-top:10px;"> <span class="label label-important">COMMENTS :</span> 
-                    
-                    <!-- First Comment-->
-                    
-                    <div class="comment-wrap">
-                        <blockquote><!--<img src="https://graph.facebook.com/sankalpsingha/picture" class="pull-left">-->
-                        <h4>Sankalp Singha</h4>
-                        <small>31 Apr @ 2.55 PM </small>
-                        <p>This is a very good theory...</p>
-                      </blockquote>
-                       
-                        <!--Next Dummy comment -->
-                        
-                       
-                         </div>
-                  </div>
-                  </div>
-	 							<input  class="span12" placeholder="Enter your comment here..."></input>
-    						<button class="btn btn-mini btn-success" type="button" style="margin-top: 10px;"><i class="icon-comment"></i> Post Comment</button>
+	 							<p>
+	 								<?php echo CHtml::encode($status->status); ?>
+	 							</p>
+	 							<small><?php echo CHtml::encode($status->created_on); ?></small>
+	 						</blockquote>
+	 						<div class="row-fluid">
+	 							<div class="span11 offset1 well" style="margin-top:10px;"> <span class="label label-important">COMMENTS :</span> 
+	 								<?php $comments = $status->statusComments; ?>
+	 								<?php foreach ($comments as $key_2): ?>
+	 									<div class="comment-wrap">
+		 									<blockquote>
+		 										<h4><?php echo User::model()->findByPk($key_2->user_id)->name; ?></h4>
+		 										<small><?php echo $key_2->created_on; ?></small>
+		 										<p><?php echo $key_2->content; ?></p>
+		 									</blockquote>
+	 									</div>
+	 								<?php endforeach ?>
+	 							</div>
+	 						</div>
+	 						<?php $this->renderPartial('/statusComment/_form', array('model' => new StatusComment, 'id' => $status->id)); ?>
+	 						<!-- <input  class="span12" placeholder="Enter your comment here..."></input>
+	 						<button class="btn btn-mini btn-success" type="button" style="margin-top: 10px;"><i class="icon-comment"></i> Post Comment</button> -->
+>>>>>>> 8d753e8410b0f9d95c0dfa6655768bcb985711d2
+	 							<?php endforeach ?>
 	 						</div>
 	 					</div>
 	 				</div>
