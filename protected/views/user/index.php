@@ -11,11 +11,22 @@
 		<div class="span3">
 			<img <?php echo "src=".Yii::app()->request->baseUrl."/uploads/san.png"; ?> <?php echo CHtml::encode("alt="."\"".$model['name']."\""); ?> class="img-rounded img-polaroid">
 	 					<?php 
-							$this->widget('bootstrap.widgets.TbButton',array(
+							/*$this->widget('bootstrap.widgets.TbButton',array(
 								'htmlOptions' => array('style'=>'margin-top: 5px;','class'=>'span12'),
 								'label' => 'Change Profile Pic',
 								'type' =>'warning',
 								'block' => true,
+						));*/ ?>
+						<?php $this->widget('bootstrap.widgets.TbButton',array(
+							'label' => 'Change Profile Pic',
+							'icon' => 'icon-edit',
+							'type' => 'warning',
+							'htmlOptions' => array(
+								'data-toggle' => 'modal',
+								'data-target' => '#myProfile',
+								'style'=>'margin-top: 5px;',
+								'class'=>'span12'
+								),
 						)); ?>
 
 	 		<div class="row-fluid">
@@ -273,16 +284,16 @@
 
 
 				<?php $this->beginWidget('bootstrap.widgets.TbModal', array('id' => 'myModal')); ?>
- 
+
 					<div class="modal-header">
 					<a class="close" data-dismiss="modal">&times;</a>
 					<h4>Modal header</h4>
 					</div>
- 
+
 					<div class="modal-body">
 					<?php $this->renderPartial('/money/_form',array('model'=>$money)); ?>
 					</div>
- 
+
 					<div class="modal-footer">
 					<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'type' => 'primary',
@@ -297,10 +308,31 @@
 					)); ?>
 					
 					</div>
- 
+
 <?php $this->endWidget(); ?>
-
-
+<?php $this->beginWidget('bootstrap.widgets.TbModal', array('id' => 'myProfile')); ?>
+<div class="modal-header">
+	<h4>Change Profile Picture</h4>
+</div>
+<div class="modal-body">
+		<div class="row-fluid">
+			<div class="span12">
+				<?php $this->widget('bootstrap.widgets.TbFileUpload', array(
+						    'url' => $this->createUrl("picture/upload"),
+						    'model' => new Picture,
+						    'attribute' => 'picture',
+						    'multiple' => true,
+						    'options' => array(
+							    'maxFileSize' => 2000000,
+							    'acceptFileTypes' => 'js:/(\.|\/)(gif|jpe?g|png)$/i',
+								)
+							)
+						);
+				?>
+			</div>
+		</div>
+</div>
+<?php $this->endWidget(); ?>
 
 		</div>
 </div>

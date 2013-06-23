@@ -51,6 +51,7 @@ class User extends CActiveRecord
 	*/
 
 	public $picture;
+	public $file_name;
 
 
 	// Defining the user powers
