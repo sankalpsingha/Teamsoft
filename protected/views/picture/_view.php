@@ -21,14 +21,6 @@
 	<?php echo CHtml::encode($data->updated_on); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
-	<?php echo CHtml::encode($data->name); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('size')); ?>:</b>
-	<?php echo CHtml::encode($data->size); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('file_name')); ?>:</b>
 	<?php echo CHtml::encode($data->file_name); ?>
 	<br />

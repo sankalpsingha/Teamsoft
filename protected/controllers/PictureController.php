@@ -32,7 +32,7 @@ class PictureController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','upload'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -174,20 +174,19 @@ class PictureController extends Controller
 	public function actionUpload()
 	{
 	    header('Vary: Accept');
-	    if (isset($_SERVER['HTTP_ACCEPT']) && 
-	        (strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false))
+	    if (isset($_SERVER['HTTP_ACCEPT']) && (strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false))
 	    {
 	        header('Content-type: application/json');
 	    } else {
 	        header('Content-type: text/plain');
 	    }
 	    $data = array();
-	 
-	    $model = new Picture('upload');
+
+	    $model = new Picture();
 	    $model->picture = CUploadedFile::getInstance($model, 'picture');
 	    if ($model->picture !== null  && $model->validate(array('picture')))
 	    {
-	        $model->picture->saveAs(Yii::getPathOfAlias('application.files').'/'.$model->picture->name);
+	        $model->picture->saveAs(Yii::app()->basePath.'/../files/'.$model->picture->name);
 	        $model->file_name = $model->picture->name;
 	        $model->user_id = Yii::app()->user->id;
 	        // save picture name
@@ -199,13 +198,13 @@ class PictureController extends Controller
 	                'type' => $model->picture->type,
 	                'size' => $model->picture->size,
 	                // we need to return the place where our image has been saved
-	               // 'url' => $model->getImageUrl(), // Should we add a helper method?
+	                // 'url' => $model->getImageUrl(), // Should we add a helper method?
 	                // we need to provide a thumbnail url to display on the list
 	                // after upload. Again, the helper method now getting thumbnail.
 	                //'thumbnail_url' => $model->getImageUrl(User::self::IMG_THUMBNAIL),
 	                // we need to include the action that is going to delete the picture
 	                // if we want to after loading 
-	                'delete_url' => $this->createUrl('my/delete', 
+	                'delete_url' => $this->createUrl('my/delete',
 	                    array('id' => $model->id, 'method' => 'uploader')),
 	                'delete_type' => 'POST');
 	        } else {

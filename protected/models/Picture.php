@@ -8,8 +8,6 @@
  * @property string $user_id
  * @property string $created_on
  * @property string $updated_on
- * @property string $name
- * @property string $size
  * @property string $file_name
  *
  * The followings are the available model relations:
@@ -17,8 +15,8 @@
  */
 class Picture extends CActiveRecord
 {
+	public $name;
 	public $picture;
-	public $file_name;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -45,12 +43,12 @@ class Picture extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, created_on, updated_on, name, size, file_name', 'required'),
+			array('file_name', 'required'),
 			array('user_id', 'length', 'max'=>10),
-			array('name, size, file_name', 'length', 'max'=>45),
+			array('file_name', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, created_on, updated_on, name, size, file_name', 'safe', 'on'=>'search'),
+			array('id, user_id, created_on, updated_on, file_name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,8 +74,6 @@ class Picture extends CActiveRecord
 			'user_id' => 'User',
 			'created_on' => 'Created On',
 			'updated_on' => 'Updated On',
-			'name' => 'Name',
-			'size' => 'Size',
 			'file_name' => 'File Name',
 		);
 	}
@@ -97,8 +93,6 @@ class Picture extends CActiveRecord
 		$criteria->compare('user_id',$this->user_id,true);
 		$criteria->compare('created_on',$this->created_on,true);
 		$criteria->compare('updated_on',$this->updated_on,true);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('size',$this->size,true);
 		$criteria->compare('file_name',$this->file_name,true);
 
 		return new CActiveDataProvider($this, array(
@@ -113,5 +107,17 @@ class Picture extends CActiveRecord
 		'updateAttribute' => 'updated_on',
 		'setUpdateOnCreate' => true,
 		));
+	}
+
+	protected function afterValidate() {
+		parent::afterValidate();
+		if(!$this->hasErrors()) {
+			$this->user_id = Yii::app()->user->id;
+		}
+	}
+
+	public function getImages($user_id) {
+		$images = Picture::model()->findAllByAttributes(array('user_id'=>$user_id));
+		return $images;
 	}
 }

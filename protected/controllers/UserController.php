@@ -34,7 +34,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','dashboard'),
+				'actions'=>array('update','dashboard', 'gallery'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -225,6 +225,18 @@ class UserController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+
+	public function actionGallery() {
+		$model = new User;
+
+		$images = Picture::model()->getImages(Yii::app()->user->id);
+
+		$this->render('gallery', array(
+				'model' => $model,
+				'images' => $images,
+			)
+		);
 	}
 
 	/**

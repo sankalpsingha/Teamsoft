@@ -32,16 +32,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>45,'maxlength'=>45)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'size'); ?>
-		<?php echo $form->textField($model,'size',array('size'=>45,'maxlength'=>45)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'file_name'); ?>
 		<?php echo $form->textField($model,'file_name',array('size'=>45,'maxlength'=>45)); ?>
 	</div>

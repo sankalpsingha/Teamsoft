@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Pictures'=>array('index'),
-	$model->name,
+	$model->id,
 );
 
 $this->menu=array(
@@ -25,8 +25,6 @@ $this->menu=array(
 		'user_id',
 		'created_on',
 		'updated_on',
-		'name',
-		'size',
 		'file_name',
 	),
 )); ?>

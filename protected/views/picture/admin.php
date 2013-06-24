@@ -49,11 +49,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'user_id',
 		'created_on',
 		'updated_on',
-		'name',
-		'size',
-		/*
 		'file_name',
-		*/
 		array(
 			'class'=>'CButtonColumn',
 		),
