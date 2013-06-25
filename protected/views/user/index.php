@@ -21,6 +21,7 @@
 							'label' => 'Change Profile Pic',
 							'icon' => 'icon-edit',
 							'type' => 'warning',
+							'block' => true,
 							'htmlOptions' => array(
 								'data-toggle' => 'modal',
 								'data-target' => '#myProfile',
@@ -364,16 +365,18 @@
 			$this->widget('bootstrap.widgets.TbButton',array(
 				'label' => 'Add CAD Models',
 				'type' => 'success',
-				'size' => 'large'
+				'size' => 'large',
+				'block' => true,
 				)); ?>
 		</div>
 
-		<div class="row-fluid" style="margin-top: 20px;">
+		<div class="row-fluid" style="margin-top: 10px;">
 			<?php 
 			$this->widget('bootstrap.widgets.TbButton',array(
 				'label' => 'Add  Gallery Images',
 				'type' => 'success',
-				'size' => 'large'
+				'size' => 'large',
+				'block' => true,
 				)); ?>
 		</div>
 </div>
