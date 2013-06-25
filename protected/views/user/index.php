@@ -10,23 +10,16 @@
 	<div class="row-fluid">
 		<div class="span3">
 			<img <?php echo "src=".Yii::app()->request->baseUrl."/uploads/san.png"; ?> <?php echo CHtml::encode("alt="."\"".$model['name']."\""); ?> class="img-rounded img-polaroid">
-	 					<?php 
-							/*$this->widget('bootstrap.widgets.TbButton',array(
-								'htmlOptions' => array('style'=>'margin-top: 5px;','class'=>'span12'),
-								'label' => 'Change Profile Pic',
-								'type' =>'warning',
-								'block' => true,
-						));*/ ?>
 						<?php $this->widget('bootstrap.widgets.TbButton',array(
 							'label' => 'Change Profile Pic',
 							'icon' => 'icon-edit',
 							'type' => 'warning',
-							'htmlOptions' => array(
+							/*'htmlOptions' => array(
 								'data-toggle' => 'modal',
 								'data-target' => '#myProfile',
 								'style'=>'margin-top: 5px;',
 								'class'=>'span12'
-								),
+								),*/
 						)); ?>
 
 	 		<div class="row-fluid">
@@ -334,7 +327,7 @@
 <?php $this->endWidget(); ?>
 <?php $this->beginWidget('bootstrap.widgets.TbModal', array('id' => 'myProfile')); ?>
 <div class="modal-header">
-	<h4>Change Profile Picture</h4>
+	<h4>Add Gallery Images</h4>
 </div>
 <div class="modal-body">
 		<div class="row-fluid">
@@ -373,8 +366,15 @@
 			$this->widget('bootstrap.widgets.TbButton',array(
 				'label' => 'Add  Gallery Images',
 				'type' => 'success',
-				'size' => 'large'
-				)); ?>
+				'size' => 'large',
+				'htmlOptions' => array(
+								'data-toggle' => 'modal',
+								'data-target' => '#myProfile',
+								'style'=>'margin-top: 5px;',
+								'class'=>'span12'
+								),
+					)
+				); ?>
 		</div>
 </div>
 
