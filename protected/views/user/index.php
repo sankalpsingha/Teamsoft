@@ -316,7 +316,7 @@
 	<h4>Add Gallery Images</h4>
 </div>
 <div class="modal-body">
-		<div class="row-fluid">
+		
 			<div class="span12">
 				<?php $this->widget('bootstrap.widgets.TbFileUpload', array(
 						    'url' => $this->createUrl("picture/upload"),
@@ -331,7 +331,7 @@
 						);
 				?>
 			</div>
-		</div>
+		
 </div>
 <?php $this->endWidget(); ?>
 
