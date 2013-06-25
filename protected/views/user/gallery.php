@@ -23,9 +23,13 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/bootstrap-im
 
 
 <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
-	<?php foreach ($images as $image): ?>
-		<a href="<?php echo '/teamsoft/files/'.$image["file_name"]; ?>" title="Banana" data-gallery="gallery"><img src="<?php echo '/teamsoft/files/'.$image["file_name"]; ?>" alt="Banana"></a>
-	<?php endforeach ?>
+    <?php if (count($images)){ ?>
+        <?php foreach ($images as $image): ?>
+            <a href="<?php echo '/teamsoft/files/'.$image["file_name"]; ?>" title="Banana" data-gallery="gallery"><img src="<?php echo '/teamsoft/files/'.$image["file_name"]; ?>" alt="Banana"></a>
+        <?php endforeach; ?>
+    <?php } else { ?>
+        There are no pictures that you have uploaded.
+    <?php } ?>
 </div>
 <?php //echo __FILE__; ?>
 <?php
