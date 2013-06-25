@@ -55,7 +55,16 @@ class Todo extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, todocol, created_on, updated_on, deadline, module_id, description, completed', 'safe', 'on'=>'search'),
+			array('deadline', 'authenticateDate'),
 		);
+	}
+
+	public function authenticateDate($attribute, $params) {
+		$todayDate = Yii::app()->Date->now();
+		$interval = Yii::app()->Date->daysCount($this->deadline, $todayDate);
+		if($interval <= 1) {
+			$this->addError('deadline', 'Deadline shoud be greater than or equal to 1 day\'s time');
+		}
 	}
 
 	/**

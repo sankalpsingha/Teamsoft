@@ -81,6 +81,12 @@ return array(
 				'<slug:[\w\_]+>'=>'user/view',
 			),
 		),
+
+		'Date' => array(
+			'class'=>'application.components.Date',
+			//And integer that holds the offset of hours from GMT e.g. 4 for GMT +4
+			'offset' => 4,
+		),
 		
 		/*'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
