@@ -40,7 +40,7 @@
 				<tbody>
 					<?php foreach ($todos as $todo): ?>
 						<tr class="success">
-							<td><?php echo Chtml::encode($todo->description); ?></td>
+							<td><?php echo Chtml::link(Chtml::encode($todo->description),'todo/view/'.$todo->id); ?></td>
 							<td><?php echo Chtml::encode($todo->deadline); ?></td>
 						</tr>
 					<?php endforeach ?>
@@ -352,7 +352,6 @@
 			$this->widget('bootstrap.widgets.TbButton',array(
 				'label' => 'Add  Gallery Images',
 				'type' => 'success',
-				'size' => 'large',
 				'block' => true,
 				'htmlOptions' => array(
 								'data-toggle' => 'modal',
