@@ -197,8 +197,9 @@
 	 						<div class="well">
 							
 
-
+<div id="statuses">
 	 							<?php foreach ($statuses as $status): ?>
+	 							<div class="status">
 	 							<blockquote>
 	 								<h4>
 	 									<img src="http://placehold.it/64x64">
@@ -236,7 +237,22 @@
 	 						<?php $this->renderPartial('/statusComment/_form', array('model' => new StatusComment, 'id' => $status->id)); ?>
 	 						<!-- <input  class="span12" placeholder="Enter your comment here..."></input>
 	 						<button class="btn btn-mini btn-success" type="button" style="margin-top: 10px;"><i class="icon-comment"></i> Post Comment</button> -->
+	 						</div>
 	 							<?php endforeach ?>
+
+	 							<?php 
+								$this->widget('ext.yiinfinite-scroll.YiinfiniteScroller', array(
+    							'contentSelector' => '#statuses',
+    							'itemSelector' => 'div.status',
+    							'loadingText' => 'Loading...',
+    							'donetext' => 'This is the end... my only friend, the end',
+    							'pages' => $pages,
+							)); ?>
+	 						</div>
+
+	 						
+
+
 	 						</div>
 	 					</div>
 	 				</div>

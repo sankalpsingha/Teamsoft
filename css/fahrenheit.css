@@ -30,3 +30,8 @@ a{
 	max-height: 150px;
 	overflow: auto;
 }
+
+#statuses{
+	/*max-height: 500px;
+	overflow: auto;*/
+}

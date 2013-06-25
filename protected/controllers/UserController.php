@@ -168,19 +168,30 @@ class UserController extends Controller
 			}
 		}
 		//-----
+		
+		// Putting the pagination data :
+		$criteria = new CDbCriteria;
+		$criteria->order = 'created_on DESC';
+		$pages = new CPagination(Status::model()->count()); 
+		// set the page limit :
+		$pages->pageSize =	2;
+		$pages->applyLimit($criteria);
+		$statuses = Status::model()->findAll($criteria);
 
-		$statuses = Status::model()->findAll();
+		// Pagination data done!
+
 		$modules = $user->modules;
 		//$dataProvider=new CActiveDataProvider('User');  // As this is not actuallly required.
 		$this->render('index',array(
 			//'dataProvider'=>$dataProvider,
 			'status' => $status, // sending the variable to the view file.
 			'model' => $user,
-			'statuses' => array_reverse($statuses), // This is using Relational AR
+			'statuses' => $statuses, // This is using Relational AR
 			'lastStatus' => $statusLast->getLastStatus(), // This would get the last status for the Last Status
 			'money' => $money,
 			'modules' => $modules,
 			'amount' => $sum, // This would send the amount.
+			'pages' => $pages,
 		));
 	}
 
