@@ -251,4 +251,18 @@ class User extends CActiveRecord
 	public function isModerator() {
 		return User::model()->findByPk(Yii::app()->user->id)->power == self::USER_MODERATOR ? true : false;
 	}
+
+	// This is for the messaging functionality.
+	public function getFullName(){
+		return $this->name;
+	}
+
+	public function getSuggest($q) {
+    $c = new CDbCriteria();
+    $c->addSearchCondition('username', $q, true, 'OR');
+    $c->addSearchCondition('email', $q, true, 'OR');
+    return $this->findAll($c);
+	}
+
+	//-----------
 }
