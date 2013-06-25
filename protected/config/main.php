@@ -76,7 +76,7 @@ return array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-				'<controller>' => '<controller>',
+				// '<controller>' => '<controller>',
 				'<slug:[\w\_]+>'=>'user/view',
 			),
 		),
@@ -107,11 +107,11 @@ return array(
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
-				/*
-				array(
+				
+				/*array(
 					'class'=>'CWebLogRoute',
-				),
-				*/
+				),*/
+				
 			),
 		),
 	),

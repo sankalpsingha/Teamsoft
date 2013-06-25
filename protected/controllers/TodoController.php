@@ -73,7 +73,9 @@ class TodoController extends Controller
 		if(isset($_POST['Todo']))
 		{
 			$model->attributes=$_POST['Todo'];
-			$model->users = $_POST['Todo']['user_id'];
+
+			$model->users = $_POST['Todo']['users'];
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

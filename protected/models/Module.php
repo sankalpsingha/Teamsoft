@@ -17,7 +17,6 @@
  */
 class Module extends CActiveRecord
 {
-	public $user_id; // This is so that it can process it accordingly.
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -44,7 +43,7 @@ class Module extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category, description, user_id', 'required'),
+			array('category, description', 'required'),
 			array('category', 'length', 'max'=>100),
 			array('description, created_on, updated_on', 'safe'),
 			// The following rule is used by search().

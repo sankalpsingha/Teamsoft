@@ -17,7 +17,7 @@
  * The followings are the available model relations:
  * @property BugFeature[] $bugFeatures
  * @property Module $module
- * @property User $user
+ * @property Users[] $users
  */
 class Todo extends CActiveRecord
 {
@@ -47,14 +47,14 @@ class Todo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('todocol, module_id, user_id, completed', 'required'),
+			array('todocol, module_id, users', 'required'),
 			array('completed', 'numerical', 'integerOnly'=>true),
 			array('todocol', 'length', 'max'=>255),
-			array('module_id, user_id', 'length', 'max'=>10),
+			array('module_id', 'length', 'max'=>10),
 			array('created_on, updated_on, deadline, description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, todocol, created_on, updated_on, deadline, module_id, user_id, description, completed', 'safe', 'on'=>'search'),
+			array('id, todocol, created_on, updated_on, deadline, module_id, description, completed', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,7 +68,7 @@ class Todo extends CActiveRecord
 		return array(
 			'bugFeatures' => array(self::HAS_MANY, 'BugFeature', 'todo_id'),
 			'module' => array(self::BELONGS_TO, 'Module', 'module_id'),
-			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+			'users' => array(self::MANY_MANY, 'User', 'todo_has_user(todo_id,user_id)'),
 		);
 	}
 
@@ -124,7 +124,7 @@ class Todo extends CActiveRecord
 			'setUpdateOnCreate' => true,
 			),
 			'CAdvancedArBehavior' => array(
-        	    'class' => 'application.extensions.CAdvancedArBehavior')
+        	    'class' => 'application.extensions.CAdvancedArBehavior'),
 		);
 	}
 
@@ -132,11 +132,12 @@ class Todo extends CActiveRecord
 		parent::afterValidate();
 		if(!$this->hasErrors()) {
 			$this->completed = 0;
+			$this->user_id = Yii::app()->user->id;
 		}
 	}
 
 	public function getUsers($id){
-		$user =  Module::model()->findByPk($id)->users;// This would give all the users.
+		$user =  Module::model()->findByPk($id)->users; // This would give all the users.
 		$usersArray = CHtml::listData($user,'id','name'); 
 		return $usersArray; // This would return the array of the users in the 'id' and the 'username'
 	}

@@ -36,7 +36,7 @@
 	<div class="row-fluid">
 			<?php $this->widget('ext.select2.ESelect2',array(
   							'model'=>$model,
-							  'attribute'=>'user_id',
+							  'attribute'=>'users',
 							  'data'=>$model->getUsers($model->module_id),
 							  'options' => array(
 							  	'width'=>'20%',

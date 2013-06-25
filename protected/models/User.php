@@ -129,7 +129,7 @@ class User extends CActiveRecord
 			'resources' => array(self::HAS_MANY, 'Resource', 'user_id'),
 			'status' => array(self::HAS_MANY, 'Status', 'user_id'),
 			'statusComments' => array(self::HAS_MANY, 'StatusComment', 'user_id'),
-			'todos' => array(self::HAS_MANY, 'Todo', 'user_id'),
+			'todos' => array(self::MANY_MANY, 'Todo', 'todo_has_user(todo_id,user_id)'),
 			'modules' => array(self::MANY_MANY, 'Module', 'user_has_module(user_id, module_id)'),
 			'modulesCount' => array(self::STAT, 'Module', 'user_has_module(user_id, module_id)'),
 		);

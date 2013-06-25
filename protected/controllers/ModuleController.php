@@ -72,7 +72,7 @@ class ModuleController extends Controller
 			$model->attributes=$_POST['Module'];
 
 			//----
-			$model->users = array($model->id);
+			$model->users = $_POST['Module']['users'];
 			// ----
 
 			if($model->save())
@@ -100,7 +100,7 @@ class ModuleController extends Controller
 		{
 			$model->attributes=$_POST['Module'];
 			//----
-			$model->users = $_POST['Module']['user_id'];
+			$model->users = $_POST['Module']['users'];
 			// ----
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
