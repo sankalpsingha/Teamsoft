@@ -1,26 +1,34 @@
 <?php
 
 /**
- * This is the model class for table "status".
+ * This is the model class for table "post".
  *
- * The followings are the available columns in table 'status':
+ * The followings are the available columns in table 'post':
  * @property string $id
- * @property string $status
+ * @property string $title
+ * @property string $content
  * @property string $created_on
  * @property string $updated_on
- * @property string $user_agent
+ * @property integer $status
  * @property string $user_id
  *
  * The followings are the available model relations:
  * @property User $user
- * @property StatusComment[] $statusComments
+ * @property PostComment[] $postComments
+ * @property Tag[] $tags
  */
-class Status extends CActiveRecord
+class Post extends CActiveRecord
 {
+
+	// Defining the general terms for the post items.
+	const ARCHIVE  = 0;
+	const DRAFT = 1;
+	const PUBLISH = 2;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Status the static model class
+	 * @return Post the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -32,7 +40,7 @@ class Status extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'status';
+		return 'post';
 	}
 
 	/**
@@ -43,13 +51,14 @@ class Status extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('status', 'required'),
-			array('user_agent', 'length', 'max'=>100),
+			array('title, content, status', 'required'),
+			array('status', 'numerical', 'integerOnly'=>true),
+			array('title', 'length', 'max'=>255),
 			array('user_id', 'length', 'max'=>10),
 			array('created_on, updated_on', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, status, created_on, updated_on, user_agent, user_id', 'safe', 'on'=>'search'),
+			array('id, title, content, created_on, updated_on, status, user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,8 +71,8 @@ class Status extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
-			'statusComments' => array(self::HAS_MANY, 'StatusComment', 'status_id'),
-			'statusCommentsCount' => array(self::STAT, 'StatusComment', 'status_id'),
+			'postComments' => array(self::HAS_MANY, 'PostComment', 'post_id'),
+			'tags' => array(self::MANY_MANY, 'Tag', 'tag_has_post(post_id, tag_id)'),
 		);
 	}
 
@@ -74,10 +83,11 @@ class Status extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'status' => 'Status',
+			'title' => 'Title',
+			'content' => 'Content',
 			'created_on' => 'Created On',
 			'updated_on' => 'Updated On',
-			'user_agent' => 'User Agent',
+			'status' => 'Status',
 			'user_id' => 'User',
 		);
 	}
@@ -94,10 +104,11 @@ class Status extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('status',$this->status,true);
+		$criteria->compare('title',$this->title,true);
+		$criteria->compare('content',$this->content,true);
 		$criteria->compare('created_on',$this->created_on,true);
 		$criteria->compare('updated_on',$this->updated_on,true);
-		$criteria->compare('user_agent',$this->user_agent,true);
+		$criteria->compare('status',$this->status);
 		$criteria->compare('user_id',$this->user_id,true);
 
 		return new CActiveDataProvider($this, array(
@@ -111,30 +122,25 @@ class Status extends CActiveRecord
 		'createAttribute' => 'created_on',
 		'updateAttribute' => 'updated_on',
 		'setUpdateOnCreate' => true,
-		));
+		),
+		
+		'CAdvancedArBehavior' => array(
+            'class' => 'application.extensions.CAdvancedArBehavior')
+
+	
+		);
 	}
 
 	protected function afterValidate(){
 		parent::afterValidate(); // This would give the application the chance to take over if something goes wrong.
 		if(!$this->hasErrors()){
 			
-			$this->user_agent = $_SERVER['HTTP_USER_AGENT'];
 			$this->user_id = Yii::app()->user->id;
 		}
 	}
 
-	private $_lastStatus;
-	public function getLastStatus($refresh = false) {
-    if (is_null($this->_lastStatus) || $refresh) {
-      $c = new CDbCriteria();
-      $c->order = '`created_on` desc';
-      $c->compare('id', $this->id);
-      $c->compare('user_id',Yii::app()->user->id);
-      $this->_lastStatus = Status::model()->find($c);
-    }
-    return $this->_lastStatus;
-  }
-
-
+	public function getPostStatus(){		
+		return array(self::DRAFT =>'Draft',self::ARCHIVE => 'Archive', self::PUBLISH => 'Publish');
+	}
 
 }
