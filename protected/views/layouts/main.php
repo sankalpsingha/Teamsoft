@@ -39,7 +39,7 @@ This is the property of the CampusPlugin Team.
 										array('label'=>'Blog', 'url'=>array('/blog/'),'icon'=>'icon-bullhorn'),
 										array('label'=>'CAD/GALLERY', 'url'=>array('/blog/'),'icon'=>'icon-picture'),
 										array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-										array('label'=>'Logout ('.User::model()->findByPk(Yii::app()->user->id)->name.')', 'url'=>array('/site/logout'), 'icon'=>'icon-signout', 'visible'=>!Yii::app()->user->isGuest)
+										array('label'=>User::model()->findByPk(Yii::app()->user->id)->name, 'url'=>array('/site/logout'), 'icon'=>'icon-off', 'visible'=>!Yii::app()->user->isGuest)
 									)
 								)
 							)
