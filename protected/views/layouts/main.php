@@ -27,9 +27,9 @@ This is the property of the CampusPlugin Team.
 		'collapse' => true,
 		'type' => 'list',
 		'items' => array(
+
 			array(
 					'class' => 'bootstrap.widgets.TbMenu',
-
 					'items' => array(
 
 										'',
@@ -43,8 +43,10 @@ This is the property of the CampusPlugin Team.
 
 										 //'<form class="navbar-search pull-right" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
 									)
-								)
-							)
+								),
+			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
+							),
+			
 						));
  ?>
 	
