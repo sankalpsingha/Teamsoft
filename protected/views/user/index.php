@@ -367,6 +367,15 @@
 				'size' => 'large'
 				)); ?>
 		</div>
+
+		<div class="row-fluid" style="margin-top: 20px;">
+			<?php 
+			$this->widget('bootstrap.widgets.TbButton',array(
+				'label' => 'Add  Gallery Images',
+				'type' => 'success',
+				'size' => 'large'
+				)); ?>
+		</div>
 </div>
 
 
