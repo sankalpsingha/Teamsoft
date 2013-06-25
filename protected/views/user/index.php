@@ -357,6 +357,16 @@
 <?php $this->endWidget(); ?>
 
 		</div>
+
+
+		<div class="row-fluid">
+			<?php 
+			$this->widget('bootstrap.widgets.TbButton',array(
+				'label' => 'Add CAD Models',
+				'type' => 'success',
+				'size' => 'large'
+				)); ?>
+		</div>
 </div>
 
 
