@@ -25,6 +25,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.modules.message.*',
 		'application.modules.rights.*', 
 		'application.modules.rights.components.*',
 	),
@@ -45,6 +46,11 @@ return array(
 		'rights'=>array(
 			'install'=>false,
 			),
+		'message' => array(
+            'userModel' => 'User',
+            'getNameMethod' => 'getFullName',
+            'getSuggestMethod' => 'getSuggest',
+        ),
 	),
 
 	// application components
