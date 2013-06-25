@@ -118,7 +118,7 @@ class Status extends CActiveRecord
 		parent::afterValidate(); // This would give the application the chance to take over if something goes wrong.
 		if(!$this->hasErrors()){
 			
-			$this->user_id = $_SERVER['HTTP_USER_AGENT'];
+			$this->user_agent = $_SERVER['HTTP_USER_AGENT'];
 			$this->user_id = Yii::app()->user->id;
 		}
 	}

@@ -25,6 +25,8 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.modules.rights.*', 
+		'application.modules.rights.components.*',
 	),
 
 	'modules'=>array(
@@ -35,18 +37,27 @@ return array(
 			'password'=>'sankalp',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
+			'generatorPaths' => array(
+         	 'bootstrap.gii'
+      		 ),
 		),
-		'generatorPaths' => array(
-          'bootstrap.gii'
-       ),
+		
+		'rights'=>array(
+			'install'=>false,
+			),
 	),
 
 	// application components
 	'components'=>array(
 		'user'=>array(
 			// enable cookie-based authentication
+			'class'=>'RWebUser',
 			'allowAutoLogin'=>true,
 		),
+
+		'authManager'=>array(
+			'class'=>'RDbAuthManager',
+			),
 
 		'bootstrap' => array(
 	    	'class' => 'ext.bootstrap.components.Bootstrap',

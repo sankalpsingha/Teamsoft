@@ -72,7 +72,7 @@ class ModuleController extends Controller
 			$model->attributes=$_POST['Module'];
 
 			//----
-			$model->users = $_POST['Module']['user_id'];
+			$model->users = array($model->id);
 			// ----
 
 			if($model->save())
