@@ -27,9 +27,11 @@
 	 		<div class="row-fluid">
 	 			<div class="span12">
 	 				<p class="lead" style="text-align:center; margin-top: 10px;">MY TO-DO LIST</p>
-        	
 
-         <div id="table-wrap">
+					<?php 
+					if(count($todos)) {
+						?>
+						<div id="table-wrap">
 			<table class="table-bordered table-striped table-condensed table-hover" style="background-color: #fff;">
 				<thead style="background">
 					<th>Description</th>
@@ -38,37 +40,51 @@
 				</thead>
 				
 				<tbody>
-					<?php foreach ($todos as $todo):
-						$days = Yii::app()->Date->daysCount($todo->deadline, Yii::app()->Date->now());
-						if ($days == 0) {
-							$message = "Today";
-						} elseif ($days == 1) {
-							$message = "Tomorrow";
-						} elseif ($days == 2) {
-							$message = "Day after tomorrow";
-						} elseif ($days > 2) {
-							$message = $days-1 ." days remaining";
-						}
-					?>
-						<tr class="success">
+					<?php
+						foreach ($todos as $todo){
+							$days = Yii::app()->Date->daysCount($todo->deadline, Yii::app()->Date->now());
+							$class = "success";
+							if ($days == 0) {
+								$message = "Today";
+								$class = "error";
+							} elseif ($days == 1) {
+								$message = "Tomorrow";
+								$class = "warning";
+							} elseif ($days == 2) {
+								$message = "Day after tomorrow";
+							} elseif ($days > 2) {
+								$message = $days-1 ." days remaining";
+							}
+							?>
+							<tr class="<?php echo $class; ?>">
 							<td><?php echo Chtml::link(Chtml::encode($todo->description),'todo/view/'.$todo->id); ?></td>
 							<td><?php echo Chtml::encode($message); ?></td>
-						</tr>
-					<?php endforeach ?>
-				</tbody>
+							</tr>
+							<?php
+						}
+						$this->widget('bootstrap.widgets.TbButton',array(
+								//'htmlOptions' => array('style'=>'margin-top: -25px;'),
+								'label' => 'Show all',
+								'type' =>'info',
+								'size' => 'mini'
+			));
+						?>
+						</tbody>
 			
 				
 
 			</table>
 		</div>
+						<?php
+					} else {
+						?>
+						There are no todos for you right now.
+						<?php
+					}
+					?>					
 
 			<?php 
-			$this->widget('bootstrap.widgets.TbButton',array(
-								//'htmlOptions' => array('style'=>'margin-top: -25px;'),
-								'label' => 'Show all',
-								'type' =>'info',
-								'size' => 'mini'
-			)); ?>
+			 ?>
 
 
         
