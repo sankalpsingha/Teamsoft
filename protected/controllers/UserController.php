@@ -180,6 +180,8 @@ class UserController extends Controller
 				$sum += $key->amount;
 			}
 		}
+		// Fetching the todos of the logged in the user.
+		$todo = $user->todos;
 		//-----
 		
 		// Putting the pagination data :
@@ -205,6 +207,7 @@ class UserController extends Controller
 			'modules' => $modules,
 			'amount' => $sum, // This would send the amount.
 			'pages' => $pages,
+			'todos' => $todo,
 		));
 	}
 

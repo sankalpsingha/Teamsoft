@@ -42,8 +42,14 @@
 					
 				</thead>
 				
-					<tbody>
-					<tr class="success">
+				<tbody>
+					<?php foreach ($todos as $todo): ?>
+						<tr class="success">
+							<td><?php echo Chtml::encode($todo->description); ?></td>
+							<td><?php echo Chtml::encode($todo->deadline); ?></td>
+						</tr>
+					<?php endforeach ?>
+					<!-- <tr class="success">
 						<td>The description would be here.</td>
 						<td>29 Apr</td>
 					</tr>
@@ -58,7 +64,7 @@
 					<tr class="success">
 						<td>The description would be here.</td>
 						<td>29 Apr</td>
-					</tr>
+					</tr> -->
 				</tbody>
 			
 				
@@ -203,7 +209,7 @@
 	 							<blockquote>
 	 								<h4>
 	 									<img src="http://placehold.it/64x64">
-	 									<?php echo CHtml::encode($status->user->name); ?>
+	 									<?php echo CHtml::link(Chtml::encode($status->user->name),$status->user->username); ?>
 	 								</h4>
 
 	 								<?php if ($status->user->id === Yii::app()->user->id): ?>
