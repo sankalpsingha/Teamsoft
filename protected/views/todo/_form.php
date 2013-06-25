@@ -23,7 +23,21 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'deadline'); ?>
-		<?php echo $form->textField($model,'deadline'); ?>
+		<?php //echo $form->textField($model,'deadline'); ?>
+		<?php 
+		Yii::app()->clientScript->registerScript('variables', 'var myApp = new Date();');
+		Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+		$this->widget('CJuiDateTimePicker',array(
+			'name' => 'Todo[deadline]',
+        	'model'=>$model,
+        	'mode'=>'datetime',
+        	'options'=>array(
+        		'dateFormat' => 'yy-mm-dd',
+        		'minDate' => 'myApp',
+        		)
+        	)
+		); 
+		?>
 		<?php echo $form->error($model,'deadline'); ?>
 	</div>
 
