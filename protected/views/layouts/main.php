@@ -27,22 +27,26 @@ This is the property of the CampusPlugin Team.
 		'collapse' => true,
 		'type' => 'list',
 		'items' => array(
+
 			array(
 					'class' => 'bootstrap.widgets.TbMenu',
-
 					'items' => array(
 
-
-										array('label'=>'Home', 'url'=>array('/user/dashboard'),'icon'=>'icon-home icon-large'),
-										array('label'=>'Complaint', 'url'=>array('/complaint/create'),'icon'=>'icon-warning-sign'),
-										array('label'=>'Create Module', 'url'=>array('/module/create'),'icon'=>'icon-tag'),
-										array('label'=>'Blog', 'url'=>array('/blog/'),'icon'=>'icon-bullhorn'),
-										array('label'=>'CAD/GALLERY', 'url'=>array('/blog/'),'icon'=>'icon-picture'),
+										'',
+										array('label'=>'Home', 'url'=>array('/user/dashboard'),'icon'=>'icon-home icon-large'),'',
+										array('label'=>'Complaint', 'url'=>array('/complaint/create'),'icon'=>'icon-warning-sign'),'',
+										array('label'=>'Create Module', 'url'=>array('/module/create'),'icon'=>'icon-tag'),'',
+										array('label'=>'Blog', 'url'=>array('/blog/'),'icon'=>'icon-bullhorn'),'',
+										array('label'=>'CAD/GALLERY', 'url'=>array('/blog/'),'icon'=>'icon-picture'),'',
 										array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-										array('label'=>User::model()->findByPk(Yii::app()->user->id)->name, 'url'=>array('/site/logout'), 'icon'=>'icon-off', 'visible'=>!Yii::app()->user->isGuest)
+										array('label'=>User::model()->findByPk(Yii::app()->user->id)->name, 'url'=>array('/site/logout'), 'icon'=>'icon-off', 'visible'=>!Yii::app()->user->isGuest),'',
+
+										 //'<form class="navbar-search pull-right" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
 									)
-								)
-							)
+								),
+			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
+							),
+			
 						));
  ?>
 	
