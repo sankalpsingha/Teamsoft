@@ -15,6 +15,8 @@
 							'icon' => 'icon-edit',
 							'type' => 'warning',
 							/*'htmlOptions' => array(
+							'block' => true,
+							'htmlOptions' => array(
 								'data-toggle' => 'modal',
 								'data-target' => '#myProfile',
 								'style'=>'margin-top: 5px;',
@@ -42,22 +44,6 @@
 							<td><?php echo Chtml::encode($todo->deadline); ?></td>
 						</tr>
 					<?php endforeach ?>
-					<!-- <tr class="success">
-						<td>The description would be here.</td>
-						<td>29 Apr</td>
-					</tr>
-					<tr class="error">
-						<td>The description would be here.</td>
-						<td>29 Apr</td>
-					</tr>
-					<tr class="warning">
-						<td>The description would be here.</td>
-						<td>29 Apr</td>
-					</tr>
-					<tr class="success">
-						<td>The description would be here.</td>
-						<td>29 Apr</td>
-					</tr> -->
 				</tbody>
 			
 				
@@ -357,16 +343,17 @@
 			$this->widget('bootstrap.widgets.TbButton',array(
 				'label' => 'Add CAD Models',
 				'type' => 'success',
-				'size' => 'large'
+				'block' => true,
 				)); ?>
 		</div>
 
-		<div class="row-fluid" style="margin-top: 20px;">
+		<div class="row-fluid" style="margin-top: 10px;">
 			<?php 
 			$this->widget('bootstrap.widgets.TbButton',array(
 				'label' => 'Add  Gallery Images',
 				'type' => 'success',
 				'size' => 'large',
+				'block' => true,
 				'htmlOptions' => array(
 								'data-toggle' => 'modal',
 								'data-target' => '#myProfile',
