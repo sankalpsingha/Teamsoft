@@ -10,14 +10,13 @@
  * @property string $updated_on
  * @property string $deadline
  * @property string $module_id
- * @property string $user_id
  * @property string $description
  * @property integer $completed
  *
  * The followings are the available model relations:
  * @property BugFeature[] $bugFeatures
  * @property Module $module
- * @property Users[] $users
+ * @property User[] $users
  */
 class Todo extends CActiveRecord
 {
@@ -88,7 +87,7 @@ class Todo extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'todocol' => 'Todocol',
+			'todocol' => 'Name',
 			'created_on' => 'Created On',
 			'updated_on' => 'Updated On',
 			'deadline' => 'Deadline',
@@ -116,7 +115,6 @@ class Todo extends CActiveRecord
 		$criteria->compare('updated_on',$this->updated_on,true);
 		$criteria->compare('deadline',$this->deadline,true);
 		$criteria->compare('module_id',$this->module_id,true);
-		$criteria->compare('user_id',$this->user_id,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('completed',$this->completed);
 
@@ -141,7 +139,6 @@ class Todo extends CActiveRecord
 		parent::afterValidate();
 		if(!$this->hasErrors()) {
 			$this->completed = 0;
-			$this->user_id = Yii::app()->user->id;
 		}
 	}
 

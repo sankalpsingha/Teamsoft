@@ -38,10 +38,21 @@
 				</thead>
 				
 				<tbody>
-					<?php foreach ($todos as $todo): ?>
+					<?php foreach ($todos as $todo):
+						$days = Yii::app()->Date->daysCount($todo->deadline, Yii::app()->Date->now());
+						if ($days == 0) {
+							$message = "Today";
+						} elseif ($days == 1) {
+							$message = "Tomorrow";
+						} elseif ($days == 2) {
+							$message = "Day after tomorrow";
+						} elseif ($days > 2) {
+							$message = $days-1 ." days remaining";
+						}
+					?>
 						<tr class="success">
 							<td><?php echo Chtml::link(Chtml::encode($todo->description),'todo/view/'.$todo->id); ?></td>
-							<td><?php echo Chtml::encode($todo->deadline); ?></td>
+							<td><?php echo Chtml::encode($message); ?></td>
 						</tr>
 					<?php endforeach ?>
 				</tbody>
@@ -188,7 +199,7 @@
 	 							<blockquote>
 	 								<h4>
 	 									<img src="http://placehold.it/64x64">
-	 									<?php echo CHtml::link(Chtml::encode($status->user->name),$status->user->username); ?>
+	 									<?php echo CHtml::link(Chtml::encode($status->user->name),'/'.$status->user->username); ?>
 	 								</h4>
 
 	 								<?php if ($status->user->id === Yii::app()->user->id): ?>

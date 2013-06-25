@@ -41,12 +41,6 @@
 		<?php echo $form->error($model,'deadline'); ?>
 	</div>
 
-	<!-- <div class="row">
-		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'user_id'); ?>
-	</div> -->
-
 	<div class="row-fluid">
 			<?php $this->widget('ext.select2.ESelect2',array(
   							'model'=>$model,
