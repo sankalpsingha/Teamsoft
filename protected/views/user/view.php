@@ -164,9 +164,9 @@
 	 					<div class="span12">
 	 						<div class="well">
 							
-
-
+<div id="statuses">
 	 							<?php foreach ($statuses as $status): ?>
+	 							<div class="status">
 	 							<blockquote>
 	 								<h4>
 	 									<img src="http://placehold.it/64x64">
@@ -174,7 +174,7 @@
 	 								</h4>
 
 	 								<?php if ($status->user->id === Yii::app()->user->id): ?>
-	 									<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
+	 									<?php echo CHtml::link('<i class="icon-trash icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
 	 								<?php endif ?>
 
 	 								<p>
@@ -190,7 +190,7 @@
 		 									<div class="comment-wrap">
 			 									<blockquote>
 			 										<?php if ($key_2->user_id === Yii::app()->user->id): ?>
-			 											<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('statusComment/delete','id'=>$key_2->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
+			 											<?php echo CHtml::link('<i class="icon-trash icon-large"></i>','#',array('submit'=>array('statusComment/delete','id'=>$key_2->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
 			 										<?php endif ?>
 			 										<h4><?php echo User::model()->findByPk($key_2->user_id)->name; ?></h4>
 			 										<small><?php echo $key_2->created_on; ?></small>
@@ -204,7 +204,20 @@
 	 						<?php $this->renderPartial('/statusComment/_form', array('model' => new StatusComment, 'id' => $status->id)); ?>
 	 						<!-- <input  class="span12" placeholder="Enter your comment here..."></input>
 	 						<button class="btn btn-mini btn-success" type="button" style="margin-top: 10px;"><i class="icon-comment"></i> Post Comment</button> -->
+	 						</div>
 	 							<?php endforeach ?>
+
+	 							<?php 
+								$this->widget('ext.yiinfinite-scroll.YiinfiniteScroller', array(
+    							'contentSelector' => '#statuses',
+    							'itemSelector' => 'div.status',
+    							'loadingText' => 'Loading...',
+    							'donetext' => 'This is the end... my only friend, the end',
+    							'pages' => $pages,
+							)); ?>
+	 						</div>
+
+
 	 						</div>
 	 					</div>
 	 				</div>
