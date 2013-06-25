@@ -365,7 +365,6 @@
 			$this->widget('bootstrap.widgets.TbButton',array(
 				'label' => 'Add CAD Models',
 				'type' => 'success',
-				'size' => 'large',
 				'block' => true,
 				)); ?>
 		</div>
@@ -375,7 +374,6 @@
 			$this->widget('bootstrap.widgets.TbButton',array(
 				'label' => 'Add  Gallery Images',
 				'type' => 'success',
-				'size' => 'large',
 				'block' => true,
 				)); ?>
 		</div>
