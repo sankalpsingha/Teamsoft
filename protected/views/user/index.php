@@ -14,14 +14,14 @@
 							'label' => 'Change Profile Pic',
 							'icon' => 'icon-edit',
 							'type' => 'warning',
-							/*'htmlOptions' => array(
 							'block' => true,
+							
 							'htmlOptions' => array(
 								'data-toggle' => 'modal',
 								'data-target' => '#myProfile',
 								'style'=>'margin-top: 5px;',
 								'class'=>'span12'
-								),*/
+								),
 						)); ?>
 
 	 		<div class="row-fluid">
