@@ -142,7 +142,7 @@ class PostController extends Controller
 		// Count the total number of records for the pagination
 		$pages = new CPagination(Post::model()->count()); 
 		// set the page limit :
-		$pages->pageSize =	5;
+		$pages->pageSize =	3;
 		$pages->applyLimit($criteria);
 
 		$post = Post::model()->findAll($criteria);
