@@ -174,7 +174,7 @@
 	 								</h4>
 
 	 								<?php if ($status->user->id === Yii::app()->user->id): ?>
-	 									<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
+	 									<?php echo CHtml::link('<i class="icon-trash icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
 	 								<?php endif ?>
 
 	 								<p>
@@ -190,7 +190,7 @@
 		 									<div class="comment-wrap">
 			 									<blockquote>
 			 										<?php if ($key_2->user_id === Yii::app()->user->id): ?>
-			 											<?php echo CHtml::link('<i class="icon-remove-sign icon-large"></i>','#',array('submit'=>array('statusComment/delete','id'=>$key_2->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
+			 											<?php echo CHtml::link('<i class="icon-trash icon-large"></i>','#',array('submit'=>array('statusComment/delete','id'=>$key_2->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
 			 										<?php endif ?>
 			 										<h4><?php echo User::model()->findByPk($key_2->user_id)->name; ?></h4>
 			 										<small><?php echo $key_2->created_on; ?></small>
@@ -217,7 +217,7 @@
 							)); ?>
 	 						</div>
 
-	 							
+
 	 						</div>
 	 					</div>
 	 				</div>
