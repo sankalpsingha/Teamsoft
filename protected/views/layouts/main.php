@@ -37,6 +37,7 @@ This is the property of the CampusPlugin Team.
 
 										
 										array('label'=>'Create Module', 'url'=>array('/module/create'),'icon'=>'icon-tag'),
+										array('label'=>'Write Blog', 'url'=>array('/post/create'),'icon'=>'icon-tag'),
 										'---',
 										array('label'=> 'Other Actions'),
 										array('label'=>'Register Complaint', 'url'=>array('/complaint/create')),
@@ -52,7 +53,7 @@ This is the property of the CampusPlugin Team.
 										 //'<form class="navbar-search pull-right" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
 									)
 								),
-			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span1" placeholder="Search"></form>',
+			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
 							),
 			
 						));
