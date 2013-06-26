@@ -33,10 +33,17 @@ This is the property of the CampusPlugin Team.
 					'items' => array(
 
 										'',
-										array('label'=>'Home', 'url'=>array('/user/dashboard'),'icon'=>'icon-home icon-large'),'',
+										array('label'=>'Dashboard', 'url'=>array('user/dashboard'),'icon'=>'icon-cog icon-large','items'=>array(
+
+										
+										array('label'=>'Create Module', 'url'=>array('/module/create'),'icon'=>'icon-tag'),
+										'---',
+										array('label'=> 'Other Actions'),
+										array('label'=>'Register Complaint', 'url'=>array('/complaint/create')),
+											)),'',
 										array('url' => Yii::app()->getModule('message')->inboxUrl,'label' => 'Messages' .(Yii::app()->getModule('message')->getCountUnreadedMessages(Yii::app()->user->id) ? ' (' . Yii::app()->getModule('message')->getCountUnreadedMessages(Yii::app()->user->id) . ')' : ''),'visible' => !Yii::app()->user->isGuest,'icon'=>'icon-envelope'), '',
 										//array('label'=>'Complaint', 'url'=>array('/complaint/create'),'icon'=>'icon-warning-sign'),'',
-										array('label'=>'Create Module', 'url'=>array('/module/create'),'icon'=>'icon-tag'),'',
+										
 										array('label'=>'Blog', 'url'=>array('/blog/'),'icon'=>'icon-bullhorn'),'',
 										array('label'=>'CAD/GALLERY', 'url'=>array('/blog/'),'icon'=>'icon-picture'),'',
 										array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),

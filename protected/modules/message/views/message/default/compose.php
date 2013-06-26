@@ -11,7 +11,7 @@
 <h2><?php echo MessageModule::t('Compose New Message'); ?></h2>
 
 <div class="form">
-	<?php $form = $this->beginWidget('CActiveForm', array(
+	<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 		'id'=>'message-form',
 		'enableAjaxValidation'=>false,
 	)); ?>
@@ -39,9 +39,11 @@
 		<?php echo $form->error($model,'body'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton(MessageModule::t("Send")); ?>
-	</div>
+	<?php $this->widget('bootstrap.widgets.TbButton', array(
+                        'buttonType'=>'submit',
+                        'type'=>'success',
+                        'label'=>'Send',
+                )); ?>
 
 	<?php $this->endWidget(); ?>
 
