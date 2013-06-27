@@ -64,6 +64,13 @@ class UserController extends Controller
 		{
 			$model->attributes=$_POST['User'];
 			if($model->save())
+
+				// This would put the default role as a member.
+				$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+				$authorizer->authManager->assign('Member', $model->id);
+				//-------
+				
+				
 				$this->redirect(array('view','id'=>$model->id));
 		}
 

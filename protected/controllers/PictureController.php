@@ -171,6 +171,10 @@ class PictureController extends Controller
 		}
 	}
 
+	/**
+	 * This is the upload definition for the file upload. It is used with the usage of the TbFileUpload.
+	 * @return [type] [description]
+	 */
 	public function actionUpload()
 	{
 	    header('Vary: Accept');

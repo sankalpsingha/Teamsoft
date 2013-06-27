@@ -14,7 +14,8 @@ class ComplaintController extends RController
 	public function filters()
 	{
 		return array(
-			'rights',
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
