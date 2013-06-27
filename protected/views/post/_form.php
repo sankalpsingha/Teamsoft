@@ -16,6 +16,7 @@
 	<?php echo $form->errorSummary($model); ?>
 	<?php echo $form->errorSummary($tag); ?>
 
+	
 
 	
 		<?php echo $form->labelEx($model,'title'); ?>
