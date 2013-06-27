@@ -100,7 +100,9 @@ class TodoController extends Controller
 		if(isset($_POST['Todo']))
 		{
 			$model->attributes=$_POST['Todo'];
+			//---
 			$model->users = $_POST['Todo']['users'];
+			//---
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -117,8 +119,8 @@ class TodoController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$shit = $this->loadModel($id)->users = array();
-		$this->loadModel($id)->save();
+		$relation = $this->loadModel($id)->getRelations();
+		$this->loadModel($id)->cleanRelations($relation);
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser

@@ -25,9 +25,21 @@
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'description'); ?>
-	
 
-	
+		<?php echo $form->labelEx($model, 'color'); ?>
+		<?php $this->widget('application.extensions.colorpicker.EColorPicker', 
+              array(
+                    'name'=>'Module[color]',
+                    'mode'=>'textfield',
+                    'fade' => true,
+                    'slide' => true,
+                    'curtain' => true,
+                   )
+             ); 
+        ?>
+        <?php echo $form->error($model, 'color'); ?>
+
+
 		<?php echo $form->labelEx($model,'user_id'); ?>
 		<?php //echo $form->dropDownList($model,'user_id',$model->getAllUser()); ?>
 

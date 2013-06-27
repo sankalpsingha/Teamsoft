@@ -132,7 +132,7 @@ class UserController extends Controller
 
 		// This is the section that would get the amount of the user.
 		// I think we can make a function for this.. But Oh well... :O
-		$amount = $user->money;
+		$amount = $user->moneys;
 		$sum = 0;
 		if($amount != null) {
 			foreach ($amount as $key) {
@@ -180,7 +180,7 @@ class UserController extends Controller
 		$money = $this->createMoney();
 
 		// This is the section that would get the amount of the user.
-		$amount = $user->money;
+		$amount = $user->moneys;
 		$sum = 0;
 		if($amount != null) {
 			foreach ($amount as $key) {
@@ -189,6 +189,12 @@ class UserController extends Controller
 		}
 		// Fetching the todos of the logged in the user.
 		$todo = $user->todos;
+		$todoArray = array();
+		foreach ($todo as $value) {
+			if(!$value->completed) {
+				$todoArray[] = $value;
+			}
+		}
 		//-----
 		
 		// Putting the pagination data :
@@ -201,8 +207,11 @@ class UserController extends Controller
 		$statuses = Status::model()->findAll($criteria);
 
 		// Pagination data done!
-
 		$modules = $user->modules;
+
+		// Modules array
+		$modulesArray = $this->modulesArray();
+
 		//$dataProvider=new CActiveDataProvider('User');  // As this is not actuallly required.
 		$this->render('index',array(
 			//'dataProvider'=>$dataProvider,
@@ -214,7 +223,8 @@ class UserController extends Controller
 			'modules' => $modules,
 			'amount' => $sum, // This would send the amount.
 			'pages' => $pages,
-			'todos' => $todo,
+			'todos' => $todoArray,
+			'modulesArray' => $modulesArray,
 		));
 	}
 
@@ -301,11 +311,40 @@ class UserController extends Controller
 		}
 	}
 
+
 	public function actionUpdateInfo(){
 		
 		Yii::import('bootstrap.widgets.TbEditableSaver');
 		$es = new TbEditableSaver('User'); // This is to be used for the ajax update of the 
 		$es->update();
+	}
+
+	/**
+	 * Returns an array with modules and their completion status to use with yii-charts
+	 * @return array yii-charts
+	 */
+	protected function modulesArray(){
+		$modules = Module::model()->findAll();
+		/*$array = array(
+                    array(
+                        "value" => 50,
+                        "color" => "rgba(66,66,66,1)",
+                        "label" => "Hunde"
+                    ),
+                    array(
+                        "value" => 25,
+                        "color" => "rgba(66,66,66,1)",
+                        "label" => "Katzen"
+                    ),
+                    );*/
+		foreach ($modules as $module) {
+			$array[] = array("value" => 50, "color" => "$module->color", "label" => "$module->category");
+			// $array[$i]['value'] = 50;
+			// $array[$i]['color'] = '"'.$module->color.'"';
+			// $array[$i]['label'] = '"'.$module->category.'"';
+		}
+		return $array;
+
 	}
 
 }

@@ -37,7 +37,7 @@ class ModuleController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('parry'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -70,7 +70,7 @@ class ModuleController extends Controller
 		if(isset($_POST['Module']))
 		{
 			$model->attributes=$_POST['Module'];
-
+			$model->color = '#'.$_POST['Module']['color'];
 			//----
 			$model->users = $_POST['Module']['users'];
 			// ----
@@ -118,7 +118,9 @@ class ModuleController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$shit = $this->loadModel($id);
+		Yii::app()->db->createCommand($shit->CAdvancedArBehavior->makeManyManyDeleteCommand(array('m2mTable' => 'user_has_module', 'm2mThisField' => 'module_id')))->execute();
+		$shit->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

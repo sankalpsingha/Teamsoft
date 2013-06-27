@@ -15,6 +15,7 @@
  *
  * The followings are the available model relations:
  * @property BugFeature[] $bugFeatures
+ * @property ReportTodo[] $reportTodos 
  * @property Module $module
  * @property User[] $users
  */
@@ -76,6 +77,7 @@ class Todo extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'bugFeatures' => array(self::HAS_MANY, 'BugFeature', 'todo_id'),
+			'reportTodos' => array(self::HAS_MANY, 'ReportTodo', 'todo_id'),
 			'module' => array(self::BELONGS_TO, 'Module', 'module_id'),
 			'users' => array(self::MANY_MANY, 'User', 'todo_has_user(todo_id,user_id)'),
 		);

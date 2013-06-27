@@ -190,7 +190,7 @@ class CAdvancedArbehavior extends CActiveRecordBehavior
 	}
 
 	public function makeManyManyDeleteCommand($relation) {
-		return sprintf("delete ignore from %s where %s = '%s'",
+		return sprintf("delete ignore from %s where %s = %d",
 				$relation['m2mTable'],
 				$relation['m2mThisField'],
 				$this->owner->{$this->owner->tableSchema->primaryKey}
