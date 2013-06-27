@@ -85,7 +85,7 @@ return array(
 				'blog' => 'post/index',
 				'resource' => 'resource/index',
 				'gii' => 'gii',
-				//'<controller>' => '<controller>',
+				'<controller>' => '<controller>',
 				'<slug:[\w\_]+>'=>'user/view',
 			),
 		),

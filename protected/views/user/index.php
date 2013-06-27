@@ -168,7 +168,16 @@
 
 	 						<div class="span6">
 	 							<!-- This is the area for the graph -->
-								<p class="lead" style="margin-left: 35px;">TEAM PROGRESS :</p>
+								<?php 
+								$yes = 0;
+								foreach ($modulesArray as $value) {
+									if($value['value'] > 0) {
+										$yes = 1;
+									}
+								}
+								if($yes) {
+									?>
+									<p class="lead" style="margin-left: 35px;">TEAM PROGRESS :</p>
 
 						<?php 
         $this->widget(
@@ -183,6 +192,9 @@
             )
         ); 
     ?>		
+									<?php
+								}
+								?>
 					
 
 					<h3 style="margin-top:20px;">Current Status :</h3>
