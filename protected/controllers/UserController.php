@@ -323,19 +323,19 @@ class UserController extends Controller
 	 * Returns an array with modules and their completion status to use with yii-charts
 	 * @return array yii-charts
 	 */
-	protected function modulesArray(){
+	public function modulesArray(){
 		$modules = Module::model()->findAll();
 		$array = array(
                     array(
-                        "value" => 50,
+                        "value" => 0,
                         "color" => "rgba(66,66,66,1)",
-                        "label" => "Hunde"
+                       // "label" => ""
                     ),
-                    array(
-                        "value" => 25,
-                        "color" => "rgba(66,66,66,1)",
-                        "label" => "Katzen"
-                    ),
+                    // array(
+                    //     "value" => 25,
+                    //     "color" => "rgba(66,66,66,1)",
+                    //     "label" => "Katzen"
+                    // ),
                     );
 		foreach ($modules as $module) {
 			$array[] = array("value" => 50, "color" => "$module->color", "label" => "$module->category");
