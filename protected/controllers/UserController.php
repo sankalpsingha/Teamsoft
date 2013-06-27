@@ -342,7 +342,7 @@ class UserController extends Controller
 			if($completedTodos != 0) {
 				$value = ($completedTodos/$todosCount) * 100;
 			} else {
-				$value = 5;
+				$value = 0;
 			}
 			$array[] = array("value" => $value, "color" => "$module->color", "label" => "$module->category");
 		}
