@@ -100,6 +100,7 @@
 	 						<?php 
 	 							$this->widget('bootstrap.widgets.TbEditableField', array(
 								'type' => 'text',
+								'mode' =>'inline',
 								'model' => $model,
 								'attribute' => 'course',
 								'url' => $this->createUrl('user/updateinfo'), //url for submit data
@@ -113,6 +114,7 @@
 	 						<?php 
 	 							$this->widget('bootstrap.widgets.TbEditableField', array(
 								'type' => 'textarea',
+								//'mode' =>'inline',
 								'model' => $model,
 								'attribute' => 'about',
 								'url' => $this->createUrl('user/updateinfo'), //url for submit data
