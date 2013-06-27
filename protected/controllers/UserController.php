@@ -34,7 +34,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','dashboard', 'gallery'),
+				'actions'=>array('update','dashboard', 'gallery','UpdateInfo'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -311,6 +311,14 @@ class UserController extends Controller
 		}
 	}
 
+
+	public function actionUpdateInfo(){
+		
+		Yii::import('bootstrap.widgets.TbEditableSaver');
+		$es = new TbEditableSaver('User'); // This is to be used for the ajax update of the 
+		$es->update();
+	}
+
 	/**
 	 * Returns an array with modules and their completion status to use with yii-charts
 	 * @return array yii-charts
@@ -336,6 +344,7 @@ class UserController extends Controller
 			// $array[$i]['label'] = '"'.$module->category.'"';
 		}
 		return $array;
+
 	}
 
 }

@@ -106,7 +106,7 @@ class User extends CActiveRecord
 			array('name, lastname, username, password, ip, sec_ques, answer, course', 'length', 'max'=>45),
 			array('profilepic, thumbnail', 'length', 'max'=>255),
 			array('email', 'length', 'max'=>100),
-			array('about, created_on, updated_on', 'safe'),
+			array('about, created_on, updated_on,', 'safe'),
 			// Below are the rules defined for the picture upload
 			array('picture', 'length', 'max' => 255, 'tooLong' => '{attribute} is too long (max {max} chars).', 'on' => 'upload'),
     		array('picture', 'file', 'types' => 'jpg,jpeg,gif,png', 'maxSize' => 1024 * 1024 * 2, 'tooLarge' => 'Size should be less then 2MB !!!', 'on' => 'upload'),
