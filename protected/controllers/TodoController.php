@@ -119,9 +119,13 @@ class TodoController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$relation = $this->loadModel($id)->getRelations();
-		$this->loadModel($id)->cleanRelation($relation);
-		$this->loadModel($id)->delete();
+		$shit = $this->loadModel($id);
+		$shit->cleanRelation(array('m2mTable' => 'todo_has_user', 'm2mThisField' => 'todo_id'));
+		$reports = $shit->reportTodos;
+		foreach ($reports as $value) {
+			ReportTodo::model()->findByPk($value->id)->delete();
+		}
+		$shit->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

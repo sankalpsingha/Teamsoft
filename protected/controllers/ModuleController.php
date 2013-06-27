@@ -119,7 +119,15 @@ class ModuleController extends Controller
 	public function actionDelete($id)
 	{
 		$shit = $this->loadModel($id);
-		Yii::app()->db->createCommand($shit->CAdvancedArBehavior->makeManyManyDeleteCommand(array('m2mTable' => 'user_has_module', 'm2mThisField' => 'module_id')))->execute();
+		$todos = $shit->todos;
+		foreach ($todos as $value) {
+			$value->cleanRelation(array('m2mTable' => 'todo_has_user', 'm2mThisField' => 'todo_id'));
+			$reports = $value->reportTodos;
+			foreach ($reports as $test) {
+				ReportTodo::model()->findByPk($test->id)->delete();
+			}
+			$value->delete();
+		}
 		$shit->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
