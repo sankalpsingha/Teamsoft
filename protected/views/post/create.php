@@ -2,7 +2,7 @@
 /* @var $this PostController */
 /* @var $model Post */
 
-$this->widget('bootstrap.widgets.TbBreadCrumbs',array(
+$this->widget('bootstrap.widgets.TbBreadcrumbs',array(
 	'links'=>array('Create'),
 	
 ));

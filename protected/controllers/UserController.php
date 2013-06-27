@@ -317,7 +317,7 @@ class UserController extends Controller
 	 */
 	protected function modulesArray(){
 		$modules = Module::model()->findAll();
-		/*$array = array(
+		$array = array(
                     array(
                         "value" => 50,
                         "color" => "rgba(66,66,66,1)",
@@ -328,7 +328,7 @@ class UserController extends Controller
                         "color" => "rgba(66,66,66,1)",
                         "label" => "Katzen"
                     ),
-                    );*/
+                    );
 		foreach ($modules as $module) {
 			$array[] = array("value" => 50, "color" => "$module->color", "label" => "$module->category");
 			// $array[$i]['value'] = 50;
