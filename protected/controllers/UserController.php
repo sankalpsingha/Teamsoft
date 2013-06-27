@@ -194,8 +194,11 @@ class UserController extends Controller
 		$statuses = Status::model()->findAll($criteria);
 
 		// Pagination data done!
-
 		$modules = $user->modules;
+
+		// Modules array
+		$modulesArray = $this->modulesArray();
+
 		//$dataProvider=new CActiveDataProvider('User');  // As this is not actuallly required.
 		$this->render('index',array(
 			//'dataProvider'=>$dataProvider,
@@ -208,6 +211,7 @@ class UserController extends Controller
 			'amount' => $sum, // This would send the amount.
 			'pages' => $pages,
 			'todos' => $todo,
+			'modulesArray' => $modulesArray,
 		));
 	}
 
@@ -292,6 +296,33 @@ class UserController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	/**
+	 * Returns an array with modules and their completion status to use with yii-charts
+	 * @return array yii-charts
+	 */
+	protected function modulesArray(){
+		$modules = Module::model()->findAll();
+		/*$array = array(
+                    array(
+                        "value" => 50,
+                        "color" => "rgba(66,66,66,1)",
+                        "label" => "Hunde"
+                    ),
+                    array(
+                        "value" => 25,
+                        "color" => "rgba(66,66,66,1)",
+                        "label" => "Katzen"
+                    ),
+                    );*/
+		foreach ($modules as $module) {
+			$array[] = array("value" => 50, "color" => "$module->color", "label" => "$module->category");
+			// $array[$i]['value'] = 50;
+			// $array[$i]['color'] = '"'.$module->color.'"';
+			// $array[$i]['label'] = '"'.$module->category.'"';
+		}
+		return $array;
 	}
 
 }

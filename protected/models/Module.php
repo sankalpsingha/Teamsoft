@@ -7,6 +7,7 @@
  * @property string $id
  * @property string $category
  * @property string $description
+ * @property string $color
  * @property string $created_on
  * @property string $updated_on
  *
@@ -43,12 +44,13 @@ class Module extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category, description', 'required'),
+			array('category, description, color', 'required'),
 			array('category', 'length', 'max'=>100),
+			array('color', 'length', 'max'=>10),
 			array('description, created_on, updated_on', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, category, description, created_on, updated_on', 'safe', 'on'=>'search'),
+			array('id, category, description, color, created_on, updated_on', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,6 +77,7 @@ class Module extends CActiveRecord
 			'id' => 'ID',
 			'category' => 'Category',
 			'description' => 'Description',
+			'color' => 'Color',
 			'created_on' => 'Created On',
 			'updated_on' => 'Updated On',
 			'user_id' => 'Add users to the module',
@@ -95,6 +98,7 @@ class Module extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('category',$this->category,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('color',$this->color,true);
 		$criteria->compare('created_on',$this->created_on,true);
 		$criteria->compare('updated_on',$this->updated_on,true);
 

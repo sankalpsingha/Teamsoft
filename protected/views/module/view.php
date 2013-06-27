@@ -25,6 +25,7 @@ $this->menu=array(
 		'id',
 		'category',
 		'description',
+		'color',
 		'created_on',
 		'updated_on',
 	),

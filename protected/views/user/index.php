@@ -2,10 +2,6 @@
 /* @var $this UserController */
 /* @var $dataProvider CActiveDataProvider */
 ?>
-
-
-
-
 <div class="span10">
 	<div class="row-fluid">
 		<div class="span3">
@@ -161,29 +157,7 @@
                 'height' => 250,
                 'htmlOptions' => array(),
                 'drawLabels' => true,
-                'datasets' => array(
-                    array(
-                        "value" => 50,
-                        "color" => "rgba(220,30, 70,1)",
-                        "label" => "Tyres"
-                    ),
-                    array(
-                        "value" => 25,
-                        "color" => "rgba(66,66,66,1)",
-                        "label" => "Brakes"
-                    ),
-                    array(
-                        "value" => 40,
-                        "color" => "rgba(100,100,220,1)",
-                        "label" => "Design"
-                    ),
-                    array(
-                        "value" => 15,
-                        "color" => "rgba(20,120,120,1)",
-                        "label" => "Hydraulics"
-                    ),
-                    
-                ),
+                'datasets' => $modulesArray,
                 'options' => array()
             )
         ); 
