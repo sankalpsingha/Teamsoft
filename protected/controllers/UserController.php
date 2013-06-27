@@ -125,7 +125,7 @@ class UserController extends Controller
 
 		// This is the section that would get the amount of the user.
 		// I think we can make a function for this.. But Oh well... :O
-		$amount = $user->money;
+		$amount = $user->moneys;
 		$sum = 0;
 		if($amount != null) {
 			foreach ($amount as $key) {
@@ -173,7 +173,7 @@ class UserController extends Controller
 		$money = $this->createMoney();
 
 		// This is the section that would get the amount of the user.
-		$amount = $user->money;
+		$amount = $user->moneys;
 		$sum = 0;
 		if($amount != null) {
 			foreach ($amount as $key) {
@@ -182,6 +182,12 @@ class UserController extends Controller
 		}
 		// Fetching the todos of the logged in the user.
 		$todo = $user->todos;
+		$todoArray = array();
+		foreach ($todo as $value) {
+			if(!$value->completed) {
+				$todoArray[] = $value;
+			}
+		}
 		//-----
 		
 		// Putting the pagination data :
@@ -210,7 +216,7 @@ class UserController extends Controller
 			'modules' => $modules,
 			'amount' => $sum, // This would send the amount.
 			'pages' => $pages,
-			'todos' => $todo,
+			'todos' => $todoArray,
 			'modulesArray' => $modulesArray,
 		));
 	}

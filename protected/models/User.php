@@ -22,6 +22,8 @@
  * @property string $profilepic
  * @property string $thumbnail
  * @property string $email
+ * @property string $mobile
+ * @property string $slug
  *
  * The followings are the available model relations:
  * @property BugFeature[] $bugFeatures
@@ -29,8 +31,10 @@
  * @property Complaint[] $complaints
  * @property Feedback[] $feedbacks
  * @property Money[] $moneys
+ * @property Picture[] $pictures
  * @property Post[] $posts
  * @property Report[] $reports
+ * @property ReportTodo[] $reportTodos
  * @property Resource[] $resources
  * @property Status[] $statuses
  * @property StatusComment[] $statusComments
@@ -40,6 +44,7 @@
 
 class User extends CActiveRecord
 {
+	public $user_id;
 
 	// This is the password repeat attribute.
 	
@@ -123,13 +128,15 @@ class User extends CActiveRecord
 			'comments' => array(self::HAS_MANY, 'Comment', 'user_id'),
 			'complaints' => array(self::HAS_MANY, 'Complaint', 'user_id'),
 			'feedbacks' => array(self::HAS_MANY, 'Feedback', 'user_id'),
-			'money' => array(self::HAS_MANY, 'Money', 'user_id'),
+			'moneys' => array(self::HAS_MANY, 'Money', 'user_id'),
+			'pictures' => array(self::HAS_MANY, 'Picture', 'user_id'),
 			'posts' => array(self::HAS_MANY, 'Post', 'user_id'),
 			'reports' => array(self::HAS_MANY, 'Report', 'user_id'),
+			'reportTodos' => array(self::HAS_MANY, 'ReportTodo', 'user_id'),
 			'resources' => array(self::HAS_MANY, 'Resource', 'user_id'),
 			'status' => array(self::HAS_MANY, 'Status', 'user_id'),
 			'statusComments' => array(self::HAS_MANY, 'StatusComment', 'user_id'),
-			'todos' => array(self::MANY_MANY, 'Todo', 'todo_has_user(todo_id,user_id)'),
+			'todos' => array(self::MANY_MANY, 'Todo', 'todo_has_user(user_id, todo_id)'),
 			'modules' => array(self::MANY_MANY, 'Module', 'user_has_module(user_id, module_id)'),
 			'modulesCount' => array(self::STAT, 'Module', 'user_has_module(user_id, module_id)'),
 		);

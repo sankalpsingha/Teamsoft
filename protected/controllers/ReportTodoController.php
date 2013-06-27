@@ -1,6 +1,6 @@
 <?php
 
-class TodoController extends Controller
+class ReportTodoController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -37,7 +37,7 @@ class TodoController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('parry'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -60,24 +60,29 @@ class TodoController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($id) {
-		$module = Module::model()->findByPk($id);
-		if($module === null) {
-			throw new CHttpException('404', 'Module not found');
+	public function actionCreate($id)
+	{
+		$todo = Todo::model()->findByPk($id);
+		if($todo === null) {
+			throw new CHttpException('404', 'This Todo doesn\'t exists');
 		}
-		$model=new Todo;
-		$model->module_id = $id;
+		$reportTodo = ReportTodo::model()->findAllByAttributes(array('todo_id' => $id));
+		if($reportTodo != null) {
+			throw new CHttpException('456', 'Report has already been given for this Todo');
+		}
+		$model=new ReportTodo;
+		$model->todo_id = $id;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Todo']))
+		if(isset($_POST['ReportTodo']))
 		{
-			$model->attributes=$_POST['Todo'];
-
-			$model->users = $_POST['Todo']['users'];
-
-			if($model->save())
+			$model->attributes=$_POST['ReportTodo'];
+			if($model->save()) {
+				$command = Yii::app()->db->createCommand("UPDATE todo SET completed = 1 WHERE id = $id");
+				$command->execute();
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -97,12 +102,9 @@ class TodoController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Todo']))
+		if(isset($_POST['ReportTodo']))
 		{
-			$model->attributes=$_POST['Todo'];
-			//---
-			$model->users = $_POST['Todo']['users'];
-			//---
+			$model->attributes=$_POST['ReportTodo'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -119,8 +121,6 @@ class TodoController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$relation = $this->loadModel($id)->getRelations();
-		$this->loadModel($id)->cleanRelations($relation);
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -133,7 +133,7 @@ class TodoController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Todo');
+		$dataProvider=new CActiveDataProvider('ReportTodo');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -144,10 +144,10 @@ class TodoController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Todo('search');
+		$model=new ReportTodo('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Todo']))
-			$model->attributes=$_GET['Todo'];
+		if(isset($_GET['ReportTodo']))
+			$model->attributes=$_GET['ReportTodo'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -158,12 +158,12 @@ class TodoController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Todo the loaded model
+	 * @return ReportTodo the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Todo::model()->findByPk($id);
+		$model=ReportTodo::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -171,11 +171,11 @@ class TodoController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Todo $model the model to be validated
+	 * @param ReportTodo $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='todo-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='report-todo-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
