@@ -327,21 +327,24 @@ class UserController extends Controller
 		$modules = Module::model()->findAll();
 		$array = array(
                     array(
-                        "value" => 50,
-                        "color" => "rgba(66,66,66,1)",
-                        "label" => "Hunde"
+                        "value" => 0
                     ),
-                    array(
-                        "value" => 25,
-                        "color" => "rgba(66,66,66,1)",
-                        "label" => "Katzen"
-                    ),
-                    );
+            );
 		foreach ($modules as $module) {
-			$array[] = array("value" => 50, "color" => "$module->color", "label" => "$module->category");
-			// $array[$i]['value'] = 50;
-			// $array[$i]['color'] = '"'.$module->color.'"';
-			// $array[$i]['label'] = '"'.$module->category.'"';
+			$todos = $module->todos;
+			$todosCount = $module->todosCount;
+			$completedTodos = 0;
+			foreach ($todos as $value) {
+				if($value->completed) {
+					$completedTodos++;
+				}
+			}
+			if($completedTodos != 0) {
+				$value = ($completedTodos/$todosCount) * 100;
+			} else {
+				$value = 0;
+			}
+			$array[] = array("value" => $value, "color" => "$module->color", "label" => "$module->category");
 		}
 		return $array;
 

@@ -64,6 +64,7 @@ class Module extends CActiveRecord
 		return array(
 			'comments' => array(self::HAS_MANY, 'Comment', 'module_id'),
 			'todos' => array(self::HAS_MANY, 'Todo', 'module_id'),
+			'todosCount' => array(self::STAT, 'Todo', 'module_id'),
 			'users' => array(self::MANY_MANY, 'User', 'user_has_module(module_id, user_id)'),
 		);
 	}

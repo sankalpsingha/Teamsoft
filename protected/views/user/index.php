@@ -2,6 +2,7 @@
 /* @var $this UserController */
 /* @var $dataProvider CActiveDataProvider */
 ?>
+
 <div class="span10">
 	<div class="row-fluid">
 		<div class="span3">
