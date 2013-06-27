@@ -21,6 +21,16 @@ SET time_zone = "+00:00";
 --
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `lastname`, `username`, `password`, `about`, `created_on`, `updated_on`, `ip`, `active`, `power`, `ban`, `sec_ques`, `answer`, `course`, `profilepic`, `thumbnail`, `email`, `mobile`, `slug`) VALUES
+(10, 'Parry', 'Singh', 'parry', 'f970e2767d0cfe75876ea857f92e319b', 'Finally some change :D :D', '2013-06-26 02:22:16', '2013-06-26 02:22:16', '127.0.0.1', 0, 0, 1, 'What is my aunt''s name?', 'Mary', 'B. Tech', NULL, NULL, 'parry@ymail.com', NULL, 'parry'),
+(11, 'Sankalp', 'Singha', 'sankalp', 'f970e2767d0cfe75876ea857f92e319b', 'asdasd', '2013-06-26 02:25:47', '2013-06-26 02:25:47', '127.0.0.1', 0, 0, 1, 'What is my aunt''s name?', 'Mary', 'B. Tech (Hons)', NULL, NULL, 'sankalpsingha@gmail.com', NULL, 'sankalp'),
+(12, 'Neeraj', 'Rana', 'neeraj', 'f970e2767d0cfe75876ea857f92e319b', 'asdfasd', '2013-06-26 02:26:14', '2013-06-26 02:26:14', '127.0.0.1', 0, 0, 1, 'What is my dad''s name?', 'Papa', 'B. Tech (Hons)', NULL, NULL, 'neeraj@neeraj.com', NULL, 'neeraj');
+
+
+--
 -- Dumping data for table `module`
 --
 
@@ -56,15 +66,6 @@ INSERT INTO `todo` (`id`, `todocol`, `created_on`, `updated_on`, `deadline`, `mo
 INSERT INTO `todo_has_user` (`todo_id`, `user_id`) VALUES
 (1, 10),
 (1, 12);
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `name`, `lastname`, `username`, `password`, `about`, `created_on`, `updated_on`, `ip`, `active`, `power`, `ban`, `sec_ques`, `answer`, `course`, `profilepic`, `thumbnail`, `email`, `mobile`, `slug`) VALUES
-(10, 'Parry', 'Singh', 'parry', 'f970e2767d0cfe75876ea857f92e319b', 'Finally some change :D :D', '2013-06-26 02:22:16', '2013-06-26 02:22:16', '127.0.0.1', 0, 0, 1, 'What is my aunt''s name?', 'Mary', 'B. Tech', NULL, NULL, 'parry@ymail.com', NULL, 'parry'),
-(11, 'Sankalp', 'Singha', 'sankalp', 'f970e2767d0cfe75876ea857f92e319b', 'asdasd', '2013-06-26 02:25:47', '2013-06-26 02:25:47', '127.0.0.1', 0, 0, 1, 'What is my aunt''s name?', 'Mary', 'B. Tech (Hons)', NULL, NULL, 'sankalpsingha@gmail.com', NULL, 'sankalp'),
-(12, 'Neeraj', 'Rana', 'neeraj', 'f970e2767d0cfe75876ea857f92e319b', 'asdfasd', '2013-06-26 02:26:14', '2013-06-26 02:26:14', '127.0.0.1', 0, 0, 1, 'What is my dad''s name?', 'Papa', 'B. Tech (Hons)', NULL, NULL, 'neeraj@neeraj.com', NULL, 'neeraj');
 
 --
 -- Dumping data for table `user_has_module`
