@@ -99,10 +99,30 @@
 	 							
 
 	 							<h1 style="color: #99253b;"><?php echo CHtml::encode($model['name']." ".$model['lastname']); ?></h1>
-	 					<p class="lead"><?php echo CHtml::encode($model['course']); ?></p>
+	 					<p class="lead">
+	 						<?php 
+	 							$this->widget('bootstrap.widgets.TbEditableField', array(
+								'type' => 'text',
+								'model' => $model,
+								'attribute' => 'course',
+								'url' => $this->createUrl('user/updateinfo'), //url for submit data
+								'placement' => 'right',
+								)); ?>
+	 						<?php //echo CHtml::encode($model['course']); ?>
+	 					</p>
 
 	 					<h2 style="margin-top: -20px; margin-bottom : -3px;">About me :</h2>
-	 					<p style="font-size:18px;"><em><?php echo CHtml::encode($model['about']); ?></em></p>
+	 					<p style="font-size:18px;"><em>
+	 						<?php 
+	 							$this->widget('bootstrap.widgets.TbEditableField', array(
+								'type' => 'textarea',
+								'model' => $model,
+								'attribute' => 'about',
+								'url' => $this->createUrl('user/updateinfo'), //url for submit data
+								'placement' => 'right',
+								)); ?>
+	 						<?php //echo CHtml::encode($model['about']); ?>
+	 					</em></p>
 
 
 	 					<br>

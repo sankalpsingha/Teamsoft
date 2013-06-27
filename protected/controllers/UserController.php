@@ -34,7 +34,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','dashboard', 'gallery'),
+				'actions'=>array('update','dashboard', 'gallery','UpdateInfo'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -299,6 +299,13 @@ class UserController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	public function actionUpdateInfo(){
+		
+		Yii::import('bootstrap.widgets.TbEditableSaver');
+		$es = new TbEditableSaver('User'); // This is to be used for the ajax update of the 
+		$es->update();
 	}
 
 }
