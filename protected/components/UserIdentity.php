@@ -30,6 +30,7 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode = self::ERROR_PASSWORD_INVALID;
 		} elseif($user->active == User::USER_TAGGED) {
 			$this->errorCode = self::ERROR_USER_TAGGED;
+			Yii::app()->session['flagged'] = 1;
 		} elseif($user->active == User::USER_BANNED) {
 			$this->errorCode = self::ERROR_USER_BANNED;
 		} else {
