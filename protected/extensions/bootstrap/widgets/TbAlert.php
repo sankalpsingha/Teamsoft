@@ -26,6 +26,8 @@ class TbAlert extends CWidget
 	 */
 	public $alerts;
 
+	public $alertText="";
+
 	/**
 	 * @var string|boolean the close link text.
 	 * If this is set false, no close link will be displayed.
@@ -107,7 +109,7 @@ class TbAlert extends CWidget
 				continue;
 			}
 
-			if (Yii::app()->getComponent($this->userComponentId)->hasFlash($type)) {
+			if ((Yii::app()->getComponent($this->userComponentId)->hasFlash($type)) || $alertText) {
 				$classes = array('alert in');
 
 				if (!isset($alert['block'])) {
@@ -165,6 +167,7 @@ class TbAlert extends CWidget
 				}
 
 				echo Yii::app()->getComponent($this->userComponentId)->getFlash($type);
+				echo $alertText;
 				echo '</div>';
 			}
 		}

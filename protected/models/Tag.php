@@ -42,6 +42,7 @@ class Tag extends CActiveRecord
 		return array(
 			array('tag','required'),
 			array('tag', 'length', 'max'=>45),
+			array('tag','unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, tag', 'safe', 'on'=>'search'),

@@ -10,7 +10,14 @@
 <div class="row-fluid">
 	<div class="post"><div class="well">
 			<h1><?php echo CHtml::encode($key->title); ?></h1>
+			<?php $tags = $key->tags; ?>
+			<p class="lead">Filed under :
+				 <?php foreach ($tags as $value): ?>
+				 	<?php echo $value->tag; ?>
+				 <?php endforeach ?>
+			</p>
 			<p>Author : <?php echo CHtml::encode($key->user->name); ?></p>
+			
 			<p class="lead">Date : <?php echo CHtml::encode($key->created_on); ?></p>
 			<?php echo $key->content; ?>
 	</div></div>
