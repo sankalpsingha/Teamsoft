@@ -36,7 +36,7 @@ if(Yii::app()->session['flagged'] === 1) {
 			<div class="row-fluid">
 				<div class="login-box">
 					<div class="icons">
-						<a href="#" style="text-decoration:none; margin-top:-5px;">Forgot Password</a>
+						<a  style="text-decoration:none; margin-top:-5px;" href="#forgotPass" role="button"  data-toggle="modal">Forgot Password</a>
 						<i class="icon-group"></i>
 						<?php echo CHtml::link('Register',array('user/create')); ?>
 					</div>
@@ -96,7 +96,23 @@ if(Yii::app()->session['flagged'] === 1) {
 
 			<footer></footer>
 				
-	
+
+			<div id="forgotPass" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h3>Enter Username :</h3>
+				</div>
+ 				<div class="modal-body">
+				<?php $this->renderPartial('/user/_question'); ?>
+				</div>
+				
+				<div class="modal-footer">
+				<a href="#" class="btn">Close</a>
+				<a href="#" class="btn btn-primary">Save changes</a>
+				</div>
+
+
+			</div>
 
 <!-- Other stuffs -->
 

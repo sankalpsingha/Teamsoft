@@ -47,6 +47,17 @@ class UserController extends Controller
 		);
 	}
 
+
+	public function actionForgot(){
+		
+		//$this->renderPartial('_question');		
+	}
+
+	public function getQuestion(){
+		$name = Yii::app()->request->getPost('email'); // This would get post value for the forgot password.
+		$user = User::model()->find('LOWER(username)=?',array(strtolower($name)));
+		return $user->question;
+	}
 	
 
 	/**
@@ -58,7 +69,7 @@ class UserController extends Controller
 		$model=new User;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['User']))
 		{
@@ -66,8 +77,8 @@ class UserController extends Controller
 			if($model->save())
 
 				// This would put the default role as a member.
-				$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-				$authorizer->authManager->assign('Member', $model->id);
+			//	$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+			//	$authorizer->authManager->assign('Member', $model->id);
 				//-------
 				
 				
