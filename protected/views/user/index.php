@@ -40,6 +40,7 @@
 					<?php
 						foreach ($todos as $todo){
 							$days = Yii::app()->Date->daysCount($todo->deadline, Yii::app()->Date->now());
+							$message = "";
 							$class = "success";
 							if ($days == 0) {
 								$message = "Today";

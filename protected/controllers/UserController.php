@@ -173,6 +173,13 @@ class UserController extends Controller
 	public function actionDashboard()
 	{
 		$user_id = Yii::app()->user->id;
+		$incompleteTodoCheck = $this->todoCheck();
+		if(!$incompleteTodoCheck) {
+			User::model()->updateByPk(Yii::app()->user->id, array('active' => 1));
+			Yii::app()->user->logout();
+			$this->render('/site/error', array('code' => 101, 'message' => 'You were flagged for not finishing the job on time'));
+			Yii::app()->end();
+		}
 		$this->pageTitle = 'Welcome '.ucfirst(User::model()->findByPk(Yii::app()->user->id)->name);
 		$statusLast = new Status;
 		$user = User::model()->findByPk($user_id); // This would only get the specific user
@@ -313,7 +320,6 @@ class UserController extends Controller
 
 
 	public function actionUpdateInfo(){
-		
 		Yii::import('bootstrap.widgets.TbEditableSaver');
 		$es = new TbEditableSaver('User'); // This is to be used for the ajax update of the 
 		$es->update();
@@ -349,4 +355,21 @@ class UserController extends Controller
 		return $array;
 	}
 
+	/**
+	 * This function checks if the user has any incompleted Todos with deadline over
+	 * @return boolean false if incomplete and deadline over, true if incomplete and deadline not over
+	 */
+	protected function todoCheck() {
+		$user = $this->loadModel(Yii::app()->user->id);
+		$remainingTodos = $user->todos;
+		foreach ($remainingTodos as $value) {
+			if($value->completed == 0) {
+				$daysLeft = Yii::app()->Date->daysCount($value->deadline, Yii::app()->Date->now());
+				if($daysLeft < 0) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 }

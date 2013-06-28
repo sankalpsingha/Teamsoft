@@ -44,7 +44,6 @@
 								<span class="add-on"><i class=" icon-user icon-large"></i></span>
 								
 								<?php echo $form->textField($model,'username',array('class'=>"input-large span10",'placeholder'=>'Your username')); ?>
-								<?php //echo $form->error($model,'username'); ?>
 								</div>
 
 								<div class="clearfix"></div>
@@ -55,7 +54,8 @@
 								<?php //echo $form->error($model,'password'); ?>
 								</div>
 								
-								<?php echo $form->errorSummary($model); ?>
+								<?php //echo $form->errorSummary($model); ?>
+								<?php echo $form->error($model,'username'); ?>
 
 								<label class="checkbox remember">
 								<?php echo $form->checkBox($model,'rememberMe'); ?> Remember me
