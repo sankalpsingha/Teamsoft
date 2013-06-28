@@ -19,6 +19,7 @@
  */
 class Post extends CActiveRecord
 {
+	public $tag;
 
 	// Defining the general terms for the post items.
 	const ARCHIVE  = 0;
@@ -51,7 +52,7 @@ class Post extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, content, status', 'required'),
+			array('title, content, status, tag', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>255),
 			array('user_id', 'length', 'max'=>10),
@@ -141,6 +142,13 @@ class Post extends CActiveRecord
 
 	public function getPostStatus(){		
 		return array(self::DRAFT =>'Draft',self::ARCHIVE => 'Archive', self::PUBLISH => 'Publish');
+	}
+
+	public function getAllTags(){
+		$tags = Tag::model()->findAll(); // Get all the tags
+		$tagArray = CHtml::listData($tags,'id','tag');
+		return $tagArray; // This would return all the tags. 
+
 	}
 
 }

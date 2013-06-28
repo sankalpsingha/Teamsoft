@@ -64,32 +64,28 @@ class PostController extends Controller
 	{
 		$model=new Post;
 
-		$tag = new Tag; // Adding the tag object.
-
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Post'],$_POST['Tag']))
+		if(isset($_POST['Post']))
 		{
 			$model->attributes=$_POST['Post'];
-			$tag->attributes = $_POST['Tag']; // Massive assignment.
-			$valid = $model->validate(); // Validate
-			$valid = $tag->validate() && $valid;
-
+			
+	
 			//---
-			//$model->tags = array($_POST[]);
+			$model->tags = $_POST['Post']['tag'];
 			//--
 
-			if(($valid>0) && ($model->save()))
+			if($model->save())
 				{
-					$tag->save(false); // saving the tag relation
+					//$tag->save(false); // saving the tag relation
 					$this->redirect(array('view','id'=>$model->id));
 				}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-			'tag' => $tag,
+			//'tag' => $tag,
 		));
 	}
 
@@ -146,11 +142,14 @@ class PostController extends Controller
 		$pages->applyLimit($criteria);
 
 		$post = Post::model()->findAll($criteria);
+		$posts = new Post;
+		$tag = $posts->tags;
 
 		$this->render('index',array(
 			
 			'post' => $post,
 			'pages' => $pages,
+			'tag' => $tag,
 		));
 	}
 

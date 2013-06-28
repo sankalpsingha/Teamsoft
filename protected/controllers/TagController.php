@@ -71,7 +71,7 @@ class TagController extends Controller
 		{
 			$model->attributes=$_POST['Tag'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect('/teamsoft/post/create');
 		}
 
 		$this->render('create',array(

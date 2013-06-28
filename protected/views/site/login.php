@@ -57,7 +57,13 @@ if(Yii::app()->session['flagged'] === 1) {
 								</div>
 								
 								<?php //echo $form->errorSummary($model); ?>
-								<?php echo $form->error($model,'username'); ?>
+								<?php if ($form->error($model,'username')): ?>
+									<div class="row-fluid">
+										<div class="span10 offset1">
+											<?php echo '<div class="alert alert-error alert-block"> <strong style="text-align:center;">'.$form->error($model,'username').'</strong></div>'; ?>
+										</div>
+									</div>
+								<?php endif ?>
 
 								<label class="checkbox remember">
 								<?php echo $form->checkBox($model,'rememberMe'); ?> Remember me

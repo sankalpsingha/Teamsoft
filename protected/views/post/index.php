@@ -11,6 +11,7 @@
 	<div class="post"><div class="well">
 			<h1><?php echo CHtml::encode($key->title); ?></h1>
 			<p>Author : <?php echo CHtml::encode($key->user->name); ?></p>
+			
 			<p class="lead">Date : <?php echo CHtml::encode($key->created_on); ?></p>
 			<?php echo $key->content; ?>
 	</div></div>

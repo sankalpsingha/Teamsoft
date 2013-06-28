@@ -14,7 +14,7 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-	<?php echo $form->errorSummary($tag); ?>
+	
 
 	
 
@@ -30,26 +30,37 @@
 		
 
 		
-			<?php //$this->widget('ext.select2.ESelect2',array(
-  					//		'model'=>$tag,
-					//		 'attribute'=>'tag',
-					//		 'data'=>$tag->getAllTags(),
-					//		 'options' => array(
-					//		  	'width'=>'20%',
-					//		  	'placeholder'=>'Start tagging here.',
-					//		  	
-    				//			'allowClear'=>true,
-					//		  	),
-					//		  'htmlOptions'=>array(
-					//		    'multiple'=>'multiple',
-					//		    
-					//		  ),
-					//		  )
-					//		); ?>
+			<div style="margin-top:20px;"><?php $this->widget('ext.select2.ESelect2',array(
+  							'model'=>$model,
+							'attribute'=>'tag',
+							'data'=>Tag::model()->getAllTags(),
+							'options' => array(
+							  	'width'=>'20%',
+							  	'placeholder'=>'Start tagging here.',
+							  	
+    							'allowClear'=>true,
+							  	),
+							'htmlOptions'=>array(
+						    'multiple'=>'multiple',
+
+							    
+							  ),
+							  )
+							); ?>
+
+						<?php echo $form->error($model,'tag'); ?>
+						</div>
+
+							<?php $this->widget('bootstrap.widgets.TbButton',array(
+								'type' => 'info',
+								'label' => 'Add new tags',
+								'url' => array('tag/create'),
+ 							)); ?>
 
 		
 	
-		<?php echo $form->textFieldRow($tag, 'tag', array('class'=>'span3')); ?>
+
+		<?php //echo $form->textFieldRow($tag, 'tag', array('class'=>'span3')); ?>
 	
 		<?php echo $form->labelEx($model,'status'); ?>
 		<?php echo $form->dropDownList($model,'status',$model->getPostStatus()); ?>
