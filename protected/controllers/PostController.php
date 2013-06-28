@@ -142,14 +142,14 @@ class PostController extends Controller
 		$pages->applyLimit($criteria);
 
 		$post = Post::model()->findAll($criteria);
-		$posts = new Post;
-		$tag = $posts->tags;
+		
+		
 
 		$this->render('index',array(
 			
 			'post' => $post,
 			'pages' => $pages,
-			'tag' => $tag,
+			
 		));
 	}
 
