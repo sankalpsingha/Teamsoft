@@ -118,7 +118,9 @@ class ReportTodo extends CActiveRecord
 	protected function afterValidate() {
 		parent::afterValidate();
 		if(!$this->hasErrors()) {
-			$this->user_id = Yii::app()->user->id;
+			if($this->user_id == null) {
+				$this->user_id = Yii::app()->user->id;
+			}
 		}
 	}
 

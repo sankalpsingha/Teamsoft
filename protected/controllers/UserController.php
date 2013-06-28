@@ -331,10 +331,29 @@ class UserController extends Controller
 	public function actionFlagged() {
 		$user = $this->loadModel(Yii::app()->session['flagged_id']);
 		$incompleteTodos = $user->todos;
+		$postTodo = null;
 		foreach ($incompleteTodos as $value) {
 			$daysLeft = Yii::app()->Date->daysCount($value->deadline, Yii::app()->Date->now());
 			if(($value->completed == 0) && ($daysLeft < 0) && ($daysLeft >= -2)) {
-				$postTodo[] = $value;
+				$postTodo = $value;
+			} elseif($daysLeft < -3) {
+				User::model()->updateByPk($user->id, array('active' => 2));
+				$this->render('/site/error', array('code' => '404', 'message' => 'You are banned'));
+				Yii::app()->end();
+			}
+		}
+		if(isset($_POST['ReportTodo']))
+		{
+			$model = new ReportTodo;
+			$model->attributes = $_POST['ReportTodo'];
+			$model->user_id = Yii::app()->session['flagged_id'];
+			$model->created_on = Yii::app()->Date->now();
+			$model->updated_on = Yii::app()->Date->now();
+			$model->todo_id = $postTodo->id;
+			if($model->save()) {
+				$command = Yii::app()->db->createCommand("UPDATE todo SET completed = 1 WHERE id = $postTodo->id");
+				$command->execute();
+				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 		$this->render('flagged', array('user' => $user, 'todo' => $postTodo, 'reportTodo' => New ReportTodo));
