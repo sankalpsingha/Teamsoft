@@ -30,7 +30,7 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('view', 'create'),
+				'actions'=>array('view', 'create', 'flagged'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -323,6 +323,21 @@ class UserController extends Controller
 		Yii::import('bootstrap.widgets.TbEditableSaver');
 		$es = new TbEditableSaver('User'); // This is to be used for the ajax update of the 
 		$es->update();
+	}
+
+	/**
+	 * This is the page that is viewed by the flaged user
+	 */
+	public function actionFlagged() {
+		$user = $this->loadModel(Yii::app()->session['flagged_id']);
+		$incompleteTodos = $user->todos;
+		foreach ($incompleteTodos as $value) {
+			$daysLeft = Yii::app()->Date->daysCount($value->deadline, Yii::app()->Date->now());
+			if(($value->completed == 0) && ($daysLeft < 0) && ($daysLeft >= -2)) {
+				$postTodo[] = $value;
+			}
+		}
+		$this->render('flagged', array('user' => $user, 'todo' => $postTodo, 'reportTodo' => New ReportTodo));
 	}
 
 	/**

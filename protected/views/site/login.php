@@ -2,9 +2,11 @@
 /* @var $this SiteController */
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
-
-
-
+?>
+<?php
+if(Yii::app()->session['flagged'] === 1) {
+	$this->redirect(array('user/flagged'));
+}
 ?>
 <!doctype html>
 <html>
