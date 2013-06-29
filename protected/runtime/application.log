@@ -2176,3 +2176,338 @@ Stack trace:
 REQUEST_URI=/teamsoft/user/flagged
 HTTP_REFERER=http://localhost/teamsoft/site/login
 ---
+2013/06/29 16:21:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1049] Unknown database 'fahrenheit'' in /opt/lampp/htdocs/yii/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /opt/lampp/htdocs/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /opt/lampp/htdocs/yii/framework/base/CModule.php(387): CDbConnection->init()
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(438): CModule->getComponent('db')
+#4 /opt/lampp/htdocs/yii/framework/db/ar/CActiveRecord.php(623): CApplication->getDb()
+#5 /opt/lampp/htdocs/yii/framework/db/ar/CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 /opt/lampp/htdocs/yii/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(User))
+#7 /opt/lampp/htdocs/teamsoft/protected/models/User.php(82): CActiveRecord::model('User')
+#8 /opt/lampp/htdocs/teamsoft/protected/components/UserIdentity.php(25): User::model()
+#9 /opt/lampp/htdocs/teamsoft/protected/models/LoginForm.php(52): UserIdentity->authenticate()
+#10 /opt/lampp/htdocs/yii/framework/validators/CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#11 /opt/lampp/htdocs/yii/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 /opt/lampp/htdocs/yii/framework/base/CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#13 /opt/lampp/htdocs/teamsoft/protected/controllers/SiteController.php(96): CModel->validate()
+#14 /opt/lampp/htdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#15 /opt/lampp/htdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#16 /opt/lampp/htdocs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#17 /opt/lampp/htdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#19 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#20 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/teamsoft/site/login
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 16:50:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372517401612
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518212264
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518212621
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518212893
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518213107
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518213295
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518213516
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518213741
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518213927
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518214231
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518214552
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518214848
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518215186
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518215325
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:03:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518215479
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:04:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518268641
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:06:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518383078
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:09:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=js%3A%3A%23email.value&_=1372518565410
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:24:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "reset".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('reset')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/user/reset?username=awdqwd&_=1372519463514
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 17:26:54 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Forbidden access.' in /opt/lampp/htdocs/teamsoft/protected/controllers/UserController.php:375
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/actions/CInlineAction.php(49): UserController->actionReset()
+#1 /opt/lampp/htdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#3 /opt/lampp/htdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /opt/lampp/htdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#5 /opt/lampp/htdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#7 /opt/lampp/htdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#8 /opt/lampp/htdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#10 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#11 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#12 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/teamsoft/user/reset
+---
+2013/06/29 17:46:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "user".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('user')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('user')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/user/reset')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/teamsoft/site/user/reset
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 18:13:46 [error] [php] Creating default object from empty value (/opt/lampp/htdocs/teamsoft/protected/controllers/UserController.php:407)
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(133): UserController->runAction()
+#1 /opt/lampp/htdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /opt/lampp/htdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /opt/lampp/htdocs/yii/framework/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
+#4 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /opt/lampp/htdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /opt/lampp/htdocs/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
+#7 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): UserController->run()
+#8 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /opt/lampp/htdocs/teamsoft/index.php(13): CWebApplication->run()
+REQUEST_URI=/teamsoft/user/reset
+in /opt/lampp/htdocs/teamsoft/protected/controllers/UserController.php (407)
+in /opt/lampp/htdocs/teamsoft/index.php (13)
+2013/06/29 18:14:11 [error] [exception.CException] exception 'CException' with message 'Property "User.ans" is not defined.' in /opt/lampp/htdocs/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/db/ar/CActiveRecord.php(159): CComponent->__set('ans', 'aunty')
+#1 /opt/lampp/htdocs/teamsoft/protected/controllers/UserController.php(407): CActiveRecord->__set('ans', 'aunty')
+#2 /opt/lampp/htdocs/yii/framework/web/actions/CInlineAction.php(49): UserController->actionReset()
+#3 /opt/lampp/htdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /opt/lampp/htdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /opt/lampp/htdocs/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /opt/lampp/htdocs/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /opt/lampp/htdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#10 /opt/lampp/htdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('reset')
+#12 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/reset')
+#13 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /opt/lampp/htdocs/teamsoft/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/teamsoft/user/reset
+HTTP_REFERER=http://localhost/teamsoft/site/login
+---
+2013/06/29 18:14:42 [error] [php] Creating default object from empty value (/opt/lampp/htdocs/teamsoft/protected/controllers/UserController.php:407)
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(133): UserController->runAction()
+#1 /opt/lampp/htdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /opt/lampp/htdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /opt/lampp/htdocs/yii/framework/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
+#4 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /opt/lampp/htdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /opt/lampp/htdocs/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
+#7 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): UserController->run()
+#8 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /opt/lampp/htdocs/teamsoft/index.php(13): CWebApplication->run()
+REQUEST_URI=/teamsoft/user/reset
+in /opt/lampp/htdocs/teamsoft/protected/controllers/UserController.php (407)
+in /opt/lampp/htdocs/teamsoft/index.php (13)
+2013/06/29 18:16:34 [error] [php] Trying to get property of non-object (/opt/lampp/htdocs/teamsoft/protected/controllers/UserController.php:407)
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(133): UserController->runAction()
+#1 /opt/lampp/htdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /opt/lampp/htdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /opt/lampp/htdocs/yii/framework/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
+#4 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /opt/lampp/htdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /opt/lampp/htdocs/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
+#7 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): UserController->run()
+#8 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /opt/lampp/htdocs/teamsoft/index.php(13): CWebApplication->run()
+REQUEST_URI=/teamsoft/user/reset
+in /opt/lampp/htdocs/teamsoft/protected/controllers/UserController.php (407)
+in /opt/lampp/htdocs/teamsoft/index.php (13)

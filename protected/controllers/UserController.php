@@ -30,7 +30,7 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('view', 'create', 'flagged'),
+				'actions'=>array('view', 'create', 'flagged', 'reset'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -368,6 +368,48 @@ class UserController extends Controller
 			}
 		}
 		$this->render('flagged', array('user' => $user, 'todo' => $postTodo, 'reportTodo' => New ReportTodo));
+	}
+
+	public function actionReset() {
+		if (!Yii::app()->request->isAjaxRequest) {
+	        throw new CHttpException('403', 'Forbidden access.');
+	    }
+
+	    if(isset($_GET['username'])) {
+	    	$username = $_GET['username'];
+		    $user = User::model()->findByAttributes(array('username' => $username));
+		    unset(Yii::app()->session['user_id']);
+		    Yii::app()->session['user_id'] = $user->id;
+ 		    if($user != null) {
+		    	echo "<p class='lead'>".$user->sec_ques."</p>
+		    	<input type='text' id='sec_ques'>
+		    	<button id='sec'>Reset</button>
+		    	<script type='text/javascript'>
+		    		$('#sec').click(
+		    			function(){
+		    			var ans = $('input[id=sec_ques]').val();
+		    			$.post('/teamsoft/user/reset',{ans : ans}, function(string){
+		    				alert(string);
+		    			}
+		    			);
+					}	
+				);
+				</script>";
+		    } else {
+		    	echo "Invalid User";
+		    }
+	    }
+
+	    if(isset($_POST['ans'])) {
+	    	$user_id = Yii::app()->session['user_id'];
+	    	unset(Yii::app()->session['user_id']);
+	    	$user = User::model()->findByPk($user_id);
+	    	if($user->answer == $_POST['ans']) {
+	    		echo "Matched";
+	    	} else {
+	    		echo "Not Matched";
+	    	}
+	    }
 	}
 
 	/**

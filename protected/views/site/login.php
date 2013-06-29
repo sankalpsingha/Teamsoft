@@ -105,7 +105,7 @@ if(Yii::app()->session['flagged'] === 1) {
  				<div class="modal-body">
 				<?php $this->renderPartial('/user/_question'); ?>
 				</div>
-				
+				<div id="forgot_pass"></div>
 				<div class="modal-footer">
 				<a href="#" class="btn">Close</a>
 				<a href="#" class="btn btn-primary">Save changes</a>
