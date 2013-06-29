@@ -378,10 +378,10 @@ class UserController extends Controller
 	    if(isset($_GET['username'])) {
 	    	$username = $_GET['username'];
 		    $user = User::model()->findByAttributes(array('username' => $username));
-		    unset(Yii::app()->session['user_id']);
-		    Yii::app()->session['user_id'] = $user->id;
  		    if($user != null) {
-		    	echo "<p class='lead'>".$user->sec_ques."</p>
+ 		    	unset(Yii::app()->session['user_id']);
+			    Yii::app()->session['user_id'] = $user->id;
+		    	echo "<div id='worefresh'><p class='lead'>".$user->sec_ques."</p>
 		    	<input type='text' id='sec_ques'>
 		    	<button id='sec'>Reset</button>
 		    	<script type='text/javascript'>
@@ -389,12 +389,18 @@ class UserController extends Controller
 		    			function(){
 		    			var ans = $('input[id=sec_ques]').val();
 		    			$.post('/teamsoft/user/reset',{ans : ans}, function(string){
-		    				alert(string);
+		    				if(string == 1) {
+		    					alert('Your password has been mailed to you.');
+		    					$('#worefresh').html('');
+		    				} else {
+		    					alert('Wrong combination');
+		    					window.location.reload();
+		    				}
 		    			}
 		    			);
 					}	
 				);
-				</script>";
+				</script></div>";
 		    } else {
 		    	echo "Invalid User";
 		    }
@@ -402,12 +408,12 @@ class UserController extends Controller
 
 	    if(isset($_POST['ans'])) {
 	    	$user_id = Yii::app()->session['user_id'];
-	    	unset(Yii::app()->session['user_id']);
 	    	$user = User::model()->findByPk($user_id);
 	    	if($user->answer == $_POST['ans']) {
-	    		echo "Matched";
+	    		echo 1;
+	    		unset(Yii::app()->session['user_id']);
 	    	} else {
-	    		echo "Not Matched";
+	    		echo 0;
 	    	}
 	    }
 	}

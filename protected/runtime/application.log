@@ -2511,3 +2511,19 @@ Stack trace:
 REQUEST_URI=/teamsoft/user/reset
 in /opt/lampp/htdocs/teamsoft/protected/controllers/UserController.php (407)
 in /opt/lampp/htdocs/teamsoft/index.php (13)
+2013/06/29 19:52:40 [error] [php] Trying to get property of non-object (/opt/lampp/htdocs/teamsoft/protected/controllers/UserController.php:382)
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(133): UserController->runAction()
+#1 /opt/lampp/htdocs/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /opt/lampp/htdocs/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /opt/lampp/htdocs/yii/framework/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
+#4 /opt/lampp/htdocs/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /opt/lampp/htdocs/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /opt/lampp/htdocs/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
+#7 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): UserController->run()
+#8 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /opt/lampp/htdocs/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /opt/lampp/htdocs/teamsoft/index.php(13): CWebApplication->run()
+REQUEST_URI=/teamsoft/user/reset?username=qwdqwd&_=1372528360881
+in /opt/lampp/htdocs/teamsoft/protected/controllers/UserController.php (382)
+in /opt/lampp/htdocs/teamsoft/index.php (13)
