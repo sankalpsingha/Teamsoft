@@ -23,7 +23,8 @@
 	
 	
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
-                        'buttonType'=>'submit',
+                        'buttonType'=>'ajaxSubmit',
+                        //'ajaxOptions' => array('update'=>''),
                         'type'=>'success',
                         'label'=>'Send',
                 )); ?>
