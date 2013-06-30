@@ -194,7 +194,8 @@ class UserController extends Controller
 		$this->pageTitle = 'Welcome '.ucfirst(User::model()->findByPk(Yii::app()->user->id)->name);
 		$statusLast = new Status;
 		$user = User::model()->findByPk($user_id); // This would only get the specific user
-		$status = $this->createStatus();
+		// $status = $this->createStatus();
+		$status = new Status;
 		$money = $this->createMoney();
 
 		// This is the section that would get the amount of the user.
@@ -244,20 +245,6 @@ class UserController extends Controller
 			'todos' => $todoArray,
 			'modulesArray' => $modulesArray,
 		));
-	}
-
-	public function createStatus(){
-		$status = new Status; // This would create a new instance of the status.
-		if(isset($_POST['Status'])){
-			$status->attributes = $_POST['Status']; // This would give a massive assign
-			if($status->validate()){
-			$status->save();
-			Yii::app()->user->setFlash('statusCreated','Your status has been submitted.');
-			$this->refresh(); 
-			}
-		}
-
-		return $status;
 	}
 
 	public function createMoney(){
