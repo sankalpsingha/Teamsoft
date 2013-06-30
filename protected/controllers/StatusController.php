@@ -70,13 +70,16 @@ class StatusController extends Controller
 		if(isset($_POST['Status']))
 		{
 			$model->attributes=$_POST['Status'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+				$status = Status::model()->findByPk($model->id);
+				$this->renderPartial('_index', array('status' => $status));
+				// $this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
-		$this->render('create',array(
+		/*$this->render('create',array(
 			'model'=>$model,
-		));
+		));*/
 	}
 
 	/**

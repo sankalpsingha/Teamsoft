@@ -152,7 +152,7 @@
 	 					<?php if (Yii::app()->user->hasFlash('statusCreated')): ?>
 	 						<?php 
 
-	 						$this->widget('bootstrap.widgets.TbAlert', array(
+	 						/*$this->widget('bootstrap.widgets.TbAlert', array(
 	 											
  												'block'=>true, // display a larger alert block?
 												'fade'=>true, // use transitions?
@@ -164,7 +164,7 @@
 														'closeText'=>'×',
 														), // success, info, warning, error or danger
 												),
-										)); ?>
+										));*/ ?>
 	 					<?php endif ?>
 						
 	 						</div>
@@ -202,7 +202,9 @@
 
 					<h3 style="margin-top:20px;">Current Status :</h3>
 						<blockquote>
-						<p><i class="icon-quote-left"></i> <?php echo CHtml::encode($lastStatus['status']); ?></p>
+
+							<p><i class="icon-quote-left"></i><span id='current-status'> "<?php echo CHtml::encode($lastStatus['status']); ?>"</span></p>
+
 							 <small><?php echo CHtml::encode($lastStatus['created_on']); ?></small>
 						</blockquote>
 
