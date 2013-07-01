@@ -67,7 +67,7 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
         // store timestamp
         if (!ttl || ttl === 'expired') {
 
-            lifespan = options.cacheTTLType || 's';
+            lifespan = options.cacheTTLType || 's';
 
             switch (lifespan)
             {

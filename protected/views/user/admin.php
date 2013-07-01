@@ -14,18 +14,14 @@ $this->breadcrumbs=array(
 <p class="lead">User Management</p>
 
 
-<?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
-
-<?php $this->widget('bootstrap.widgets.TbExtendedGridView',array(
+<?php $this->widget('bootstrap.widgets.TbJsonGridView',array(
 
 	'type' => 'striped bordered hover',
 	'dataProvider' => $model->search(),
 	'filter' => $model,
+	'cacheTTL' => 10, // cache will be stored 10 seconds (see cacheTTLType)
+	'cacheTTLType' => 's', // type can be of seconds, minutes or hours
+	//'pager' => array('pageSize' => 1,),
 
 	'columns' => array( 
 		array(
