@@ -46,20 +46,7 @@ class UserController extends Controller
 			),
 		);
 	}
-
-
-	public function actionForgot(){
-		
-		//$this->renderPartial('_question');		
-	}
-
-	public function getQuestion(){
-		$name = Yii::app()->request->getPost('email'); // This would get post value for the forgot password.
-		$user = User::model()->find('LOWER(username)=?',array(strtolower($name)));
-		return $user->question;
-	}
 	
-
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -247,6 +234,9 @@ class UserController extends Controller
 		));
 	}
 
+	/**
+	 * This function adds the 'money' to the money table
+	 */
 	public function createMoney(){
 		$money = new Money;
 		if(isset($_POST['Money'])){
@@ -276,6 +266,9 @@ class UserController extends Controller
 		));
 	}
 
+	/**
+	 * Display all the pictures uploaded by the current user
+	 */
 	public function actionGallery() {
 		$model = new User;
 
@@ -316,7 +309,9 @@ class UserController extends Controller
 		}
 	}
 
-
+	/**
+	 * Updates about me on the dashboard page via AJAX
+	 */
 	public function actionUpdateInfo(){
 		Yii::import('bootstrap.widgets.TbEditableSaver');
 		$es = new TbEditableSaver('User'); // This is to be used for the ajax update of the 
@@ -357,6 +352,9 @@ class UserController extends Controller
 		$this->render('flagged', array('user' => $user, 'todo' => $postTodo, 'reportTodo' => New ReportTodo));
 	}
 
+	/**
+	 * Resets the password after validating the security answer of the passed username. AJAX
+	 */
 	public function actionReset() {
 		if (!Yii::app()->request->isAjaxRequest) {
 	        throw new CHttpException('403', 'Forbidden access.');

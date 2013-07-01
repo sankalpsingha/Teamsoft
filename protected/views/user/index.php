@@ -297,7 +297,7 @@
 						'type' => 'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
 						'size' => 'mini',
 						'buttons' => array(
-											array('label' => 'Action', 'url' => '#'), // this makes it split :)
+											array('label' => 'Action', 'url' => '/status/create', 'data-toggle' => 'popo'), // this makes it split :)
 											array('items' => array(
 											array('label' => 'Action', 'url' => '#'),
 											array('label' => 'Another action', 'url' => '#'),
@@ -371,7 +371,56 @@
 		
 </div>
 <?php $this->endWidget(); ?>
+<?php $this->beginWidget('bootstrap.widgets.TbModal', array('id' => 'oldMoney')); ?>
 
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">&times;</a>
+		<h4>Money Spent</h4>
+	</div>
+
+	<div class="modal-body">
+		<?php $this->renderPartial('/money/_form',array('model'=>$money)); ?>
+	</div>
+
+	<div class="modal-footer">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type' => 'primary',
+			'label' => 'Save changes',
+			'url' => '#',
+			'htmlOptions' => array('data-dismiss' => 'modal'),
+			)
+		); 
+		?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'label' => 'Close',
+			'url' => '#',
+			'htmlOptions' => array('data-dismiss' => 'modal'),
+			)
+		); 
+		?>
+	</div>
+<?php $this->endWidget(); ?>
+<script type="text/javascript">
+$('[data-toggle="popo"]').click(function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+
+        if (url.indexOf('#') == 0) {
+         $(url).modal('open');
+        } else {
+            $.get(url, function(data) {
+                $(data).modal();
+            }).success(function() {
+                console.log('success');
+
+                // I tried this below but didn't work
+                // $('#modalClose).on('click',function(){
+                //    $('#myModalWindow').remove();
+                // });
+            });
+        }
+    });
+</script>
 		</div>
 
 

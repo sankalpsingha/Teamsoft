@@ -19,6 +19,7 @@ class UserIdentity extends CUserIdentity
 	private $_id;
 	const ERROR_USER_TAGGED = 3;
 	const ERROR_USER_BANNED = 4;
+	const ERROR_USER_INACTIVE = 5;
 	public function authenticate()
 	{
 		
@@ -35,6 +36,8 @@ class UserIdentity extends CUserIdentity
 			$this->_id = $user->id;
 		} elseif($user->active == User::USER_BANNED) {
 			$this->errorCode = self::ERROR_USER_BANNED;
+		} elseif($user->ban == User::USER_INACTIVE) {
+			$this->errorCode = self::ERROR_USER_INACTIVE;
 		} else {
 			$this->_id = $user->id; // This would set the id which would be 
 			$this->username = $user->username;

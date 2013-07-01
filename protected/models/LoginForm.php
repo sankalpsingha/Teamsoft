@@ -54,6 +54,8 @@ class LoginForm extends CFormModel
 					$this->addError('username', 'User is flagged');
 				} elseif($this->_identity->errorCode === UserIdentity::ERROR_USER_BANNED) {
 					$this->addError('username', 'User is banned');
+				} elseif($this->_identity->errorCode === UserIdentity::ERROR_USER_INACTIVE) {
+					$this->addError('username', 'Please activate your account from your email');
 				} else {
 					$this->addError('username','Incorrect username or password.');
 				}

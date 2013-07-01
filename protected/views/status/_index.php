@@ -19,4 +19,5 @@
 </div>
 <script type="text/javascript">
 $('#current-status').text('<?php echo " ".$printStatus; ?>').hide().toggle('slide', 'left');
+$('#Status_status').val('');
 </script>
