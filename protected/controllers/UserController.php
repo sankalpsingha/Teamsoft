@@ -34,12 +34,12 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','dashboard', 'gallery','UpdateInfo'),
+				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'actions'=>array('admin','delete','PowerChange'),
+				'users'=>array('sankalp'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -63,10 +63,10 @@ class UserController extends Controller
 			$model->attributes=$_POST['User'];
 			if($model->save())
 
-				// This would put the default role as a member.
-			//	$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-			//	$authorizer->authManager->assign('Member', $model->id);
-				//-------
+				/*//This would put the default role as a member.
+				$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+				$authorizer->authManager->assign('Member', $model->id);
+				*/
 				
 				
 				$this->redirect(array('view','id'=>$model->id));
@@ -257,10 +257,10 @@ class UserController extends Controller
 	public function actionAdmin()
 	{
 		$model=new User('search');
-		$model->unsetAttributes();  // clear any default values
+		/*$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['User']))
 			$model->attributes=$_GET['User'];
-
+*/
 		$this->render('admin',array(
 			'model'=>$model,
 		));
@@ -433,6 +433,9 @@ class UserController extends Controller
 		return $array;
 	}
 
+
+
+
 	/**
 	 * This function checks if the user has any incompleted Todos with deadline over
 	 * @return boolean false if incomplete and deadline over, true if incomplete and deadline not over
@@ -449,5 +452,25 @@ class UserController extends Controller
 			}
 		}
 		return true;
+	}
+
+	public function actionPowerChange(){
+		if(isset($_POST['name'])){
+			$name  = $_POST['name'];
+			$value = $_POST['value'];
+			$pk = $_POST['pk'];
+			$user = User::model()->findByPk($pk);
+			$user->$name = $value;
+			$user->update();
+		}
+	}
+
+	public function actions(){
+		 return array(
+			'toggle' => array(
+			'class'=>'bootstrap.actions.TbToggleAction',
+			'modelName' => 'User',
+			)
+		);
 	}
 }
