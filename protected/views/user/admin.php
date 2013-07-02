@@ -83,9 +83,7 @@ $this->breadcrumbs=array(
 			'header'=>'Active/Inactive', 
 			'class'=>'bootstrap.widgets.TbToggleColumn', 
 			'toggleAction'=>'user/toggle'
-			),
-
-			
+			),			
 			'email'
 		),
 
