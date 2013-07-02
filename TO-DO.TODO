@@ -1,5 +1,36 @@
 Immediate TODOS :
 
- ☐ Complete the logic for the TODO and the Module.
- ☐ Complete the password forgot page
+ ✔ Complete the logic for the TODO and the Module. @done (13-07-02 20:02)
+ ✔ Complete the password forgot page @done (13-07-02 20:02)
  ☐ Profile page
+
+ ---- ✄ -----------------------
+
+ Few other things to do:
+
+ Change the views for ( Task for Neeraj ) :
+  ☐ Blog
+  ☐ Messages
+  ☐ Complaint Create / View
+  ☐ Module Create
+  ☐ Report Submit
+  ☐ Tagged / Banned Page
+  ☐ Blog Create
+  ☐ Money List Page (Basically the history of amount that has been spent)
+
+
+  ---- ✄ -----------------------
+
+  Other Tasks:
+
+ ☐ Blog Editing
+ ☐ Moderator Complaint View
+ ☐ Admin Complaint view
+ ☐ User Email Activation 
+ ☐ User Forgot password Email 
+ ☐ Implement Comet Chat
+ ☐ Create a capthcha in the user create page ( Registration )
+ ☐ Add the RSS feed for the blog
+
+
+

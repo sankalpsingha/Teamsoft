@@ -257,12 +257,16 @@ class UserController extends Controller
 	public function actionAdmin()
 	{
 		$model=new User('search');
-		/*$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['User']))
-			$model->attributes=$_GET['User'];
-*/
+		$todo = new Todo('search'); 
+		$module = new Module('search');
+		$complaints = new Complaint('search');
+		
 		$this->render('admin',array(
+			// Sending the required variables.
 			'model'=>$model,
+			'todo' =>$todo, 
+			'module' => $module,
+			'complaints' => $complaints,
 		));
 	}
 
