@@ -252,7 +252,7 @@ class User extends CActiveRecord
 	}
 
 	public function getBannedStatus(){
-		return array(self::USER_CLEAN=>'Clean',self::USER_TAGGED=>'Tagged',self::USER_BANNED=>'Banned');
+		return array(self::USER_CLEAN=>'Normal',self::USER_TAGGED=>'Tagged',self::USER_BANNED=>'Banned');
 	}
 
 	public function isAdmin() {

@@ -34,12 +34,21 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+<<<<<<< HEAD
 				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle','Moderator'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
 				'users'=>array('parry'),
+=======
+				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle'),
+				'users'=>array('@'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete','PowerChange'),
+				'users'=>array('sankalp'),
+>>>>>>> 2f66ff2103adeea3c3ccd4fe0cbf9fc23e78a9c5
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -63,10 +72,10 @@ class UserController extends Controller
 			$model->attributes=$_POST['User'];
 			if($model->save())
 
-				// This would put the default role as a member.
-			//	$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-			//	$authorizer->authManager->assign('Member', $model->id);
-				//-------
+				/*//This would put the default role as a member.
+				$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+				$authorizer->authManager->assign('Member', $model->id);
+				*/
 				
 				
 				$this->redirect(array('view','id'=>$model->id));
@@ -257,12 +266,16 @@ class UserController extends Controller
 	public function actionAdmin()
 	{
 		$model=new User('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['User']))
-			$model->attributes=$_GET['User'];
-
+		$todo = new Todo('search'); 
+		$module = new Module('search');
+		$complaints = new Complaint('search');
+		
 		$this->render('admin',array(
+			// Sending the required variables.
 			'model'=>$model,
+			'todo' =>$todo, 
+			'module' => $module,
+			'complaints' => $complaints,
 		));
 	}
 
@@ -433,6 +446,9 @@ class UserController extends Controller
 		return $array;
 	}
 
+
+
+
 	/**
 	 * This function checks if the user has any incompleted Todos with deadline over
 	 * @return boolean false if incomplete and deadline over, true if incomplete and deadline not over
@@ -451,6 +467,7 @@ class UserController extends Controller
 		return true;
 	}
 
+<<<<<<< HEAD
 	public function actionModerator() {
 		//Fetches the User ID
 		$user = Yii::app()->user->id;
@@ -497,3 +514,25 @@ class UserController extends Controller
 		);*/
 	}
 }
+=======
+	public function actionPowerChange(){
+		if(isset($_POST['name'])){
+			$name  = $_POST['name'];
+			$value = $_POST['value'];
+			$pk = $_POST['pk'];
+			$user = User::model()->findByPk($pk);
+			$user->$name = $value;
+			$user->update();
+		}
+	}
+
+	public function actions(){
+		 return array(
+			'toggle' => array(
+			'class'=>'bootstrap.actions.TbToggleAction',
+			'modelName' => 'User',
+			)
+		);
+	}
+}
+>>>>>>> 2f66ff2103adeea3c3ccd4fe0cbf9fc23e78a9c5
