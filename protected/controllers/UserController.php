@@ -34,12 +34,12 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','dashboard', 'gallery','UpdateInfo'),
+				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle','Moderator'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('parry'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -449,5 +449,51 @@ class UserController extends Controller
 			}
 		}
 		return true;
+	}
+
+	public function actionModerator() {
+		//Fetches the User ID
+		$user = Yii::app()->user->id;
+
+		//
+		$module = Module::model()->findByAttributes(array('user_id' => $user));
+		$data = new CActiveDataProvider('Module');
+		$users = $module->users;
+		$member = null;
+		$complaint = array();
+		foreach ($users as $value) {
+			if($value->id != $user) {
+				$member[] = $value;
+				$complaints = $value->complaints;
+				foreach ($complaints as $user_complaint) {
+					array_push($complaint, $user_complaint);
+				}
+			}
+		}
+		$data->setData($member);
+		//
+
+		//
+		$complaint_data = new CActiveDataProvider('Complaint');
+		$complaint_data->setData($complaint);
+		// $complaint_data = User::model()->findByPk('11')->complaints;
+		//
+
+		$this->render('_mod', array('module' => $module, 'data' => $data, 'complaints' => $complaint_data));
+	}
+
+	public function actionToggle() {
+		$name = $_POST['name'];
+		$value = $_POST['value'];
+		$pk = $_POST['pk'];
+		$user = User::model()->findByPk($pk);
+		$user->$name = $value;
+		$user->update();
+		 /*return array(
+			'toggle' => array(
+				'class'=>'bootstrap.actions.TbToggleAction',
+				'modelName' => 'User',
+			)
+		);*/
 	}
 }

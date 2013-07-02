@@ -26,10 +26,12 @@
  * @property string $slug
  *
  * The followings are the available model relations:
+ * @property Blog[] $blogs
  * @property BugFeature[] $bugFeatures
  * @property Comment[] $comments
  * @property Complaint[] $complaints
  * @property Feedback[] $feedbacks
+ * @property Module[] $modules
  * @property Money[] $moneys
  * @property Picture[] $pictures
  * @property Post[] $posts
@@ -124,10 +126,12 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'blogs' => array(self::HAS_MANY, 'Blog', 'user_id'),
 			'bugFeatures' => array(self::HAS_MANY, 'BugFeature', 'user_id'),
 			'comments' => array(self::HAS_MANY, 'Comment', 'user_id'),
 			'complaints' => array(self::HAS_MANY, 'Complaint', 'user_id'),
 			'feedbacks' => array(self::HAS_MANY, 'Feedback', 'user_id'),
+			'modules' => array(self::MANY_MANY, 'Module', 'user_has_module(user_id, module_id)'),
 			'moneys' => array(self::HAS_MANY, 'Money', 'user_id'),
 			'pictures' => array(self::HAS_MANY, 'Picture', 'user_id'),
 			'posts' => array(self::HAS_MANY, 'Post', 'user_id'),
@@ -270,6 +274,4 @@ class User extends CActiveRecord
     $c->addSearchCondition('email', $q, true, 'OR');
     return $this->findAll($c);
 	}
-
-	//-----------
 }

@@ -128,6 +128,7 @@ class ModuleController extends Controller
 			}
 			$value->delete();
 		}
+		$shit->cleanRelation(array('m2mTable' => 'user_has_module', 'm2mThisField' => 'module_id'));
 		$shit->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser

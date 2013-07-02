@@ -47,26 +47,36 @@
 
 		<div class="row-fluid">
 			<?php $this->widget('ext.select2.ESelect2',array(
-  							'model'=>$model,
-							  'attribute'=>'users',
-							  'data'=>$model->getAllUser(),
-							  'options' => array(
-							  	'width'=>'20%',
-							  	'placeholder'=>'Type here to list the users.',
-    							'allowClear'=>true,
-							  	),
-							  'htmlOptions'=>array(
-							    'multiple'=>'multiple',
-							    
-							  ),
-							  )
-							); ?>
+				'model'=>$model,
+				'attribute'=>'users',
+				'data'=>$model->getAllUser(),
+				'options' => array(
+					'width'=>'20%',
+					'placeholder'=>'Type here to list the users.',
+					'allowClear'=>true,
+				),
+				'htmlOptions'=>array(
+					'multiple'=>'multiple',
+
+				),
+			)); 
+			?>
 
 		</div>
 
 		<?php echo $form->error($model,'user_id'); ?>
-	
 
+		<?php $this->widget('ext.select2.ESelect2',array(
+			'model'=>$model,
+			'attribute'=>'user_id',
+			'data'=>$model->getAllUser(),
+			'options' => array(
+				'width'=>'20%',
+				'placeholder'=>'Add the moderator',
+    			'allowClear'=>true,
+			),
+		)); 
+		?>
 	<div class="row-fluid">
 
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
