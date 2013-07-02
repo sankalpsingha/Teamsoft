@@ -7,66 +7,157 @@ $this->breadcrumbs=array(
 	'Manage',
 );
 
-$this->menu=array(
-	array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Create User', 'url'=>array('create')),
-);
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#user-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
-<h1>Manage Users</h1>
+<h1>Admin Page</h1>
 
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
+<hr>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
+<h2>Complaints :</h2>
+<p class="lead">View all the complaints :</p>
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'user-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'name',
-		'lastname',
-		'username',
-		'password',
-		'about',
-		/*
+<?php $this->widget('bootstrap.widgets.TbJsonGridView',array(
+
+	'type' => 'striped bordered hover',
+	'dataProvider' => $complaints->search(),
+	'columns' => array(
+		'complaint',
 		'created_on',
-		'updated_on',
-		'ip',
-		'active',
-		'power',
-		'ban',
-		'sec_ques',
-		'answer',
-		'course',
-		'profilepic',
-		'thumbnail',
-		'email',
-		*/
+		array('name' => 'user_id',
+			'header' => 'User'
+			),
+		)
+	));
+	?>
+
+<h2>Users</h2>
+<p class="lead">User Management</p>
+
+<div class="pull-right" style="margin-bottom:10px;">
+	<?php $this->widget('bootstrap.widgets.TbButton',array(
+	'buttonType' => 'link',
+	'type' => 'primary',
+	'url' => $this->createUrl('module/create'),
+	'label' => 'Create Module',
+	'icon' => 'tag',
+	)) ?>
+</div>
+
+<?php $this->widget('bootstrap.widgets.TbJsonGridView',array(
+
+	'type' => 'striped bordered hover',
+	'dataProvider' => $model->search(),
+	'filter' => $model,
+	'cacheTTL' => 10, // cache will be stored 10 seconds (see cacheTTLType)
+	'cacheTTLType' => 's', // type can be of seconds, minutes or hours
+	//'pager' => array('pageSize' => 1,),
+
+	'columns' => array( 
 		array(
-			'class'=>'CButtonColumn',
+			'name'=>'name', 
+			'header' => 'First Name',
+			'class' => 'bootstrap.widgets.TbEditableColumn',
+			'editable'=>array(
+				'type'=>'text', 
+				'mode'=>'inline',
+				'url' => $this->createUrl('user/updateinfo'))
+			),
+		array(
+			'name' =>'lastname',
+			'class' => 'bootstrap.widgets.TbEditableColumn',
+			'editable'=>array(
+				'type'=>'text', 
+				'mode'=>'inline',
+				'url' => $this->createUrl('user/updateinfo'))
+			),
+		array(
+			'name'=>'course',
+			'header' => 'Course',
+			'class' => 'bootstrap.widgets.TbEditableColumn',
+			'editable'=>array(
+				'type'=>'text', 
+				'mode'=>'inline',
+				'url' => $this->createUrl('user/updateinfo'))
+			
+			),
+		'username',
+		array(
+			'name'=>'active',
+			'header'=>'Banned/Flagged',
+			'class' => 'bootstrap.widgets.TbEditableColumn',
+			'editable'=>array(
+				'type'=>'select', 
+				//'mode'=>'inline',
+				'model'=>$model,
+				'attribute' => 'power',
+				'source' => $model->getBannedStatus(),
+				'url' => $this->createUrl('user/powerchange'),
+				)
+			),
+		array(
+			'name'=>'power',
+			'class' => 'bootstrap.widgets.TbEditableColumn',
+			'editable'=>array(
+				'type'=>'select', 
+				//'mode'=>'inline',
+				'model'=>$model,
+				'attribute' => 'power',
+				'source' => $model->getUserPower(),
+				'url' => $this->createUrl('user/powerchange'),
+			),
+
+			),
+		array(
+			'name'=>'ban', 
+			'header'=>'Active/Inactive', 
+			'class'=>'bootstrap.widgets.TbToggleColumn', 
+			'toggleAction'=>'user/toggle'
+			),			
+			'email'
 		),
-	),
-)); ?>
+
+)) ?>
+
+<hr>
+
+<h2>Modules</h2>
+<p class="lead">Module Management</p>
+
+<?php $this->widget('bootstrap.widgets.TbJsonGridView',array(
+
+	'type' => 'striped bordered hover',
+	'dataProvider' => $module->search(),
+	'columns' => array(
+		'category',
+		'description',
+		'created_on',
+
+		)
+	));
+	?>
+
+	<hr>
+
+<h2>To Do's</h2>
+<p class="lead">To Do Management</p>
+
+<?php $this->widget('bootstrap.widgets.TbJsonGridView',array(
+
+	'type' => 'striped bordered hover',
+	'dataProvider' => $todo->search(),
+	'columns' => array(
+		'todocol',
+		'created_on',
+		'deadline',
+		'module_id',
+		'description',
+		'completed',
+		)
+	));
+	?>
+
+	
+
+
+
