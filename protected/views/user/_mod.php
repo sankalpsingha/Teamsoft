@@ -34,7 +34,7 @@ if($complaints != null) {
         'columns' => array(
             'complaint',
             'id',
-            'user_id',
+            'user.name',
         ),
     ));
 }

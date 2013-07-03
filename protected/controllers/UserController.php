@@ -34,21 +34,12 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-<<<<<<< HEAD
 				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle','Moderator'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('parry'),
-=======
-				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','PowerChange'),
-				'users'=>array('sankalp'),
->>>>>>> 2f66ff2103adeea3c3ccd4fe0cbf9fc23e78a9c5
+				'actions'=>array('admin','delete', 'PowerChange'),
+				'users'=>array('parry', 'sankalp'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -269,6 +260,7 @@ class UserController extends Controller
 		$todo = new Todo('search'); 
 		$module = new Module('search');
 		$complaints = new Complaint('search');
+		$complaints = new CActiveDataProvider('Complaint');
 		
 		$this->render('admin',array(
 			// Sending the required variables.
@@ -467,7 +459,6 @@ class UserController extends Controller
 		return true;
 	}
 
-<<<<<<< HEAD
 	public function actionModerator() {
 		//Fetches the User ID
 		$user = Yii::app()->user->id;
@@ -478,10 +469,15 @@ class UserController extends Controller
 		$users = $module->users;
 		$member = null;
 		$complaint = array();
+		$complaint_data = new CActiveDataProvider('Complaint');
 		foreach ($users as $value) {
 			if($value->id != $user) {
 				$member[] = $value;
-				$complaints = $value->complaints;
+				$criteria = new CDbCriteria;
+				$criteria->select = 't.*, u.*';
+				$criteria->join = 'LEFT JOIN user u ON u.id = t.user_id';
+				$criteria->condition = 't.user_id = '.$value->id.'';
+				$complaints = Complaint::model()->findAll($criteria);
 				foreach ($complaints as $user_complaint) {
 					array_push($complaint, $user_complaint);
 				}
@@ -491,8 +487,6 @@ class UserController extends Controller
 		//
 
 		//
-		$complaint_data = new CActiveDataProvider('Complaint');
-		$complaint_data->setData($complaint);
 		// $complaint_data = User::model()->findByPk('11')->complaints;
 		//
 
@@ -513,8 +507,7 @@ class UserController extends Controller
 			)
 		);*/
 	}
-}
-=======
+
 	public function actionPowerChange(){
 		if(isset($_POST['name'])){
 			$name  = $_POST['name'];
@@ -535,4 +528,3 @@ class UserController extends Controller
 		);
 	}
 }
->>>>>>> 2f66ff2103adeea3c3ccd4fe0cbf9fc23e78a9c5

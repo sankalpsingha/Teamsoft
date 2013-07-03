@@ -66,6 +66,7 @@
 
 		<?php echo $form->error($model,'user_id'); ?>
 
+		<?php echo $form->labelEx($model, 'mod'); ?>
 		<?php $this->widget('ext.select2.ESelect2',array(
 			'model'=>$model,
 			'attribute'=>'user_id',

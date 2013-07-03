@@ -16,20 +16,20 @@ $this->breadcrumbs=array(
 
 <h2>Complaints :</h2>
 <p class="lead">View all the complaints :</p>
-
 <?php $this->widget('bootstrap.widgets.TbJsonGridView',array(
-
 	'type' => 'striped bordered hover',
-	'dataProvider' => $complaints->search(),
+	'dataProvider' => $complaints,
+	// 'filter' => $complaints,
+	'json' => true,
 	'columns' => array(
 		'complaint',
-		'created_on',
+		array('header' => 'Created On', 'value' => "User::getDate('created_on')", 'name' => 'created_on'),
 		array('name' => 'user_id',
 			'header' => 'User'
 			),
 		)
 	));
-	?>
+?>
 
 <h2>Users</h2>
 <p class="lead">User Management</p>
@@ -131,8 +131,7 @@ $this->breadcrumbs=array(
 	'columns' => array(
 		'category',
 		'description',
-		'created_on',
-
+		array('header' => 'Created On', 'value' => "User::getDate('created_on')", 'name' => 'created_on'),
 		)
 	));
 	?>
@@ -148,8 +147,8 @@ $this->breadcrumbs=array(
 	'dataProvider' => $todo->search(),
 	'columns' => array(
 		'todocol',
-		'created_on',
-		'deadline',
+		array('header' => 'Created On', 'value' => "User::getDate('created_on')", 'name' => 'created_on'),
+		array('header' => 'Deadline', 'value' => "User::getDate('deadline')", 'name' => 'deadline'),
 		'module_id',
 		'description',
 		'completed',

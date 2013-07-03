@@ -85,6 +85,7 @@ class Module extends CActiveRecord
 			'created_on' => 'Created On',
 			'updated_on' => 'Updated On',
 			'user_id' => 'Add users to the module',
+			'mod' => 'Add moderator to the module',
 		);
 	}
 

@@ -274,4 +274,10 @@ class User extends CActiveRecord
     $c->addSearchCondition('email', $q, true, 'OR');
     return $this->findAll($c);
 	}
+
+	public static function getDate($data) {
+		// $dater = new CDateFormatter('en_US');
+		// $return_date = $dater->formatDateTime($data,'long', 'short');
+		return $data;
+	}
 }
