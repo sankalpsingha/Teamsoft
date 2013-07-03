@@ -16,17 +16,17 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	
-		<?php echo $form->labelEx($model,'category'); ?>
-		<?php echo $form->textField($model,'category',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'category'); ?>
+		<p><?php echo $form->labelEx($model,'category'); ?></p>
+		<?php echo $form->textField($model,'category',array('size'=>60,'maxlength'=>100,'placeholder'=>'Type category')); ?>
+		<p><?php echo $form->error($model,'category'); ?></p>
 	
 
 	
-		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+		<p><?php echo $form->labelEx($model,'description'); ?></p>
+		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50,'placeholder'=>'Type Description here.')); ?>
 		<?php echo $form->error($model,'description'); ?>
 
-		<?php echo $form->labelEx($model, 'color'); ?>
+		<p><?php echo $form->labelEx($model, 'color'); ?></p>
 		<?php $this->widget('application.extensions.colorpicker.EColorPicker', 
               array(
                     'name'=>'Module[color]',

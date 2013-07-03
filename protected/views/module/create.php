@@ -2,17 +2,17 @@
 /* @var $this ModuleController */
 /* @var $model Module */
 
-$this->breadcrumbs=array(
-	'Modules'=>array('index'),
-	'Create',
-);
-
-$this->menu=array(
-	array('label'=>'List Module', 'url'=>array('index')),
-	array('label'=>'Manage Module', 'url'=>array('admin')),
-);
 ?>
 
-<h1>Create Module</h1>
+<div class="span8 offset2">
+<div id="bk">
+	<div class="row-fluid">
+		<div class="span6 offset3">
+<h2 class="muted">Create Module</h2>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+
+</div>
+</div>
+</div>
+</div>
