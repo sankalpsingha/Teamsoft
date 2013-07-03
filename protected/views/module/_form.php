@@ -40,53 +40,30 @@
         <?php echo $form->error($model, 'color'); ?>
 
 
-		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php //echo $form->dropDownList($model,'user_id',$model->getAllUser()); ?>
 
-		 <?php //echo $form->dropDownListRow($model, 'user_id',$model->getAllUser(), array('multiple'=>true)); ?>
-
-		<div class="row-fluid">
-			<?php $this->widget('ext.select2.ESelect2',array(
-				'model'=>$model,
-				'attribute'=>'users',
-				'data'=>$model->getAllUser(),
-				'options' => array(
-					'width'=>'20%',
-					'placeholder'=>'Type here to list the users.',
-					'allowClear'=>true,
-				),
-				'htmlOptions'=>array(
-					'multiple'=>'multiple',
-
-				),
-			)); 
-			?>
-
-		</div>
-
-		<?php echo $form->error($model,'user_id'); ?>
-
-		<?php echo $form->labelEx($model, 'mod'); ?>
+	<p><?php echo $form->labelEx($model, 'mod'); ?></p>
 		<?php $this->widget('ext.select2.ESelect2',array(
 			'model'=>$model,
 			'attribute'=>'user_id',
 			'data'=>$model->getAllUser(),
 			'options' => array(
-				'width'=>'20%',
+				'width'=>'60%',
 				'placeholder'=>'Add the moderator',
     			'allowClear'=>true,
 			),
 		)); 
 		?>
-	<div class="row-fluid">
-
+	
+	<div class="span7" style="margin-bottom: 10px;">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
                         'buttonType'=>'submit',
-                        'type'=>'success',
+                        'type'=>'inverse',
+                        'block' => true,
                         'label'=>'Send',
+                        'htmlOptions' => array('style'=>'margin-left:-6px; margin-bottom:10px;'),
                 )); ?>
 	</div>
-
+		
 
 <?php $this->endWidget(); ?>
 
