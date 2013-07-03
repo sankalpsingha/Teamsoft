@@ -34,12 +34,12 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle'),
+				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle','Moderator'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','PowerChange'),
-				'users'=>array('sankalp'),
+				'actions'=>array('admin','delete', 'PowerChange'),
+				'users'=>array('parry', 'sankalp'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -257,12 +257,17 @@ class UserController extends Controller
 	public function actionAdmin()
 	{
 		$model=new User('search');
-		/*$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['User']))
-			$model->attributes=$_GET['User'];
-*/
+		$todo = new Todo('search'); 
+		$module = new Module('search');
+		$complaints = new Complaint('search');
+		$complaints = new CActiveDataProvider('Complaint');
+		
 		$this->render('admin',array(
+			// Sending the required variables.
 			'model'=>$model,
+			'todo' =>$todo, 
+			'module' => $module,
+			'complaints' => $complaints,
 		));
 	}
 
@@ -452,6 +457,55 @@ class UserController extends Controller
 			}
 		}
 		return true;
+	}
+
+	public function actionModerator() {
+		//Fetches the User ID
+		$user = Yii::app()->user->id;
+
+		//
+		$module = Module::model()->findByAttributes(array('user_id' => $user));
+		$data = new CActiveDataProvider('Module');
+		$users = $module->users;
+		$member = null;
+		$complaint = array();
+		$complaint_data = new CActiveDataProvider('Complaint');
+		foreach ($users as $value) {
+			if($value->id != $user) {
+				$member[] = $value;
+				$criteria = new CDbCriteria;
+				$criteria->select = 't.*, u.*';
+				$criteria->join = 'LEFT JOIN user u ON u.id = t.user_id';
+				$criteria->condition = 't.user_id = '.$value->id.'';
+				$complaints = Complaint::model()->findAll($criteria);
+				foreach ($complaints as $user_complaint) {
+					array_push($complaint, $user_complaint);
+				}
+			}
+		}
+		$data->setData($member);
+		//
+
+		//
+		// $complaint_data = User::model()->findByPk('11')->complaints;
+		//
+
+		$this->render('_mod', array('module' => $module, 'data' => $data, 'complaints' => $complaint_data));
+	}
+
+	public function actionToggle() {
+		$name = $_POST['name'];
+		$value = $_POST['value'];
+		$pk = $_POST['pk'];
+		$user = User::model()->findByPk($pk);
+		$user->$name = $value;
+		$user->update();
+		 /*return array(
+			'toggle' => array(
+				'class'=>'bootstrap.actions.TbToggleAction',
+				'modelName' => 'User',
+			)
+		);*/
 	}
 
 	public function actionPowerChange(){

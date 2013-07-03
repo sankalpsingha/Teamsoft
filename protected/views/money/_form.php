@@ -8,7 +8,7 @@
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'money-form',
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
 	'enableClientValidation'=>true,
 )); ?>
 
@@ -33,6 +33,7 @@
                         'buttonType'=>'submit',
                         'type'=>'success',
                         'label'=>'Submit Amount',
+                        'url' => $this->createUrl('money/create'),
                 )); ?>
 </div>
 	

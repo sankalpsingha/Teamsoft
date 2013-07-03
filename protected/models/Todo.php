@@ -150,4 +150,8 @@ class Todo extends CActiveRecord
 		$usersArray = CHtml::listData($user,'id','name'); 
 		return $usersArray; // This would return the array of the users in the 'id' and the 'username'
 	}
+
+	public function underTodo() {
+		
+	}
 }

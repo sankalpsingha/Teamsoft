@@ -7,12 +7,14 @@
  * @property string $id
  * @property string $category
  * @property string $description
+ * @property string $user_id
  * @property string $color
  * @property string $created_on
  * @property string $updated_on
  *
  * The followings are the available model relations:
  * @property Comment[] $comments
+ * @property User $user
  * @property Todo[] $todos
  * @property User[] $users
  */
@@ -46,7 +48,7 @@ class Module extends CActiveRecord
 		return array(
 			array('category, description, color', 'required'),
 			array('category', 'length', 'max'=>100),
-			array('color', 'length', 'max'=>10),
+			array('user_id, color', 'length', 'max'=>10),
 			array('description, created_on, updated_on', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -63,6 +65,7 @@ class Module extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'comments' => array(self::HAS_MANY, 'Comment', 'module_id'),
+			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 			'todos' => array(self::HAS_MANY, 'Todo', 'module_id'),
 			'todosCount' => array(self::STAT, 'Todo', 'module_id'),
 			'users' => array(self::MANY_MANY, 'User', 'user_has_module(module_id, user_id)'),
@@ -82,6 +85,7 @@ class Module extends CActiveRecord
 			'created_on' => 'Created On',
 			'updated_on' => 'Updated On',
 			'user_id' => 'Add users to the module',
+			'mod' => 'Add moderator to the module',
 		);
 	}
 
@@ -99,6 +103,7 @@ class Module extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('category',$this->category,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('user_id',$this->user_id,true);
 		$criteria->compare('color',$this->color,true);
 		$criteria->compare('created_on',$this->created_on,true);
 		$criteria->compare('updated_on',$this->updated_on,true);
@@ -142,7 +147,4 @@ class Module extends CActiveRecord
 		$usersArray = CHtml::listData($user,'id','name'); 
 		return $usersArray; // This would return the array of the users in the 'id' and the 'username'
 	}
-
-
-
 }

@@ -43,6 +43,7 @@ class Money extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('amount, reason', 'required'),
+			array('amount', 'numerical', 'integerOnly'=>true),
 			array('amount, user_id', 'length', 'max'=>10),
 			array('reason', 'length', 'max'=>45),
 			array('created_on, updated_on', 'safe'),
