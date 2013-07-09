@@ -432,7 +432,13 @@ $('[data-toggle="popo"]').click(function(e) {
 				'label' => 'Add CAD Models',
 				'type' => 'success',
 				'block' => true,
-				)); ?>
+				'htmlOptions' => array(
+					'data-toggle' => 'modal',
+					'data-target' => '#cad',
+					'style'=>'margin-top: 5px;',
+					'class'=>'span12'
+				),
+			)); ?>
 		</div>
 
 		<div class="row-fluid" style="margin-top: 10px;">
@@ -446,11 +452,47 @@ $('[data-toggle="popo"]').click(function(e) {
 								'data-target' => '#myProfile',
 								'style'=>'margin-top: 5px;',
 								'class'=>'span12'
-								),
-					)
-				); ?>
+					),
+				)); ?>
 		</div>
 </div>
+<?php $this->beginWidget('bootstrap.widgets.TbModal', array('id' => 'cad')); ?>
 
+					<div class="modal-header">
+					<a class="close" data-dismiss="modal">&times;</a>
+					<h4>Add STL files</h4>
+					</div>
 
+					<div class="modal-body">
+					<div class="span12">
+						<?php $this->widget('bootstrap.widgets.TbFileUpload', array(
+								    'url' => $this->createUrl("stl/upload"),
+								    'model' => new Stl,
+								    'attribute' => 'file_name',
+								    'multiple' => true,
+								    'options' => array(
+									    'maxFileSize' => 2000000,
+									    'acceptFileTypes' => 'js:/(\.|\/)(stl)$/i',
+										)
+									)
+								);
+						?>
+					</div>
+					</div>
 
+					<div class="modal-footer">
+					<?php $this->widget('bootstrap.widgets.TbButton', array(
+					'type' => 'primary',
+					'label' => 'Save changes',
+					'url' => '#',
+					'htmlOptions' => array('data-dismiss' => 'modal'),
+					)); ?>
+					<?php $this->widget('bootstrap.widgets.TbButton', array(
+					'label' => 'Close',
+					'url' => '#',
+					'htmlOptions' => array('data-dismiss' => 'modal'),
+					)); ?>
+					
+					</div>
+
+<?php $this->endWidget(); ?>

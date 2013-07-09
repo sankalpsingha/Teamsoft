@@ -23,6 +23,37 @@ if($module != null) {
             ),
         ),
     ));
+
+    echo "Modules <br>";
+    $this->widget('bootstrap.widgets.TbExtendedGridView', array(
+        'dataProvider'=>$module,
+        'columns' => array(
+            'id',
+            'category',
+            array(
+                'header' => 'Create ToDo',
+                'class' => 'CButtonColumn',
+                'template' => '{todo}',
+                'buttons' => array(
+                    'todo' => array(
+                        'label' => 'Create ToDo',
+                        'url' => 'CHtml::normalizeUrl(array(\'/todo/create\', \'id\' => $data->id))',
+                    ),
+                ),
+            ),
+            array(
+                'header' => 'Add Users',
+                'class' => 'CButtonColumn',
+                'template' => '{users}',
+                'buttons' => array(
+                    'users' => array(
+                        'label' => 'Add Users',
+                        'url' => 'CHtml::normalizeUrl(array(\'/todo/create\', \'id\' => $data->id))',
+                    ),
+                ),
+            ),
+        ),        
+    ));
 } else {
     echo 'There is no module under you right now';
 }

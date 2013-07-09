@@ -1,6 +1,6 @@
 <?php
 
-class TodoController extends Controller
+class StlController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -32,12 +32,12 @@ class TodoController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'statuschange'),
+				'actions'=>array('create','update','upload','delete'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('parry'),
+				'actions'=>array('admin'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -60,22 +60,16 @@ class TodoController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($id) {
-		$module = Module::model()->findByPk($id);
-		if($module === null) {
-			throw new CHttpException('404', 'Module not found');
-		}
-		$model=new Todo;
-		$model->module_id = $id;
+	public function actionCreate()
+	{
+		$model=new Stl;
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Todo']))
+		if(isset($_POST['Stl']))
 		{
-			$model->attributes=$_POST['Todo'];
-
-			$model->users = $_POST['Todo']['users'];
-
+			$model->attributes=$_POST['Stl'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -97,12 +91,9 @@ class TodoController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Todo']))
+		if(isset($_POST['Stl']))
 		{
-			$model->attributes=$_POST['Todo'];
-			//---
-			$model->users = $_POST['Todo']['users'];
-			//---
+			$model->attributes=$_POST['Stl'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -119,13 +110,7 @@ class TodoController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$shit = $this->loadModel($id);
-		$shit->cleanRelation(array('m2mTable' => 'todo_has_user', 'm2mThisField' => 'todo_id'));
-		$reports = $shit->reportTodos;
-		foreach ($reports as $value) {
-			ReportTodo::model()->findByPk($value->id)->delete();
-		}
-		$shit->delete();
+		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
@@ -137,7 +122,7 @@ class TodoController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Todo');
+		$dataProvider=new CActiveDataProvider('Stl');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -148,10 +133,10 @@ class TodoController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Todo('search');
+		$model=new Stl('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Todo']))
-			$model->attributes=$_GET['Todo'];
+		if(isset($_GET['Stl']))
+			$model->attributes=$_GET['Stl'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -162,12 +147,12 @@ class TodoController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Todo the loaded model
+	 * @return Stl the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Todo::model()->findByPk($id);
+		$model=Stl::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -175,25 +160,68 @@ class TodoController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Todo $model the model to be validated
+	 * @param Stl $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='todo-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='stl-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
 
-	public function actionStatusChange() {
-		if(isset($_POST['name'])){
-			$name  = $_POST['name'];
-			$value = $_POST['value'];
-			$pk = $_POST['pk'];
-			$user = Todo::model()->findByPk($pk);
-			$user->$name = $value;
-			$user->update();
-		}
+	public function actionUpload()
+	{
+	    header('Vary: Accept');
+	    if (isset($_SERVER['HTTP_ACCEPT']) && (strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false))
+	    {
+	        header('Content-type: application/json');
+	    } else {
+	        header('Content-type: text/plain');
+	    }
+	    $data = array();
+
+	    $model = new Stl();
+	    $model->original_name = CUploadedFile::getInstance($model, 'file_name');
+	    $fakeName = mt_rand();
+	    while(glob(Yii::app()->basePath.'/../files/'.$fakeName.'.*')) {
+	    	$fakeName = mt_rand();
+	    }
+	    $model->name = $fakeName.".stl";
+	    if ($model->original_name !== null  && $model->validate(array('file_name')))
+	    {
+	        $model->original_name->saveAs(Yii::app()->basePath.'/../files/'.$model->name);
+	        // $model->file_name = $model->picture->name;
+	        // $model->user_id = Yii::app()->user->id;
+	        // save picture name
+	        if($model->save())
+	        {
+	            // return data to the fileuploader
+	            $data[] = array(
+	                'name' => $model->original_name->name,
+	                'type' => $model->original_name->type,
+	                'size' => $model->original_name->size,
+	                // we need to return the place where our image has been saved
+	                'url' => $this->createUrl('user/gallery'), // Should we add a helper method?
+	                // we need to provide a thumbnail url to display on the list
+	                // after upload. Again, the helper method now getting thumbnail.
+	                //'thumbnail_url' => $model->getImageUrl(User::self::IMG_THUMBNAIL),
+	                // we need to include the action that is going to delete the picture
+	                // if we want to after loading 
+	                'delete_url' => $this->createUrl('stl/delete',array('id' => $model->id, 'ajax' => 'ajax')),'delete_type' => 'POST');
+	        } else {
+	            $data[] = array('error' => 'Unable to save model after saving picture');
+	        }
+	    } else {
+	        if ($model->hasErrors('original_name'))
+	        {
+	            $data[] = array('error', $model->getErrors('original_name'));
+	        } else {
+	            throw new CHttpException(500, "Could not upload file ".     CHtml::errorSummary($model));
+	        }
+	    }
+	    // JQuery File Upload expects JSON data
+	    echo json_encode($data);
 	}
 }

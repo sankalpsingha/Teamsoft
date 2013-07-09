@@ -40,33 +40,12 @@
         <?php echo $form->error($model, 'color'); ?>
 
 
-		<?php echo $form->labelEx($model,'user_id'); ?>
+
 		<?php //echo $form->dropDownList($model,'user_id',$model->getAllUser()); ?>
 
 		 <?php //echo $form->dropDownListRow($model, 'user_id',$model->getAllUser(), array('multiple'=>true)); ?>
-
-		<div class="row-fluid">
-			<?php $this->widget('ext.select2.ESelect2',array(
-				'model'=>$model,
-				'attribute'=>'users',
-				'data'=>$model->getAllUser(),
-				'options' => array(
-					'width'=>'20%',
-					'placeholder'=>'Type here to list the users.',
-					'allowClear'=>true,
-				),
-				'htmlOptions'=>array(
-					'multiple'=>'multiple',
-
-				),
-			)); 
-			?>
-
-		</div>
-
-		<?php echo $form->error($model,'user_id'); ?>
-
-		<?php echo $form->labelEx($model, 'mod'); ?>
+		
+		<?php echo $form->labelEx($model,'user_id'); ?>
 		<?php $this->widget('ext.select2.ESelect2',array(
 			'model'=>$model,
 			'attribute'=>'user_id',
@@ -78,6 +57,7 @@
 			),
 		)); 
 		?>
+		<?php echo $form->error($model,'user_id'); ?>
 	<div class="row-fluid">
 
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
