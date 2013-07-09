@@ -32,7 +32,7 @@ class ModuleController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'addusers'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -72,7 +72,7 @@ class ModuleController extends Controller
 			$model->attributes=$_POST['Module'];
 			$model->color = '#'.$_POST['Module']['color'];
 			//----
-			$model->users = $_POST['Module']['users'];
+			//$model->users = $_POST['Module']['users'];
 			// ----
 
 			if($model->save())
@@ -188,5 +188,32 @@ class ModuleController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	public function actionAddUsers($id) {
+		$module = $this->loadModel($id);
+		if($module === null)
+			throw new CHttpException('404', 'Invalid Module');
+
+		$user_id = Yii::app()->user->id;
+		$user_admin = User::model()->isAdmin();
+
+		$isValidUser = false;
+		if($module->user_id == $user_id){
+			$isValidUser = true;
+		}
+		
+		if(!$isValidUser) {
+			if(!$user_admin) {
+				throw new CHttpException('500', 'Not Allowed To Add Users');
+			}
+		}
+
+		if(isset($_POST['Module'])) {
+			$module->users = $_POST['Module']['users'];
+			if($module->save())
+				$this->redirect($this->createUrl('/user/dashboard'));
+		}
+		$this->render('addusers', array('model' => $module));
 	}
 }

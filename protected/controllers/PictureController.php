@@ -32,11 +32,11 @@ class PictureController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','upload'),
+				'actions'=>array('create','update','upload','delete'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -113,8 +113,9 @@ class PictureController extends Controller
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		if(!isset($_GET['ajax'])) {
+			$this->redirect(isset($_POST['returnUrl']));
+		}
 	}
 
 	/**
@@ -202,15 +203,13 @@ class PictureController extends Controller
 	                'type' => $model->picture->type,
 	                'size' => $model->picture->size,
 	                // we need to return the place where our image has been saved
-	                // 'url' => $model->getImageUrl(), // Should we add a helper method?
+	                'url' => $this->createUrl('user/gallery'), // Should we add a helper method?
 	                // we need to provide a thumbnail url to display on the list
 	                // after upload. Again, the helper method now getting thumbnail.
 	                //'thumbnail_url' => $model->getImageUrl(User::self::IMG_THUMBNAIL),
 	                // we need to include the action that is going to delete the picture
 	                // if we want to after loading 
-	                'delete_url' => $this->createUrl('my/delete',
-	                    array('id' => $model->id, 'method' => 'uploader')),
-	                'delete_type' => 'POST');
+	                'delete_url' => $this->createUrl('picture/delete',array('id' => $model->id, 'ajax' => 'ajax')),'delete_type' => 'POST');
 	        } else {
 	            $data[] = array('error' => 'Unable to save model after saving picture');
 	        }

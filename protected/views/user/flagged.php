@@ -13,6 +13,3 @@ Submitting report for Todo -> <?php echo $todo->todocol; ?>
 <?php if($todo == null): ?>
 	Wait for your Todo report's approval from the Moderator.
 <?php endif; ?>
-<?php 
-unset(Yii::app()->session['flagged']);
-?>

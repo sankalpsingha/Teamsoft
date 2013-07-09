@@ -46,7 +46,7 @@ class Module extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category, description, color', 'required'),
+			array('category, description, color, user_id', 'required'),
 			array('category', 'length', 'max'=>100),
 			array('user_id, color', 'length', 'max'=>10),
 			array('description, created_on, updated_on', 'safe'),
@@ -84,8 +84,8 @@ class Module extends CActiveRecord
 			'color' => 'Color',
 			'created_on' => 'Created On',
 			'updated_on' => 'Updated On',
-			'user_id' => 'Add users to the module',
-			'mod' => 'Add moderator to the module',
+			'mod' => 'Add users to the module',
+			'user_id' => 'Add moderator to the module',
 		);
 	}
 

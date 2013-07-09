@@ -257,17 +257,29 @@ class UserController extends Controller
 	public function actionAdmin()
 	{
 		$model=new User('search');
-		$todo = new Todo('search'); 
-		$module = new Module('search');
-		$complaints = new Complaint('search');
-		$complaints = new CActiveDataProvider('Complaint');
-		
+
+		//Fetching all ToDo
+		$todo = new Todo('search');
+		//Fetching all Modules
+		$criteria = new CDbCriteria;
+		$criteria->select = 't.*, u.name';
+		$criteria->join = 'LEFT JOIN user u ON u.id = t.user_id';
+		$modules = Module::model()->findAll($criteria);
+		$module = new CActiveDataProvider('Module');
+		$module->setData($modules);
+
+		//Fetching all complaints
+		$complaints = Complaint::model()->findAll($criteria);
+		$complaint = new CActiveDataProvider('Complaint');
+		$complaint->setData($complaints);
+		//Fetched all complaints
+
 		$this->render('admin',array(
 			// Sending the required variables.
 			'model'=>$model,
 			'todo' =>$todo, 
 			'module' => $module,
-			'complaints' => $complaints,
+			'complaints' => $complaint,
 		));
 	}
 
@@ -464,9 +476,11 @@ class UserController extends Controller
 		$user = Yii::app()->user->id;
 
 		//
-		$module = Module::model()->findByAttributes(array('user_id' => $user));
+		$module = Module::model()->findAllByAttributes(array('user_id' => $user));
 		$data = new CActiveDataProvider('Module');
-		$users = $module->users;
+		$users = $module['0']->users;
+		$module_data = new CActiveDataProvider('Module');
+		$module_data->setData($module);
 		$member = null;
 		$complaint = array();
 		$complaint_data = new CActiveDataProvider('Complaint');
@@ -478,19 +492,10 @@ class UserController extends Controller
 				$criteria->join = 'LEFT JOIN user u ON u.id = t.user_id';
 				$criteria->condition = 't.user_id = '.$value->id.'';
 				$complaints = Complaint::model()->findAll($criteria);
-				foreach ($complaints as $user_complaint) {
-					array_push($complaint, $user_complaint);
-				}
 			}
 		}
 		$data->setData($member);
-		//
-
-		//
-		// $complaint_data = User::model()->findByPk('11')->complaints;
-		//
-
-		$this->render('_mod', array('module' => $module, 'data' => $data, 'complaints' => $complaint_data));
+		$this->render('_mod', array('module' => $module_data, 'data' => $data, 'complaints' => $complaint_data));
 	}
 
 	public function actionToggle() {

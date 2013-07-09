@@ -208,7 +208,7 @@ class User extends CActiveRecord
 		));
 	}
 
-	public function behaviors(){
+	public function behaviors() {
 		return array('CTimestampBehavior'=>array(
 		'class' => 'zii.behaviors.CTimestampBehavior',
 		'createAttribute' => 'created_on',
@@ -256,11 +256,21 @@ class User extends CActiveRecord
 	}
 
 	public function isAdmin() {
-		return User::model()->findByPk(Yii::app()->user->id)->power == self::USER_ADMIN ? true : false;
+		if(Yii::app()->session['flagged']) {
+			return false;
+		}
+		else {
+			return User::model()->findByPk(Yii::app()->user->id)->power == self::USER_ADMIN ? true : false;
+		}
 	}
 
 	public function isModerator() {
-		return User::model()->findByPk(Yii::app()->user->id)->power == self::USER_MODERATOR ? true : false;
+		if(Yii::app()->session['flagged']) {
+			return false;
+		}
+		else {
+			return User::model()->findByPk(Yii::app()->user->id)->power == self::USER_MODERATOR ? true : false;
+		}
 	}
 
 	// This is for the messaging functionality.
@@ -269,15 +279,9 @@ class User extends CActiveRecord
 	}
 
 	public function getSuggest($q) {
-    $c = new CDbCriteria();
-    $c->addSearchCondition('username', $q, true, 'OR');
-    $c->addSearchCondition('email', $q, true, 'OR');
-    return $this->findAll($c);
-	}
-
-	public static function getDate($data) {
-		// $dater = new CDateFormatter('en_US');
-		// $return_date = $dater->formatDateTime($data,'long', 'short');
-		return $data;
+		$c = new CDbCriteria();
+		$c->addSearchCondition('username', $q, true, 'OR');
+		$c->addSearchCondition('email', $q, true, 'OR');
+		return $this->findAll($c);
 	}
 }

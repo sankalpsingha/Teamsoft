@@ -23,8 +23,9 @@ $this->breadcrumbs=array(
 	'json' => true,
 	'columns' => array(
 		'complaint',
-		array('header' => 'Created On', 'value' => "User::getDate('created_on')", 'name' => 'created_on'),
-		array('name' => 'user_id',
+		'created_on',
+		array(
+			'name' => 'user.name',
 			'header' => 'User'
 			),
 		)
@@ -127,14 +128,40 @@ $this->breadcrumbs=array(
 <?php $this->widget('bootstrap.widgets.TbJsonGridView',array(
 
 	'type' => 'striped bordered hover',
-	'dataProvider' => $module->search(),
+	'dataProvider' => $module,
 	'columns' => array(
 		'category',
 		'description',
-		array('header' => 'Created On', 'value' => "User::getDate('created_on')", 'name' => 'created_on'),
-		)
-	));
-	?>
+		'created_on',
+		array(
+			'header' => 'Moderator',
+			'name' => 'user.name',
+		),
+		array(
+			'header' => 'Add Users',
+			'class' => 'CButtonColumn',
+			'template' => '{users}',
+			'buttons' => array(
+				'users' => array(
+					'label' => 'Add Users',
+					'url' => 'CHtml::normalizeUrl(array(\'module/addusers\', \'id\' => $data->id))',
+				),
+			),
+		),
+		array(
+			'header' => 'Add ToDo',
+			'class' => 'CButtonColumn',
+			'template' => '{todo}',
+			'buttons' => array(
+				'todo' => array(
+					'label' => 'Add Todo',
+					'url' => 'CHtml::normalizeUrl(array(\'todo/create\', \'id\' => $data->id))',
+				),
+			),
+		),
+	)
+));
+?>
 
 	<hr>
 
@@ -147,16 +174,23 @@ $this->breadcrumbs=array(
 	'dataProvider' => $todo->search(),
 	'columns' => array(
 		'todocol',
-		array('header' => 'Created On', 'value' => "User::getDate('created_on')", 'name' => 'created_on'),
-		array('header' => 'Deadline', 'value' => "User::getDate('deadline')", 'name' => 'deadline'),
+		'created_on',
+		'deadline',
 		'module_id',
 		'description',
-		'completed',
+		array(
+			'name'=>'completed',
+			'header'=>'Incomplete/Complete',
+			'class' => 'bootstrap.widgets.TbEditableColumn',
+			'editable'=>array(
+				'type'=>'select', 
+				//'mode'=>'inline',
+				'model'=>$todo,
+				'attribute' => 'completed',
+				'source' => $todo->getTodoStatus(),
+				'url' => $this->createUrl('todo/statuschange'),
+				)
+			),
 		)
 	));
 	?>
-
-	
-
-
-
