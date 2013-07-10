@@ -19,7 +19,7 @@
 	
 
 	
-		<?php echo $form->labelEx($model,'title'); ?>
+		<p><?php echo $form->labelEx($model,'title'); ?></p>
 		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'title'); ?>
 	
@@ -69,11 +69,19 @@
 	
 
 	<div class="row-fluid">
-		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			<div class="span4 offset4" >
+			<?php 
+			$this->widget('bootstrap.widgets.TbButton', array(
                         'buttonType'=>'submit',
-                        'type'=>'success',
-                        'label'=>'Send',
-                )); ?>
+                        'type'=>'inverse',
+                        'block'=>'true',
+                        'label'=>'Post',
+                        'htmlOptions' => array(
+                        	'class' =>  'span9',
+                        ),
+            )); 
+            ?>
+            </div>
 	</div>
 
 <?php $this->endWidget(); ?>

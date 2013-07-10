@@ -10,22 +10,34 @@
 	'id'=>'complaint-form',
 	'enableAjaxValidation'=>false,
 )); ?>
+	<div class="row-fluid">
+	<div class="span8 offset1">
+	<p class="muted">Fields with <span class="required">*</span> are required.</p>
+	</div>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	</div>
+
 
 	<?php echo $form->errorSummary($model); ?>
-
 	
-		<?php echo $form->labelEx($model,'complaint'); ?>
-		<?php echo $form->textArea($model,'complaint',array('rows'=>6, 'cols'=>50)); ?>
+<div class="row-fluid">
+						<div class="span5 offset3">
+	
+		<p><?php echo $form->labelEx($model,'complaint'); ?><p>
+		<?php echo $form->textArea($model,'complaint',array('rows'=>9, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'complaint'); ?>
 	
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
                         'buttonType'=>'submit',
-                        'type'=>'success',
+                        'type'=>'inverse',
+                        'block' => true,
+
                         'label'=>'Send',
                 )); ?>
 
 <?php $this->endWidget(); ?>
+</div>
+</div>
+
 
 </div><!-- form -->
