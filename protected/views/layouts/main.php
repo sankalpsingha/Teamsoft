@@ -37,7 +37,8 @@ This is the property of the CampusPlugin Team.
 										array('label'=>'Dashboard', 'url'=>array('user/dashboard'),'icon'=>'icon-cog icon-large','items'=>array(
 
 										
-										array('label'=>'Create Module', 'url'=>array('/module/create'),'icon'=>'icon-tag'),
+										array('label'=>'Moderator', 'url'=>array('/moderator'),'icon'=>'icon-tag', 'visible' => User::model()->isModerator()),
+										array('label'=>'Administrator', 'url' => array('/admin'), 'icon' => 'icon-tag', 'visible' => User::model()->isAdmin()),
 										array('label'=>'Write Blog', 'url'=>array('/post/create'),'icon'=>'icon-pencil'),
 										array('label'=>'Resource', 'url'=>array('/resource/index'),'icon'=>'icon-download'),
 										'---',
@@ -79,3 +80,6 @@ This is the property of the CampusPlugin Team.
 
 </body>
 </html>
+<?php 
+unset(Yii::app()->session['flagged']);
+?>

@@ -151,7 +151,7 @@ class Todo extends CActiveRecord
 		return $usersArray; // This would return the array of the users in the 'id' and the 'username'
 	}
 
-	public function underTodo() {
-		
+	public function getTodoStatus() {
+		return array('Incomplete', 'Complete');
 	}
 }
