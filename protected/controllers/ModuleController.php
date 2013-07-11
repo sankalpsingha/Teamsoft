@@ -72,6 +72,8 @@ class ModuleController extends Controller
 			$model->attributes=$_POST['Module'];
 			$model->color = '#'.$_POST['Module']['color'];
 			//----
+
+
 			//$model->users = $_POST['Module']['users'];
 			// ----
 

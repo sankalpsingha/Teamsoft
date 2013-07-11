@@ -16,17 +16,17 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	
-		<?php echo $form->labelEx($model,'category'); ?>
-		<?php echo $form->textField($model,'category',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'category'); ?>
+		<p><?php echo $form->labelEx($model,'category'); ?></p>
+		<?php echo $form->textField($model,'category',array('size'=>60,'maxlength'=>100,'placeholder'=>'Type category')); ?>
+		<p><?php echo $form->error($model,'category'); ?></p>
 	
 
 	
-		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+		<p><?php echo $form->labelEx($model,'description'); ?></p>
+		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50,'placeholder'=>'Type Description here.')); ?>
 		<?php echo $form->error($model,'description'); ?>
 
-		<?php echo $form->labelEx($model, 'color'); ?>
+		<p><?php echo $form->labelEx($model, 'color'); ?></p>
 		<?php $this->widget('application.extensions.colorpicker.EColorPicker', 
               array(
                     'name'=>'Module[color]',
@@ -41,32 +41,41 @@
 
 
 
+
 		<?php //echo $form->dropDownList($model,'user_id',$model->getAllUser()); ?>
 
 		 <?php //echo $form->dropDownListRow($model, 'user_id',$model->getAllUser(), array('multiple'=>true)); ?>
 		
 		<?php echo $form->labelEx($model,'user_id'); ?>
+
 		<?php $this->widget('ext.select2.ESelect2',array(
 			'model'=>$model,
 			'attribute'=>'user_id',
 			'data'=>$model->getAllUser(),
 			'options' => array(
-				'width'=>'20%',
+				'width'=>'60%',
 				'placeholder'=>'Add the moderator',
     			'allowClear'=>true,
 			),
 		)); 
 		?>
+<<<<<<< HEAD
+	
+	<div class="span7" style="margin-bottom: 10px;">
+=======
 		<?php echo $form->error($model,'user_id'); ?>
 	<div class="row-fluid">
 
+>>>>>>> 124d2017f1b7df83f3962798b0cf77595af2d915
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
                         'buttonType'=>'submit',
-                        'type'=>'success',
+                        'type'=>'inverse',
+                        'block' => true,
                         'label'=>'Send',
+                        'htmlOptions' => array('style'=>'margin-left:-6px; margin-bottom:10px;'),
                 )); ?>
 	</div>
-
+		
 
 <?php $this->endWidget(); ?>
 

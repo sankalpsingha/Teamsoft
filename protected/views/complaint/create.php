@@ -2,17 +2,26 @@
 /* @var $this ComplaintController */
 /* @var $model Complaint */
 
-$this->breadcrumbs=array(
-	'Complaints'=>array('index'),
-	'Create',
-);
+// $this->breadcrumbs=array(
+// 	'Complaints'=>array('index'),
+// 	'Create',
+// );
 
-$this->menu=array(
-	array('label'=>'List Complaint', 'url'=>array('index')),
-	array('label'=>'Manage Complaint', 'url'=>array('admin')),
-);
+// $this->menu=array(
+// 	array('label'=>'List Complaint', 'url'=>array('index')),
+// 	array('label'=>'Manage Complaint', 'url'=>array('admin')),
+// );
 ?>
 
-<h1>Create Complaint</h1>
 
+<div class="span6 offset3" >
+	<div class="well">
+<h2 class="text-success">Create Complaint</h2>
+
+
+					
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+
+	</div>
+	
+</div>
