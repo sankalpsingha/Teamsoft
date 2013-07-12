@@ -34,7 +34,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle','Moderator'),
+				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle','Moderator','cad'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -249,6 +249,15 @@ class UserController extends Controller
 		}
 
 		return $money;
+	}
+
+	public function actionCad()
+	{
+		$cad = Stl::model()->findAll();
+
+		$this->render('cad',array(
+			'cad' => $cad,
+			));
 	}
 
 	/**
