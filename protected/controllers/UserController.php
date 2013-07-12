@@ -264,6 +264,15 @@ public function actionCad()
 	$this->render('cad');
 }
 
+	public function actionCad()
+	{
+		$cad = Stl::model()->findAll();
+
+		$this->render('cad',array(
+			'cad' => $cad,
+			));
+	}
+
 	/**
 	 * Manages all models.
 	 */
