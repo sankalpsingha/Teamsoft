@@ -69,7 +69,7 @@ class UserController extends Controller
 				*/
 				
 				
-				$this->redirect(array('site/login');
+				$this->redirect(array('site/login'));
 		}
 
 		$this->render('create',array(

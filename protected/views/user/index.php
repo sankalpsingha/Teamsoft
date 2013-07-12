@@ -15,7 +15,7 @@
 							
 							'htmlOptions' => array(
 								'data-toggle' => 'modal',
-								'data-target' => '#myProfile',
+								'data-target' => '#changepicture',
 								'style'=>'margin-top: 5px;',
 								'class'=>'span12'
 								),
@@ -487,6 +487,44 @@ $('[data-toggle="popo"]').click(function(e) {
 					'url' => '#',
 					'htmlOptions' => array('data-dismiss' => 'modal'),
 					)); ?>
+					<?php $this->widget('bootstrap.widgets.TbButton', array(
+					'label' => 'Close',
+					'url' => '#',
+					'htmlOptions' => array('data-dismiss' => 'modal'),
+					)); ?>
+					
+					</div>
+
+<?php $this->endWidget(); ?>
+<?php $this->beginWidget('bootstrap.widgets.TbModal', array('id' => 'changepicture')); ?>
+
+					<div class="modal-header">
+					<a class="close" data-dismiss="modal">&times;</a>
+					<h4>Change Profile Picture</h4>
+					</div>
+
+					<div class="modal-body">
+					<div class="span12">
+						<?php $this->widget('bootstrap.widgets.TbFileUpload', array(
+								    'url' => $this->createUrl("profilePicture/upload"),
+								    'model' => new ProfilePicture,
+								    'attribute' => 'picture',
+								    // 'multiple' => true,
+								    'options' => array(
+									    'maxFileSize' => 2000000,
+									    'maxNumberOfFiles' => 1,
+									    'acceptFileTypes' => 'js:/(\.|\/)(gif|jpe?g|png)$/i',
+									    'done' => 'js:function(e, data){var demo = data.jqXHR; demo = demo.responseText; var go = eval(\'(\'+demo+\')\'); go = $.parseJSON(go, function(key, value){console.log(value);});}',
+									    // 'redirect' => 'localhost/teamsoft',
+									    'autoUpload' => true,
+										)
+									)
+								);
+						?>
+					</div>
+					</div>
+
+					<div class="modal-footer">
 					<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'label' => 'Close',
 					'url' => '#',
