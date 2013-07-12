@@ -1,6 +1,6 @@
 <?php
 $this->widget('ext.jcrop.EJcrop', array(
-	'url' => $this->createAbsoluteUrl('/files/802669506.png'),
+	'url' => $this->createAbsoluteUrl('/files/'.$name),
 	//
 	// ALT text for the image
 	'alt' => 'Crop This Image',
@@ -10,7 +10,7 @@ $this->widget('ext.jcrop.EJcrop', array(
 	//
 	// Jcrop options (see Jcrop documentation)
 	'options' => array(
-		'minSize' => array(64, 64),
+		'minSize' => array(100,100),
 		'aspectRatio' => 1,
 		'onRelease' => "js:function() {ejcrop_cancelCrop(this);}",
 	),
@@ -34,6 +34,6 @@ $this->widget('ext.jcrop.EJcrop', array(
 	'ajaxUrl' => 'ajaxcrop',
 	//
 	// Additional parameters to send to the AJAX call (unused if no buttons)
-	// 'ajaxParams' => array('someParam' => 'someValue'),
+	'ajaxParams' => array('name' => $name),
 ));
 ?>

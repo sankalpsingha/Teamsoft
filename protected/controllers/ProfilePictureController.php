@@ -237,7 +237,10 @@ class ProfilePictureController extends Controller
 	}
 
 	public function actionCrop() {
-		$this->render('crop', array('model' => new ProfilePicture));
+		if(Yii::app()->request->isPostRequest) {
+			$name = $_POST['picture_name'];
+			$this->render('crop', array('model' => new ProfilePicture, 'name' => $name));
+		}
 	}
 
 	public function actionAjaxCrop() {
@@ -253,8 +256,10 @@ class ProfilePictureController extends Controller
 		$coords = $jcropper->getCoordsFromPost('imageId');
 
 		// returns the path of the cropped image, source must be an absolute path.
-		$url = $this->createAbsoluteUrl('/files/802669506.png');
+		$url = $this->createAbsoluteUrl('/files/'.$_POST['name']);
 		$thumbnail = $jcropper->crop($url, $coords);
+		$jcropper->fileName = $_POST['name'];
+		$jcropper->resize($url);
 		// echo $url;
 	}
 }

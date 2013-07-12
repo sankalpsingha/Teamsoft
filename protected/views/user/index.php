@@ -2,11 +2,10 @@
 /* @var $this UserController */
 /* @var $dataProvider CActiveDataProvider */
 ?>
-
 <div class="span10">
 	<div class="row-fluid">
 		<div class="span3">
-			<img <?php echo "src=".Yii::app()->request->baseUrl."/uploads/san.png"; ?> <?php echo CHtml::encode("alt="."\"".$model['name']."\""); ?> class="img-rounded img-polaroid">
+			<img <?php echo "src=".Yii::app()->request->baseUrl."/files/".$picture; ?> <?php echo CHtml::encode("alt="."\"".$model['name']."\""); ?> class="img-rounded img-polaroid">
 						<?php $this->widget('bootstrap.widgets.TbButton',array(
 							'label' => 'Change Profile Pic',
 							'icon' => 'icon-edit',
@@ -223,10 +222,11 @@
 
 <div id="statuses">
 	 							<?php foreach ($statuses as $status): ?>
+	 								<?php $user = User::model()->findByPk($status->user_id); $picture = ProfilePicture::model()->findByPk($user->profilepic); $pic = 'tdefault.png'; if($picture != null){ $pic = "t".$picture->profile_picture; } ?>
 	 							<div class="status">
 	 							<blockquote>
 	 								<h4>
-	 									<img src="http://placehold.it/64x64">
+	 									<img src="/teamsoft/files/<?php echo $pic; ?>">
 	 									<?php echo CHtml::link(Chtml::encode($status->user->name),'/'.$status->user->username); ?>
 	 								</h4>
 
@@ -514,7 +514,7 @@ $('[data-toggle="popo"]').click(function(e) {
 									    'maxFileSize' => 2000000,
 									    'maxNumberOfFiles' => 1,
 									    'acceptFileTypes' => 'js:/(\.|\/)(gif|jpe?g|png)$/i',
-									    'done' => 'js:function(e, data){var demo = data.jqXHR; demo = demo.responseText; var go = eval(\'(\'+demo+\')\'); go = $.parseJSON(go, function(key, value){console.log(value);});}',
+									    'done' => 'js:function(e, data){var demo = data.jqXHR; demo = demo.responseText; var dad = demo.substr(1,demo.length - 2); var final = eval(\'(\'+dad+\')\'); var url = \'/teamsoft/profilePicture/crop\'; var form = $(\'<form action="\'+url+\'" method="post">\' + \'<input type="text" name="picture_name" id="picture_name" hidden="hidden" value="\'+final.test+\'"></form>\'); $(\'body\').append(form); $(form).submit();}',
 									    // 'redirect' => 'localhost/teamsoft',
 									    'autoUpload' => true,
 										)

@@ -70,7 +70,7 @@ class EJcrop extends CJuiWidget
 		$cls->registerScriptFile($assets . '/js/ejcrop.js', CClientScript::POS_HEAD);
 		$cls->registerCssFile($assets . '/css/jquery.Jcrop.css');
 
-		$this->options['onChange'] = "js:function(c) {ejcrop_getCoords(c,'{$id}'); ejcrop_showThumb(c,'{$id}');}";
+		$this->options['onChange'] = "js:function(c) {ejcrop_getCoords(c,'{$id}'); ejcrop_showThumb(c,'test');}";
 		$this->options['ajaxUrl'] = $this->ajaxUrl;
 		$this->options['ajaxParams'] = $this->ajaxParams;
 

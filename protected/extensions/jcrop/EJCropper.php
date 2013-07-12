@@ -16,15 +16,17 @@ class EJCropper
 	/**
 	 * @var integer The thumbnail width
 	 */
-	public $targ_w = 100;
+	public $targ_w = 372;
 	/**
 	 * @var integer The thumbnail height
 	 */
-	public $targ_h = 100;
+	public $targ_h = 379;
 	/**
 	 * @var string The path for saving thumbnails
 	 */
 	public $thumbPath;
+
+	public $fileName;
 
 	/**
 	 * Get the cropping coordinates from post.
@@ -77,6 +79,18 @@ class EJCropper
 			imagepng($dest_r, $thumbName, $this->png_compression);
 		}
 		return $thumbName;
+	}
+
+	public function resize($src)
+	{
+		require 'Resize.php';
+		$newFileName = pathinfo($src, PATHINFO_FILENAME);
+		$newFileExtension = pathinfo($src, PATHINFO_EXTENSION);
+		$newFile = "t".$newFileName.".".$newFileExtension;
+		// copy('files/'.$this->fileName, 'files/'.$newFile);
+		$resize = new resize('files/'.$this->fileName);
+		$resize->resizeImage(64,64);
+		$resize->saveImage('files/'.$newFile);
 	}
 
 }

@@ -34,7 +34,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle','Moderator'),
+				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle','Moderator','cad'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -181,6 +181,14 @@ class UserController extends Controller
 		$this->pageTitle = 'Welcome '.ucfirst(User::model()->findByPk(Yii::app()->user->id)->name);
 		$statusLast = new Status;
 		$user = User::model()->findByPk($user_id); // This would only get the specific user
+
+		$picture = $user->profilepic;
+		$picture = ProfilePicture::model()->findByPk($picture);
+		$pic = 'default.png';
+		if($picture != null) {
+			$pic = $picture->profile_picture;
+		}
+
 		// $status = $this->createStatus();
 		$status = new Status;
 		$money = $this->createMoney();
@@ -231,6 +239,7 @@ class UserController extends Controller
 			'pages' => $pages,
 			'todos' => $todoArray,
 			'modulesArray' => $modulesArray,
+			'picture' => $pic,
 		));
 	}
 
