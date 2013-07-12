@@ -250,6 +250,10 @@ class UserController extends Controller
 
 		return $money;
 	}
+public function actionCad()
+{
+	$this->render('cad');
+}
 
 	/**
 	 * Manages all models.
