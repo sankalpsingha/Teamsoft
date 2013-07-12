@@ -73,7 +73,7 @@
          <tr>
         <td> <?php echo $key->original_name; ?></td>
         <td><a href="#" onclick="thingiview.loadSTL(<?php echo '\''.$this->createAbsoluteUrl('/files').'/'.$key->name.'\''; ?>)">render</a> </td>
-        <td> <a href="objects/all_small.stl">download</a> </td>
+        <td> <a href=<?php echo '\''.$this->createAbsoluteUrl('/files').'/'.$key->name.'\''; ?>>download</a> </td>
       </tr>
       <?php endforeach ?>
     </table>  
