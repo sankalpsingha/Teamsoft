@@ -226,7 +226,7 @@
 	 							<div class="status">
 	 							<blockquote>
 	 								<h4>
-	 									<img src="/teamsoft/files/<?php echo $pic; ?>">
+	 									<img src="<?php echo Yii::app()->request->baseUrl; ?>/files/<?php echo $pic; ?>">
 	 									<?php echo CHtml::link(Chtml::encode($status->user->name),'/'.$status->user->username); ?>
 	 								</h4>
 

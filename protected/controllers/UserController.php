@@ -259,11 +259,7 @@ class UserController extends Controller
 
 		return $money;
 	}
-public function actionCad()
-{
-	$this->render('cad');
-}
-
+	
 	public function actionCad()
 	{
 		$cad = Stl::model()->findAll();

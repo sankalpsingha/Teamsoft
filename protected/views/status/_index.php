@@ -1,7 +1,15 @@
+<?php
+$user = User::model()->findByPk($status->user_id);
+$picture = ProfilePicture::model()->findByPk($user->profilepic);
+$pic = 'tdefault.png';
+if($picture != null) {
+	$pic = "t".$picture->profile_picture;
+}
+?>
 <div class="status">
 	<blockquote>
 		<h4>
-			<img src="http://placehold.it/64x64">
+			<img src="<?php echo Yii::app()->request->baseUrl; ?>/files/<?php echo $pic; ?>">
 			<?php echo CHtml::link(Chtml::encode($status->user->name),'/'.$status->user->username); ?>
 		</h4>
 			<?php echo CHtml::link('<i class="icon-trash icon-large"></i>','#',array('submit'=>array('status/delete','id'=>$status->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
