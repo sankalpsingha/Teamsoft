@@ -346,3 +346,70 @@ Stack trace:
 REQUEST_URI=/todo/create
 HTTP_REFERER=http://localhost/todo/
 ---
+2013/07/13 14:48:24 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /opt/lampp/testidocs/protected/modules/rights/components/RController.php:62
+Stack trace:
+#0 /opt/lampp/testidocs/protected/modules/rights/components/RightsFilter.php(57): RController->accessDenied()
+#1 /opt/lampp/yii/framework/web/filters/CFilter.php(38): RightsFilter->preFilter(Object(CFilterChain))
+#2 /opt/lampp/testidocs/protected/modules/rights/components/RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 /opt/lampp/yii/framework/web/filters/CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#4 /opt/lampp/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /opt/lampp/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /opt/lampp/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /opt/lampp/yii/framework/web/CWebApplication.php(282): CController->run('')
+#8 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#9 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /opt/lampp/testidocs/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/
+---
+2013/07/13 14:48:28 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /opt/lampp/testidocs/protected/modules/rights/components/RController.php:62
+Stack trace:
+#0 /opt/lampp/testidocs/protected/modules/rights/components/RightsFilter.php(57): RController->accessDenied()
+#1 /opt/lampp/yii/framework/web/filters/CFilter.php(38): RightsFilter->preFilter(Object(CFilterChain))
+#2 /opt/lampp/testidocs/protected/modules/rights/components/RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 /opt/lampp/yii/framework/web/filters/CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#4 /opt/lampp/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /opt/lampp/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /opt/lampp/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /opt/lampp/yii/framework/web/CWebApplication.php(282): CController->run('')
+#8 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#9 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /opt/lampp/testidocs/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://localhost/
+---
+2013/07/13 14:48:29 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /opt/lampp/testidocs/protected/modules/rights/components/RController.php:62
+Stack trace:
+#0 /opt/lampp/testidocs/protected/modules/rights/components/RightsFilter.php(57): RController->accessDenied()
+#1 /opt/lampp/yii/framework/web/filters/CFilter.php(38): RightsFilter->preFilter(Object(CFilterChain))
+#2 /opt/lampp/testidocs/protected/modules/rights/components/RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 /opt/lampp/yii/framework/web/filters/CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#4 /opt/lampp/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /opt/lampp/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /opt/lampp/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /opt/lampp/yii/framework/web/CWebApplication.php(282): CController->run('')
+#8 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#9 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /opt/lampp/testidocs/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://localhost/
+---
+2013/07/13 14:48:31 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /opt/lampp/testidocs/protected/modules/rights/components/RController.php:62
+Stack trace:
+#0 /opt/lampp/testidocs/protected/modules/rights/components/RightsFilter.php(57): RController->accessDenied()
+#1 /opt/lampp/yii/framework/web/filters/CFilter.php(38): RightsFilter->preFilter(Object(CFilterChain))
+#2 /opt/lampp/testidocs/protected/modules/rights/components/RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 /opt/lampp/yii/framework/web/filters/CInlineFilter.php(58): RController->filterRights(Object(CFilterChain))
+#4 /opt/lampp/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /opt/lampp/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /opt/lampp/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /opt/lampp/yii/framework/web/CWebApplication.php(282): CController->run('')
+#8 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#9 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /opt/lampp/testidocs/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://localhost/
+---

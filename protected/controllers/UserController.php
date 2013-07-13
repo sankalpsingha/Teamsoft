@@ -407,7 +407,7 @@ class UserController extends RController
 		    		$('#sec').click(
 		    			function(){
 		    			var ans = $('input[id=sec_ques]').val();
-		    			$.post('/teamsoft/user/reset',{ans : ans}, function(string){
+		    			$.post('user/reset',{ans : ans}, function(string){
 		    				if(string == 1) {
 		    					alert('Your password has been mailed to you.');
 		    					$('#worefresh').html('');
