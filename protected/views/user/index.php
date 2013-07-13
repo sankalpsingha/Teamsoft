@@ -54,7 +54,7 @@
 							}
 							?>
 							<tr class="<?php echo $class; ?>">
-							<td><?php echo Chtml::link(Chtml::encode($todo->description),'todo/view/'.$todo->id); ?></td>
+							<td><?php echo Chtml::link(Chtml::encode($todo->todocol),'todo/view/'.$todo->id); ?></td>
 							<td><?php echo Chtml::encode($message); ?></td>
 							</tr>
 							<?php
@@ -249,7 +249,7 @@
 			 										<?php if ($key_2->user_id === Yii::app()->user->id): ?>
 			 											<?php echo CHtml::link('<i class="icon-trash icon-large"></i>','#',array('submit'=>array('statusComment/delete','id'=>$key_2->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
 			 										<?php endif ?>
-			 										<h4><?php echo User::model()->findByPk($key_2->user_id)->name; ?></h4>
+			 										<h4><?php echo CHtml::link(CHtml::encode(User::model()->findByPk($key_2->user_id)->name),'/'.User::model()->findByPk($key_2->user_id)->username); ?></h4>
 			 										<small><?php echo $key_2->created_on; ?></small>
 			 										<p><?php echo $key_2->content; ?></p>
 			 									</blockquote>

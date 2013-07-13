@@ -92,7 +92,7 @@ return array(
 				'admin' => 'user/admin',
 
 				'moderator' => 'user/moderator',
-				'<controller>' => '<controller>',
+				// '<controller>' => '<controller>',
 
 				'<slug:[\w\_]+>'=>'user/view',
 			),

@@ -148,8 +148,15 @@ class UserController extends RController
 		$statuses = Status::model()->findAll($criteria);
 
 		// Pagination data done!
-
+		$todoArray = $user->todos;
 		
+		$picture = $user->profilepic;
+		$picture = ProfilePicture::model()->findByPk($picture);
+		$pic = 'default.png';
+		if($picture != null) {
+			$pic = $picture->profile_picture;
+		}
+
 		$modules = $user->modules;
 
 		$this->render('view',array(
@@ -159,7 +166,8 @@ class UserController extends RController
 			'modules' => $modules,
 			'amount' => $sum, // This would send the amount.
 			'pages' => $pages,
-
+			'todos' => $todoArray,
+			'picture' => $pic,
 		));
 	}
 
