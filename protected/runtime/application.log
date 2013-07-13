@@ -328,3 +328,21 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/xampp/
 ---
+2013/07/13 14:31:52 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /opt/lampp/yii/framework/web/CController.php:336
+Stack trace:
+#0 /opt/lampp/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /opt/lampp/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /opt/lampp/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /opt/lampp/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /opt/lampp/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /opt/lampp/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /opt/lampp/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /opt/lampp/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /opt/lampp/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#9 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('todo/create')
+#10 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /opt/lampp/testidocs/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/todo/create
+HTTP_REFERER=http://localhost/todo/
+---
