@@ -538,6 +538,18 @@ class UserController extends RController
 			$user = User::model()->findByPk($pk);
 			$user->$name = $value;
 			$user->update();
+			if($name == 'power') {
+				if($value == 1) {
+					$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+					$authorizer->authManager->assign('Moderator', $model->id);
+				} elseif($value == 2) {
+					$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+					$authorizer->authManager->assign('Admin', $model->id);
+				} elseif($value == 0) {
+					$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+					$authorizer->authManager->assign('Member', $model->id);
+				}
+			}
 		}
 	}
 
