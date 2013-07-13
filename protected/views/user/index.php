@@ -514,8 +514,7 @@ $('[data-toggle="popo"]').click(function(e) {
 									    'maxFileSize' => 2000000,
 									    'maxNumberOfFiles' => 1,
 									    'acceptFileTypes' => 'js:/(\.|\/)(gif|jpe?g|png)$/i',
-									    'done' => 'js:function(e, data){var demo = data.jqXHR; demo = demo.responseText; var dad = demo.substr(1,demo.length - 2); var final = eval(\'(\'+dad+\')\'); var url = \'/teamsoft/profilePicture/crop\'; var form = $(\'<form action="\'+url+\'" method="post">\' + \'<input type="text" name="picture_name" id="picture_name" hidden="hidden" value="\'+final.test+\'"></form>\'); $(\'body\').append(form); $(form).submit();}',
-									    // 'redirect' => 'localhost/teamsoft',
+									    'done' => 'js:function(e, data){var demo = data.jqXHR; demo = demo.responseText; var dad = demo.substr(1,demo.length - 2); var final = eval(\'(\'+dad+\')\'); var url = \'profilePicture/crop\'; var form = $(\'<form action="\'+url+\'" method="post">\' + \'<input type="text" name="picture_name" id="picture_name" hidden="hidden" value="\'+final.test+\'"></form>\'); $(\'body\').append(form); $(form).submit();}',
 									    'autoUpload' => true,
 										)
 									)
