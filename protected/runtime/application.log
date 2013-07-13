@@ -292,3 +292,39 @@ Stack trace:
 REQUEST_URI=/user/loading.gif
 HTTP_REFERER=http://localhost/user/dashboard
 ---
+2013/07/13 02:36:19 [error] [exception.CException] exception 'CException' with message 'Property "EJcrop.success" is not defined.' in /opt/lampp/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /opt/lampp/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('success', 'js:alert("wow")')
+#1 /opt/lampp/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(ProfilePictureController), 'ext.jcrop.EJcro...', Array)
+#2 /opt/lampp/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('ext.jcrop.EJcro...', Array)
+#3 /opt/lampp/testidocs/protected/views/profilePicture/crop.php(39): CBaseController->widget('ext.jcrop.EJcro...', Array)
+#4 /opt/lampp/yii/framework/web/CBaseController.php(126): require('/opt/lampp/test...')
+#5 /opt/lampp/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/opt/lampp/test...', Array, true)
+#6 /opt/lampp/yii/framework/web/CController.php(869): CBaseController->renderFile('/opt/lampp/test...', Array, true)
+#7 /opt/lampp/yii/framework/web/CController.php(782): CController->renderPartial('crop', Array, true)
+#8 /opt/lampp/testidocs/protected/controllers/ProfilePictureController.php(242): CController->render('crop', Array)
+#9 /opt/lampp/yii/framework/web/actions/CInlineAction.php(49): ProfilePictureController->actionCrop()
+#10 /opt/lampp/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /opt/lampp/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /opt/lampp/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /opt/lampp/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /opt/lampp/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /opt/lampp/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /opt/lampp/yii/framework/web/CController.php(291): CFilterChain->run()
+#17 /opt/lampp/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /opt/lampp/yii/framework/web/CWebApplication.php(282): CController->run('crop')
+#19 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('profilePicture/...')
+#20 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /opt/lampp/testidocs/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/profilePicture/crop
+HTTP_REFERER=http://localhost/
+---
+2013/07/13 10:34:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "xampp".' in /opt/lampp/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('xampp')
+#1 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/testidocs/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/xampp/
+---

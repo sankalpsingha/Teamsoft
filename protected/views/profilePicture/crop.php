@@ -13,6 +13,7 @@ $this->widget('ext.jcrop.EJcrop', array(
 		'minSize' => array(100,100),
 		'aspectRatio' => 1,
 		'onRelease' => "js:function() {ejcrop_cancelCrop(this);}",
+		'function() {alert("parry");}',
 	),
 	// if this array is empty, buttons will not be added
 	'buttons' => array(
@@ -25,6 +26,7 @@ $this->widget('ext.jcrop.EJcrop', array(
 		),
 		'crop' => array(
 			'label' => Yii::t('promoter', 'Apply cropping'),
+			'buttonType' => 'submit',
 		),
 		'cancel' => array(
 			'label' => Yii::t('promoter', 'Cancel cropping')
