@@ -444,16 +444,11 @@ $('[data-toggle="popo"]').click(function(e) {
 		<div class="row-fluid" style="margin-top: 10px;">
 			<?php 
 			$this->widget('bootstrap.widgets.TbButton',array(
-				'label' => 'Add  Gallery Images',
-				'type' => 'success',
+				'label' => 'View Cad Models',
+				'type' => 'danger',
 				'block' => true,
-				'htmlOptions' => array(
-								'data-toggle' => 'modal',
-								'data-target' => '#myProfile',
-								'style'=>'margin-top: 5px;',
-								'class'=>'span12'
-					),
-				)); ?>
+				'url' => $this->createUrl('user/cad'),
+ 				)); ?>
 		</div>
 </div>
 <?php $this->beginWidget('bootstrap.widgets.TbModal', array('id' => 'cad')); ?>

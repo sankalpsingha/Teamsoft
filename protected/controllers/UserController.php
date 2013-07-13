@@ -62,10 +62,9 @@ class UserController extends RController
 			$model->attributes=$_POST['User'];
 			if($model->save())
 
-				/*//This would put the default role as a member.
+				//This would put the default role as a member.
 				$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
 				$authorizer->authManager->assign('Member', $model->id);
-				*/
 				
 				
 				$this->redirect(array('site/login'));
@@ -541,19 +540,16 @@ class UserController extends RController
 			if($name == 'power') {
 				$roles = Rights::getAssignedRoles($pk);
 				if($roles != null) {
-					foreach ($roles as $value) {
-						Rights::revoke($value->name, $pk);
+					foreach ($roles as $role) {
+						Rights::revoke($role->name, $pk);
 					}
 				}
 				if($value == 1) {
-					$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-					$authorizer->authManager->assign('Moderator', $pk);
+					Rights::assign('Moderator', $pk);
 				} elseif($value == 2) {
-					$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-					$authorizer->authManager->assign('Admin', $pk);
+					Rights::assign('Admin', $pk);
 				} elseif($value == 0) {
-					$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-					$authorizer->authManager->assign('Member', $pk);
+					Rights::assign('Member', $pk, 'return !Yii::app()->user->isGuest;');
 				}
 			}
 		}
