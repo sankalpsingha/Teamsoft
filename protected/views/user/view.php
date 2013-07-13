@@ -16,7 +16,7 @@
 <div class="span10">
 	<div class="row-fluid">
 		<div class="span3">
-			<img <?php echo "src=".Yii::app()->request->baseUrl."/uploads/san.png"; ?> <?php echo CHtml::encode("alt="."\"".$model['name']."\""); ?> class="img-rounded img-polaroid">
+			<img <?php echo "src=".Yii::app()->request->baseUrl."/files/".$picture; ?> <?php echo CHtml::encode("alt="."\"".$model['name']."\""); ?> class="img-rounded img-polaroid">
 	 					
 
 	 		<div class="row-fluid">
@@ -33,22 +33,30 @@
 				</thead>
 				
 					<tbody>
-					<tr class="success">
-						<td>The description would be here.</td>
-						<td>29 Apr</td>
-					</tr>
-					<tr class="error">
-						<td>The description would be here.</td>
-						<td>29 Apr</td>
-					</tr>
-					<tr class="warning">
-						<td>The description would be here.</td>
-						<td>29 Apr</td>
-					</tr>
-					<tr class="success">
-						<td>The description would be here.</td>
-						<td>29 Apr</td>
-					</tr>
+					<?php
+						foreach ($todos as $todo){
+							$days = Yii::app()->Date->daysCount($todo->deadline, Yii::app()->Date->now());
+							$message = "";
+							$class = "success";
+							if ($days == 0) {
+								$message = "Today";
+								$class = "error";
+							} elseif ($days == 1) {
+								$message = "Tomorrow";
+								$class = "warning";
+							} elseif ($days == 2) {
+								$message = "Day after tomorrow";
+							} elseif ($days > 2) {
+								$message = $days-1 ." days remaining";
+							}
+							?>
+							<tr class="<?php echo $class; ?>">
+							<td><?php echo Chtml::link(Chtml::encode($todo->todocol),'todo/view/'.$todo->id); ?></td>
+							<td><?php echo Chtml::encode($message); ?></td>
+							</tr>
+							<?php
+						}
+						?>
 				</tbody>
 			
 				
@@ -98,66 +106,20 @@
 		 						} ?>
 							</div>
 	 					<?php endif ?>
-	 					
-	 					
-						
-	 						</div>
+	 						
 
+
+	 						</div>
 	 						<div class="span6">
-	 							<!-- This is the area for the graph -->
-								<p class="lead" style="margin-left: 35px;">TEAM PROGRESS :</p>
+	 								<h3 style="margin-top:92px;">Current Status :</h3>
+									<blockquote>
+										<p><i class="icon-quote-left"></i> <?php echo CHtml::encode($lastStatus['status']); ?></p>
+										 <small><?php echo CHtml::encode($lastStatus['created_on']); ?></small>
+									</blockquote>
 
-						<?php 
-        $this->widget(
-            'ext.chartjs.widgets.ChPolar', 
-            array(
-                'width' => 250,
-                'height' => 250,
-                'htmlOptions' => array(),
-                'drawLabels' => true,
-                'datasets' => array(
-                    array(
-                        "value" => 50,
-                        "color" => "rgba(220,30, 70,1)",
-                        "label" => "Tyres"
-                    ),
-                    array(
-                        "value" => 25,
-                        "color" => "rgba(66,66,66,1)",
-                        "label" => "Brakes"
-                    ),
-                    array(
-                        "value" => 40,
-                        "color" => "rgba(100,100,220,1)",
-                        "label" => "Design"
-                    ),
-                    array(
-                        "value" => 15,
-                        "color" => "rgba(20,120,120,1)",
-                        "label" => "Hydraulics"
-                    ),
-                    
-                ),
-                'options' => array()
-            )
-        ); 
-    ?>		
-					
-
-					
 	 						</div>
-
-	 						<h3 style="margin-top:20px;">Current Status :</h3>
-						<blockquote>
-							<p><i class="icon-quote-left"></i> <?php echo CHtml::encode($lastStatus['status']); ?></p>
-							 <small><?php echo CHtml::encode($lastStatus['created_on']); ?></small>
-						</blockquote>
-
 	 					</div>
-						
-
 	 				</div>
-
 	 	</div>
 
 	 	<div class="row-fluid">
@@ -166,11 +128,12 @@
 							
 <div id="statuses">
 	 							<?php foreach ($statuses as $status): ?>
+	 								<?php $user = User::model()->findByPk($status->user_id); $picture = ProfilePicture::model()->findByPk($user->profilepic); $pic = 'tdefault.png'; if($picture != null){ $pic = "t".$picture->profile_picture; } ?>
 	 							<div class="status">
 	 							<blockquote>
 	 								<h4>
-	 									<img src="http://placehold.it/64x64">
-	 									<?php echo CHtml::encode($status->user->name); ?>
+	 									<img src="files/<?php echo $pic; ?>">
+	 									<?php echo CHtml::link(Chtml::encode($status->user->name),'/'.$status->user->username); ?>
 	 								</h4>
 
 	 								<?php if ($status->user->id === Yii::app()->user->id): ?>
@@ -192,7 +155,7 @@
 			 										<?php if ($key_2->user_id === Yii::app()->user->id): ?>
 			 											<?php echo CHtml::link('<i class="icon-trash icon-large"></i>','#',array('submit'=>array('statusComment/delete','id'=>$key_2->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
 			 										<?php endif ?>
-			 										<h4><?php echo User::model()->findByPk($key_2->user_id)->name; ?></h4>
+			 										<h4><?php echo CHtml::link(CHtml::encode(User::model()->findByPk($key_2->user_id)->name),'/'.User::model()->findByPk($key_2->user_id)->username); ?></h4>
 			 										<small><?php echo $key_2->created_on; ?></small>
 			 										<p><?php echo $key_2->content; ?></p>
 			 									</blockquote>
