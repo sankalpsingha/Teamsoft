@@ -541,9 +541,8 @@ class UserController extends RController
 			if($name == 'power') {
 				$roles = Rights::getAssignedRoles($pk);
 				if($roles != null) {
-					$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
 					foreach ($roles as $value) {
-						$authorizer->authManager->revoke($value->name, $pk);
+						Rights::revoke($value->name, $pk);
 					}
 				}
 				if($value == 1) {

@@ -616,3 +616,120 @@ Stack trace:
 #10 {main}
 REQUEST_URI=/rights
 ---
+2013/07/13 19:09:07 [error] [php] require(../../extensions/jcrop/Resize.php): failed to open stream: No such file or directory (/opt/lampp/testidocs/protected/controllers/ProfilePictureController.php:209)
+Stack trace:
+#0 /opt/lampp/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /opt/lampp/yii/framework/web/filters/CFilterChain.php(133): ProfilePictureController->runAction()
+#2 /opt/lampp/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /opt/lampp/testidocs/protected/modules/rights/components/RController.php(36): RightsFilter->filter()
+#4 /opt/lampp/yii/framework/web/filters/CInlineFilter.php(58): ProfilePictureController->filterRights()
+#5 /opt/lampp/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /opt/lampp/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /opt/lampp/yii/framework/web/CController.php(265): ProfilePictureController->runActionWithFilters()
+#8 /opt/lampp/yii/framework/web/CWebApplication.php(282): ProfilePictureController->run()
+#9 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /opt/lampp/testidocs/index.php(13): CWebApplication->run()
+REQUEST_URI=/profilePicture/upload
+in /opt/lampp/testidocs/protected/controllers/ProfilePictureController.php (209)
+in /opt/lampp/testidocs/protected/controllers/ProfilePictureController.php (209)
+in /opt/lampp/testidocs/protected/modules/rights/components/RController.php (36)
+2013/07/13 19:09:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "files/t1876393140.png".' in /opt/lampp/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('files/t18763931...')
+#1 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/testidocs/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/files/t1876393140.png
+HTTP_REFERER=http://localhost/
+---
+2013/07/13 19:09:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "files/t1876393140.png".' in /opt/lampp/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('files/t18763931...')
+#1 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/testidocs/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/files/t1876393140.png
+HTTP_REFERER=http://localhost/
+---
+2013/07/13 19:09:19 [error] [php] require(../../extensions/jcrop/Resize.php): failed to open stream: No such file or directory (/opt/lampp/testidocs/protected/controllers/ProfilePictureController.php:209)
+Stack trace:
+#0 /opt/lampp/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /opt/lampp/yii/framework/web/filters/CFilterChain.php(133): ProfilePictureController->runAction()
+#2 /opt/lampp/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /opt/lampp/testidocs/protected/modules/rights/components/RController.php(36): RightsFilter->filter()
+#4 /opt/lampp/yii/framework/web/filters/CInlineFilter.php(58): ProfilePictureController->filterRights()
+#5 /opt/lampp/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /opt/lampp/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /opt/lampp/yii/framework/web/CController.php(265): ProfilePictureController->runActionWithFilters()
+#8 /opt/lampp/yii/framework/web/CWebApplication.php(282): ProfilePictureController->run()
+#9 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /opt/lampp/testidocs/index.php(13): CWebApplication->run()
+REQUEST_URI=/profilePicture/upload
+in /opt/lampp/testidocs/protected/controllers/ProfilePictureController.php (209)
+in /opt/lampp/testidocs/protected/controllers/ProfilePictureController.php (209)
+in /opt/lampp/testidocs/protected/modules/rights/components/RController.php (36)
+2013/07/13 19:09:43 [error] [php] require(/../../extensions/jcrop/Resize.php): failed to open stream: No such file or directory (/opt/lampp/testidocs/protected/controllers/ProfilePictureController.php:209)
+Stack trace:
+#0 /opt/lampp/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /opt/lampp/yii/framework/web/filters/CFilterChain.php(133): ProfilePictureController->runAction()
+#2 /opt/lampp/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /opt/lampp/testidocs/protected/modules/rights/components/RController.php(36): RightsFilter->filter()
+#4 /opt/lampp/yii/framework/web/filters/CInlineFilter.php(58): ProfilePictureController->filterRights()
+#5 /opt/lampp/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /opt/lampp/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /opt/lampp/yii/framework/web/CController.php(265): ProfilePictureController->runActionWithFilters()
+#8 /opt/lampp/yii/framework/web/CWebApplication.php(282): ProfilePictureController->run()
+#9 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /opt/lampp/testidocs/index.php(13): CWebApplication->run()
+REQUEST_URI=/profilePicture/upload
+in /opt/lampp/testidocs/protected/controllers/ProfilePictureController.php (209)
+in /opt/lampp/testidocs/protected/controllers/ProfilePictureController.php (209)
+in /opt/lampp/testidocs/protected/modules/rights/components/RController.php (36)
+2013/07/13 19:09:55 [error] [php] require(/../extensions/jcrop/Resize.php): failed to open stream: No such file or directory (/opt/lampp/testidocs/protected/controllers/ProfilePictureController.php:209)
+Stack trace:
+#0 /opt/lampp/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /opt/lampp/yii/framework/web/filters/CFilterChain.php(133): ProfilePictureController->runAction()
+#2 /opt/lampp/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /opt/lampp/testidocs/protected/modules/rights/components/RController.php(36): RightsFilter->filter()
+#4 /opt/lampp/yii/framework/web/filters/CInlineFilter.php(58): ProfilePictureController->filterRights()
+#5 /opt/lampp/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /opt/lampp/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /opt/lampp/yii/framework/web/CController.php(265): ProfilePictureController->runActionWithFilters()
+#8 /opt/lampp/yii/framework/web/CWebApplication.php(282): ProfilePictureController->run()
+#9 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /opt/lampp/testidocs/index.php(13): CWebApplication->run()
+REQUEST_URI=/profilePicture/upload
+in /opt/lampp/testidocs/protected/controllers/ProfilePictureController.php (209)
+in /opt/lampp/testidocs/protected/controllers/ProfilePictureController.php (209)
+in /opt/lampp/testidocs/protected/modules/rights/components/RController.php (36)
+2013/07/13 19:10:20 [error] [php] require(/protected/extensions/jcrop/Resize.php): failed to open stream: No such file or directory (/opt/lampp/testidocs/protected/controllers/ProfilePictureController.php:209)
+Stack trace:
+#0 /opt/lampp/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /opt/lampp/yii/framework/web/filters/CFilterChain.php(133): ProfilePictureController->runAction()
+#2 /opt/lampp/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /opt/lampp/testidocs/protected/modules/rights/components/RController.php(36): RightsFilter->filter()
+#4 /opt/lampp/yii/framework/web/filters/CInlineFilter.php(58): ProfilePictureController->filterRights()
+#5 /opt/lampp/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /opt/lampp/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /opt/lampp/yii/framework/web/CController.php(265): ProfilePictureController->runActionWithFilters()
+#8 /opt/lampp/yii/framework/web/CWebApplication.php(282): ProfilePictureController->run()
+#9 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /opt/lampp/testidocs/index.php(13): CWebApplication->run()
+REQUEST_URI=/profilePicture/upload
+in /opt/lampp/testidocs/protected/controllers/ProfilePictureController.php (209)
+in /opt/lampp/testidocs/protected/controllers/ProfilePictureController.php (209)
+in /opt/lampp/testidocs/protected/modules/rights/components/RController.php (36)
+2013/07/13 19:10:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "files/t2689577.jpg".' in /opt/lampp/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('files/t2689577....')
+#1 /opt/lampp/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /opt/lampp/testidocs/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/files/t2689577.jpg
+HTTP_REFERER=http://localhost/
+---

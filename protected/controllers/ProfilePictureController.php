@@ -206,6 +206,10 @@ class ProfilePictureController extends RController
 	        	$user = User::model()->findByPk(Yii::app()->user->id);
 	        	$user->profilepic = $model->id;
 	        	$user->update();
+	        	require 'protected/extensions/jcrop/Resize.php';
+	        	$resizer = new resize('files/'.$model->profile_picture);
+	        	$resizer->resizeImage(64,64);
+	        	$resizer->saveImage('files/t'.$model->profile_picture);
 	            // return data to the fileuploader
 	            $data[] = array(
 	                'name' => $model->picture->name,
