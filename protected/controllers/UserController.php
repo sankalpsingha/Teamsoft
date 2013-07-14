@@ -34,7 +34,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle','Moderator','cad'),
+				'actions'=>array('update','dashboard', 'gallery','UpdateInfo','toggle','Moderator','cad','fb'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -45,6 +45,12 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 		);
+	}
+
+
+	public function actionFb()
+	{
+		$this->render('fb');
 	}
 	
 	/**
