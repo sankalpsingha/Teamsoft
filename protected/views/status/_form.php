@@ -27,7 +27,7 @@
 
                         'ajaxOptions' => array('success' => 'js:function(data){$(data).prependTo("#statuses").hide().each(function(i){var self = $(this); self.slideDown("slow")});}', 'type' => 'post'),
                     	'type'=>'success',
-                    	'url' => '/teamsoft/status/create',
+                    	'url' => 'status/create',
 
                         'label'=>'Send',
                 )); ?>

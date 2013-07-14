@@ -8,7 +8,7 @@
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'money-form',
-	'enableAjaxValidation'=>true,
+	// 'enableAjaxValidation'=>true,
 	'enableClientValidation'=>true,
 )); ?>
 

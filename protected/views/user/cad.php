@@ -1,6 +1,8 @@
 <style>
   body{
+
  background-image:url(<?php echo Yii::app()->baseUrl.'/img/bk.png' ?>);
+
   }
   h1{
     text-align: center;
@@ -14,6 +16,7 @@
      border: 5px solid blue;
    }*/
   </style>
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   
  
@@ -39,6 +42,7 @@
       } else {
         // thingiview.loadSTL("../examples/objects/cube.stl");
        // thingiview.loadPLY("../examples/objects/gnome_ascii.ply");
+
       }
     }
     
@@ -49,6 +53,7 @@
       });
       return vars;
     }    
+
   </script>
 
 
@@ -112,3 +117,4 @@
   Object Color: <a href="#" onclick="thingiview.setObjectColor('#ffffff')">White</a> | <a href="#" onclick="thingiview.setObjectColor('#aa0000')">Red</a> | <a href="#" onclick="thingiview.setObjectColor('#CDFECD')">Green</a> | <a href="#" onclick="thingiview.setObjectColor('#C0D8F0')">Blue</a><br/>
 </p>
 </div>
+

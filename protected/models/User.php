@@ -41,7 +41,6 @@
  * @property Status[] $statuses
  * @property StatusComment[] $statusComments
  * @property Todo[] $todos
- * @property Module[] $modules
  */
 
 class User extends CActiveRecord

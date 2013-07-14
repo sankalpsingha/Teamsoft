@@ -2,11 +2,10 @@
 /* @var $this UserController */
 /* @var $dataProvider CActiveDataProvider */
 ?>
-
 <div class="span10">
 	<div class="row-fluid">
 		<div class="span3">
-			<img <?php echo "src=".Yii::app()->request->baseUrl."/uploads/san.png"; ?> <?php echo CHtml::encode("alt="."\"".$model['name']."\""); ?> class="img-rounded img-polaroid">
+			<img <?php echo "src=".Yii::app()->request->baseUrl."/files/".$picture; ?> <?php echo CHtml::encode("alt="."\"".$model['name']."\""); ?> class="img-rounded img-polaroid">
 						<?php $this->widget('bootstrap.widgets.TbButton',array(
 							'label' => 'Change Profile Pic',
 							'icon' => 'icon-edit',
@@ -15,7 +14,7 @@
 							
 							'htmlOptions' => array(
 								'data-toggle' => 'modal',
-								'data-target' => '#myProfile',
+								'data-target' => '#changepicture',
 								'style'=>'margin-top: 5px;',
 								'class'=>'span12'
 								),
@@ -55,7 +54,7 @@
 							}
 							?>
 							<tr class="<?php echo $class; ?>">
-							<td><?php echo Chtml::link(Chtml::encode($todo->description),'todo/view/'.$todo->id); ?></td>
+							<td><?php echo Chtml::link(Chtml::encode($todo->todocol),'todo/view/'.$todo->id); ?></td>
 							<td><?php echo Chtml::encode($message); ?></td>
 							</tr>
 							<?php
@@ -223,10 +222,11 @@
 
 <div id="statuses">
 	 							<?php foreach ($statuses as $status): ?>
+	 								<?php $user = User::model()->findByPk($status->user_id); $picture = ProfilePicture::model()->findByPk($user->profilepic); $pic = 'tdefault.png'; if($picture != null){ $pic = "t".$picture->profile_picture; } ?>
 	 							<div class="status">
 	 							<blockquote>
 	 								<h4>
-	 									<img src="http://placehold.it/64x64">
+	 									<img src="<?php echo Yii::app()->request->baseUrl; ?>/files/<?php echo $pic; ?>">
 	 									<?php echo CHtml::link(Chtml::encode($status->user->name),'/'.$status->user->username); ?>
 	 								</h4>
 
@@ -249,7 +249,7 @@
 			 										<?php if ($key_2->user_id === Yii::app()->user->id): ?>
 			 											<?php echo CHtml::link('<i class="icon-trash icon-large"></i>','#',array('submit'=>array('statusComment/delete','id'=>$key_2->id),'confirm'=>'Are you sure?','csrf'=>true, 'class'=>'pull-right', 'style'=>'text-decoration:none;'));  ?>
 			 										<?php endif ?>
-			 										<h4><?php echo User::model()->findByPk($key_2->user_id)->name; ?></h4>
+			 										<h4><?php echo CHtml::link(CHtml::encode(User::model()->findByPk($key_2->user_id)->name),'/'.User::model()->findByPk($key_2->user_id)->username); ?></h4>
 			 										<small><?php echo $key_2->created_on; ?></small>
 			 										<p><?php echo $key_2->content; ?></p>
 			 									</blockquote>
@@ -444,16 +444,11 @@ $('[data-toggle="popo"]').click(function(e) {
 		<div class="row-fluid" style="margin-top: 10px;">
 			<?php 
 			$this->widget('bootstrap.widgets.TbButton',array(
-				'label' => 'Add  Gallery Images',
-				'type' => 'success',
+				'label' => 'View Cad Models',
+				'type' => 'danger',
 				'block' => true,
-				'htmlOptions' => array(
-								'data-toggle' => 'modal',
-								'data-target' => '#myProfile',
-								'style'=>'margin-top: 5px;',
-								'class'=>'span12'
-					),
-				)); ?>
+				'url' => $this->createUrl('user/cad'),
+ 				)); ?>
 		</div>
 </div>
 <?php $this->beginWidget('bootstrap.widgets.TbModal', array('id' => 'cad')); ?>
@@ -487,6 +482,43 @@ $('[data-toggle="popo"]').click(function(e) {
 					'url' => '#',
 					'htmlOptions' => array('data-dismiss' => 'modal'),
 					)); ?>
+					<?php $this->widget('bootstrap.widgets.TbButton', array(
+					'label' => 'Close',
+					'url' => '#',
+					'htmlOptions' => array('data-dismiss' => 'modal'),
+					)); ?>
+					
+					</div>
+
+<?php $this->endWidget(); ?>
+<?php $this->beginWidget('bootstrap.widgets.TbModal', array('id' => 'changepicture')); ?>
+
+					<div class="modal-header">
+					<a class="close" data-dismiss="modal">&times;</a>
+					<h4>Change Profile Picture</h4>
+					</div>
+
+					<div class="modal-body">
+					<div class="span12">
+						<?php $this->widget('bootstrap.widgets.TbFileUpload', array(
+								    'url' => $this->createUrl("profilePicture/upload"),
+								    'model' => new ProfilePicture,
+								    'attribute' => 'picture',
+								    // 'multiple' => true,
+								    'options' => array(
+									    'maxFileSize' => 2000000,
+									    'maxNumberOfFiles' => 1,
+									    'acceptFileTypes' => 'js:/(\.|\/)(gif|jpe?g|png)$/i',
+									    'done' => 'js:function(e, data){var demo = data.jqXHR; demo = demo.responseText; var dad = demo.substr(1,demo.length - 2); var final = eval(\'(\'+dad+\')\'); var url = \'profilePicture/crop\'; var form = $(\'<form action="\'+url+\'" method="post">\' + \'<input type="text" name="picture_name" id="picture_name" hidden="hidden" value="\'+final.test+\'"></form>\'); $(\'body\').append(form); $(form).submit();}',
+									    'autoUpload' => true,
+										)
+									)
+								);
+						?>
+					</div>
+					</div>
+
+					<div class="modal-footer">
 					<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'label' => 'Close',
 					'url' => '#',

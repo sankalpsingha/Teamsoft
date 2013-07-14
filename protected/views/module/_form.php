@@ -59,14 +59,14 @@
 			),
 		)); 
 		?>
-<<<<<<< HEAD
+
 	
 	<div class="span7" style="margin-bottom: 10px;">
-=======
+
 		<?php echo $form->error($model,'user_id'); ?>
 	<div class="row-fluid">
 
->>>>>>> 124d2017f1b7df83f3962798b0cf77595af2d915
+
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
                         'buttonType'=>'submit',
                         'type'=>'inverse',

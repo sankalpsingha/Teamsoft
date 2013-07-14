@@ -45,6 +45,8 @@ return array(
 		
 		'rights'=>array(
 			'install'=>false,
+			//'enableBizRule' => true,
+			//'enableBizRuleData' => true,
 			),
 		'message' => array(
             'userModel' => 'User',
@@ -63,6 +65,8 @@ return array(
 
 		'authManager'=>array(
 			'class'=>'RDbAuthManager',
+			'connectionID' => 'db',
+			'defaultRoles' => array('Guest'),
 			),
 
 		'bootstrap' => array(
@@ -88,7 +92,7 @@ return array(
 				'admin' => 'user/admin',
 
 				'moderator' => 'user/moderator',
-				'<controller>' => '<controller>',
+				// '<controller>' => '<controller>',
 
 				'<slug:[\w\_]+>'=>'user/view',
 			),
@@ -107,10 +111,10 @@ return array(
 		
 		'db'=>array(
 			//'connectionString' => 'mysql:unix_socket=/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock;dbname=fahrenheit',
-			'connectionString' => 'mysql:host=localhost;dbname=fahrenheit',
+			'connectionString' => 'mysql:host=localhost;dbname=admin_fahrenheit',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'admin_admin',
+			'password' => '#include<sankalp.h>',
 			'charset' => 'utf8',
 		),
 		

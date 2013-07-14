@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends Controller
+class UserController extends RController
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -14,8 +14,7 @@ class UserController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			'rights',
 		);
 	}
 
@@ -69,13 +68,12 @@ class UserController extends Controller
 			$model->attributes=$_POST['User'];
 			if($model->save())
 
-				/*//This would put the default role as a member.
+				//This would put the default role as a member.
 				$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
 				$authorizer->authManager->assign('Member', $model->id);
-				*/
 				
 				
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('site/login'));
 		}
 
 		$this->render('create',array(
@@ -156,8 +154,15 @@ class UserController extends Controller
 		$statuses = Status::model()->findAll($criteria);
 
 		// Pagination data done!
-
+		$todoArray = $user->todos;
 		
+		$picture = $user->profilepic;
+		$picture = ProfilePicture::model()->findByPk($picture);
+		$pic = 'default.png';
+		if($picture != null) {
+			$pic = $picture->profile_picture;
+		}
+
 		$modules = $user->modules;
 
 		$this->render('view',array(
@@ -167,7 +172,8 @@ class UserController extends Controller
 			'modules' => $modules,
 			'amount' => $sum, // This would send the amount.
 			'pages' => $pages,
-
+			'todos' => $todoArray,
+			'picture' => $pic,
 		));
 	}
 
@@ -187,6 +193,14 @@ class UserController extends Controller
 		$this->pageTitle = 'Welcome '.ucfirst(User::model()->findByPk(Yii::app()->user->id)->name);
 		$statusLast = new Status;
 		$user = User::model()->findByPk($user_id); // This would only get the specific user
+
+		$picture = $user->profilepic;
+		$picture = ProfilePicture::model()->findByPk($picture);
+		$pic = 'default.png';
+		if($picture != null) {
+			$pic = $picture->profile_picture;
+		}
+
 		// $status = $this->createStatus();
 		$status = new Status;
 		$money = $this->createMoney();
@@ -237,6 +251,7 @@ class UserController extends Controller
 			'pages' => $pages,
 			'todos' => $todoArray,
 			'modulesArray' => $modulesArray,
+			'picture' => $pic,
 		));
 	}
 
@@ -256,7 +271,7 @@ class UserController extends Controller
 
 		return $money;
 	}
-
+	
 	public function actionCad()
 	{
 		$cad = Stl::model()->findAll();
@@ -405,7 +420,7 @@ class UserController extends Controller
 		    		$('#sec').click(
 		    			function(){
 		    			var ans = $('input[id=sec_ques]').val();
-		    			$.post('/teamsoft/user/reset',{ans : ans}, function(string){
+		    			$.post('/user/reset',{ans : ans}, function(string){
 		    				if(string == 1) {
 		    					alert('Your password has been mailed to you.');
 		    					$('#worefresh').html('');
@@ -536,6 +551,21 @@ class UserController extends Controller
 			$user = User::model()->findByPk($pk);
 			$user->$name = $value;
 			$user->update();
+			if($name == 'power') {
+				$roles = Rights::getAssignedRoles($pk);
+				if($roles != null) {
+					foreach ($roles as $role) {
+						Rights::revoke($role->name, $pk);
+					}
+				}
+				if($value == 1) {
+					Rights::assign('Moderator', $pk);
+				} elseif($value == 2) {
+					Rights::assign('Admin', $pk);
+				} elseif($value == 0) {
+					Rights::assign('Member', $pk, 'return !Yii::app()->user->isGuest;');
+				}
+			}
 		}
 	}
 

@@ -1,6 +1,6 @@
 <?php
 
-class DateController extends Controller
+class DateController extends RController
 {
 
 	/**

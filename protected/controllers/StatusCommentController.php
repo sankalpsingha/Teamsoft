@@ -1,6 +1,6 @@
 <?php
 
-class StatusCommentController extends Controller
+class StatusCommentController extends RController
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -14,8 +14,7 @@ class StatusCommentController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			'rights',
 		);
 	}
 
@@ -121,7 +120,7 @@ class StatusCommentController extends Controller
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			// $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-			$this->redirect(array('user/index/'));
+			$this->redirect(array('user/dashboard/'));
 	}
 
 	/**

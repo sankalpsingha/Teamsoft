@@ -1,6 +1,6 @@
 <?php
 
-class MoneyController extends Controller
+class MoneyController extends RController
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -14,8 +14,7 @@ class MoneyController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			'rights',
 		);
 	}
 
@@ -65,7 +64,7 @@ class MoneyController extends Controller
 		$model=new Money;
 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Money']))
 		{
